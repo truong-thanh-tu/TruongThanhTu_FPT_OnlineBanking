@@ -161,7 +161,7 @@ my_banking section begin
 .main .col-lg-8 .content  .card .card-body .table tr td {
     border: none !important;
 }
-.main .col-lg-8 .content .confirm a{
+.main .col-lg-8 .content .confirm button{
     border: none;
     display: inline-block;
     padding: 8px 16px;

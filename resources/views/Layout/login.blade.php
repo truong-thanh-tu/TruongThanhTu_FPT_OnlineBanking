@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng Nhập</title>
 
-    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img/icon_logo.png') }}"/>
+
 
     <!-- Style Sheet -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

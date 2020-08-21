@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('a', function () {
-    return view('login');
+    return view('Layout.login');
 });
 Route::get('/', function () {
-    return view('master');
+    return view('Page.changePassword');
 });
