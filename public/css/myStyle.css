@@ -1,0 +1,186 @@
+/**
+Truong Thanh Tu | 20:00 21-08-2020
+ */
+
+/**
+ 1./ Login
+ 2./ Information account
+ */
+
+/**
+=================================================
+ */
+/**
+Reset property in boostrapt
+ */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+/**
+Login Section Begin
+ */
+.login {
+    height: 100vh;
+    width: 100%;
+    opacity: 0.9;
+    letter-spacing: 1px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.login .main {
+    width: 300px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 20px;
+    border-radius: 10px;
+}
+
+.login .main .logo-icon i {
+    font-size: 90px;
+    padding: 25px;
+    border-radius: 50%;
+    background: rgba(0, 83, 149, 0.9);
+    color: white;
+    position: absolute;
+    top: -70px;
+    left: 80px;
+}
+
+.login .main form {
+    margin-top: 60px;
+}
+.login .main form input {
+    outline: none !important;
+}
+.login .main form .title h4 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login .main form #confirm {
+    font-size: 15px;
+    color: #2a9055;
+}
+.login .main form button {
+    background-color: #5daf46;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: normal;
+    color: white;
+    border: none;
+}
+/**
+Information Account Section Begin
+ */
+
+/**
+Menu Section Begin
+*/
+.menu{
+    background: rgb(0, 83, 149);
+}
+.menu .container .navbar{
+    padding: 0 !important;
+}
+.menu .container .navbar a{
+    padding: 0 20px;
+    border-right: 1px solid white;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+
+}
+.menu .container .navbar .navbar-brand  i {
+    font-size: 30px;
+    color: white;
+}
+.menu .container .navbar ul{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/**
+fas_access section begin
+*/
+
+.main  .col-lg-4 .fast_access .card .card-header {
+    background-color: #5daf46;
+    padding: 5px 20px !important;
+    color: white;
+    text-transform: uppercase;
+}
+.main .col-lg-4 .fast_access .list-group .list-group-item a{
+    text-decoration: none !important;
+    color: #5daf46;
+}
+
+/**
+my_banking section begin
+*/
+.main {
+    margin-bottom: 70px;
+}
+.main .col-lg-4 .my_banking .card .card-header {
+    background-color: #5daf46;
+    padding: 5px 20px !important;
+    color: white;
+    text-transform: uppercase;
+}
+.main .col-lg-4 .my_banking .list-group .list-group-item a{
+    text-decoration: none !important;
+    color: #5daf46;
+}
+.main .col-lg-8 .content {
+    background-color: #e8e8e8;
+    padding: 20px !important;
+}
+.main .col-lg-8 .content .alert {
+    background: rgb(0, 83, 149);
+    padding: 5px !important;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.main .col-lg-8 .content  .card .card-body .table tr th {
+    border: none !important;
+    text-align: right;
+}
+.main .col-lg-8 .content  .card .card-body .table tr td {
+    border: none !important;
+}
+.main .col-lg-8 .content .confirm a{
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+
+}
+/**
+Footer Section Begin
+ */
+.footer{
+    font-weight: bold;
+    color: white;
+    background-color: #1d68a7;
+    text-align: center;
+}
