@@ -13,11 +13,16 @@ Truong Thanh Tu | 20:00 21-08-2020
 /**
 Reset property in boostrapt
  */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
+}
+
+td {
+    letter-spacing: 1px;
+    font-weight: 400;
 }
 
 /**
@@ -34,7 +39,7 @@ Login Section Begin
     background-position: top center;
 }
 
-.login .main {
+.login .mainLogin {
     width: 300px;
     height: 500px;
     background-color: rgba(255, 255, 255, 0.6);
@@ -46,7 +51,7 @@ Login Section Begin
     border-radius: 10px;
 }
 
-.login .main .logo-icon i {
+.login .mainLogin .logo-icon i {
     font-size: 90px;
     padding: 25px;
     border-radius: 50%;
@@ -57,13 +62,15 @@ Login Section Begin
     left: 80px;
 }
 
-.login .main form {
+.login .mainLogin form {
     margin-top: 60px;
 }
-.login .main form input {
+
+.login .mainLogin form input {
     outline: none !important;
 }
-.login .main form .title h4 {
+
+.login .mainLogin form .title h4 {
     font-size: 30px;
     font-weight: bold;
     text-transform: uppercase;
@@ -71,11 +78,12 @@ Login Section Begin
     margin-bottom: 25px;
 }
 
-.login .main form #confirm {
+.login .mainLogin form #confirm {
     font-size: 15px;
     color: #2a9055;
 }
-.login .main form button {
+
+.login .mainLogin form button {
     background-color: #5daf46;
     display: inline-block;
     text-decoration: none;
@@ -83,6 +91,7 @@ Login Section Begin
     color: white;
     border: none;
 }
+
 /**
 Information Account Section Begin
  */
@@ -90,13 +99,15 @@ Information Account Section Begin
 /**
 Menu Section Begin
 */
-.menu{
+.menu {
     background: rgb(0, 83, 149);
 }
-.menu .container .navbar{
+
+.menu .container .navbar {
     padding: 0 !important;
 }
-.menu .container .navbar a{
+
+.menu .container .navbar a {
     padding: 0 20px;
     border-right: 1px solid white;
     font-size: 15px;
@@ -104,25 +115,37 @@ Menu Section Begin
     color: white;
 
 }
-.menu .container .navbar .navbar-brand  i {
+
+.menu .container .navbar .navbar-brand i {
     font-size: 30px;
     color: white;
 }
-.menu .container .navbar ul{
+
+.menu .container .navbar ul {
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.menu .container .navbar ul .active a {
+    color: #4dfa21;
+}
+
+.menu .container .navbar .navbar-nav .nav-item a:hover {
+    color: #4dfa21 !important;
+}
+
 /**
 fas_access section begin
 */
 
-.main  .col-lg-4 .fast_access .card .card-header {
+.main .col-lg-4 .fast_access .card .card-header {
     background-color: #5daf46;
     padding: 5px 20px !important;
     color: white;
     text-transform: uppercase;
 }
-.main .col-lg-4 .fast_access .list-group .list-group-item a{
+
+.main .col-lg-4 .fast_access .list-group .list-group-item a {
     text-decoration: none !important;
     color: #5daf46;
 }
@@ -133,20 +156,24 @@ my_banking section begin
 .main {
     margin-bottom: 70px;
 }
+
 .main .col-lg-4 .my_banking .card .card-header {
     background-color: #5daf46;
     padding: 5px 20px !important;
     color: white;
     text-transform: uppercase;
 }
-.main .col-lg-4 .my_banking .list-group .list-group-item a{
+
+.main .col-lg-4 .my_banking .list-group .list-group-item a {
     text-decoration: none !important;
     color: #5daf46;
 }
+
 .main .col-lg-8 .content {
-    background-color: #e8e8e8;
+    background-color: #f3f3f3;
     padding: 20px !important;
 }
+
 .main .col-lg-8 .content .alert {
     background: rgb(0, 83, 149);
     padding: 5px !important;
@@ -154,14 +181,17 @@ my_banking section begin
     text-transform: uppercase;
     font-weight: bold;
 }
-.main .col-lg-8 .content  .card .card-body .table tr th {
+
+.main .col-lg-8 .content .card .card-body .table tr th {
     border: none !important;
     text-align: right;
 }
-.main .col-lg-8 .content  .card .card-body .table tr td {
+
+.main .col-lg-8 .content .card .card-body .table tr td {
     border: none !important;
 }
-.main .col-lg-8 .content .confirm button{
+
+.main .col-lg-8 .content .confirm button {
     border: none;
     display: inline-block;
     padding: 8px 16px;
@@ -175,12 +205,210 @@ my_banking section begin
     white-space: nowrap;
 
 }
+
 /**
 Footer Section Begin
  */
-.footer{
+.footer {
     font-weight: bold;
     color: white;
     background-color: #1d68a7;
     text-align: center;
+}
+
+/**
+Search Section Begin
+ */
+.search form button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.search form ::-webkit-input-placeholder {
+    font-style: initial;
+    letter-spacing: 1px;
+}
+
+.informationBeneficiariess .table tbody {
+    background-color: #f1f1f1;
+}
+
+.informationBeneficiariess .table thead {
+    background-color: #e3e3e3;
+    color: #25d200;
+}
+
+.informationBeneficiariess .table .fa-pencil-alt {
+    color: #d29e00;
+}
+
+.informationBeneficiariess .table .fa-times-circle {
+    color: red;
+}
+
+.informationBeneficiariess .table td {
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+/**
+ addBeneficiaries section begin
+ */
+.addBeneficiaries .modal-dialog .modal-content .card .card-header {
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.addBeneficiaries .modal-dialog .modal-content .card .card-body form table tr th {
+    border: none !important;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.addBeneficiaries .modal-dialog .modal-content .card .card-body form table tr td {
+    border: none !important;
+}
+
+.addBeneficiaries .modal-dialog .modal-content .card .card-body .modal-footer button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/**
+transferInBank section begin
+ */
+.transferInBank form .title h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d643b;
+    margin: 20px 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 0.1px solid #dbdbdb;
+}
+
+.transferInBank form .section1 .title {
+    margin-top: 20px;
+}
+
+.transferInBank form table tr th, td {
+    border: none !important;
+}
+
+.transferInBank form table tr th {
+    text-align: right;
+}
+
+.transferInBank form button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.transferInBank form a {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.transferInBank .content .text p {
+    font-size: 14px;
+    color: #8b8b8b;
+}
+
+/**
+success section begin
+ */
+.success .section1 .content .text i {
+    font-size: 100px;
+    color: #5daf46;
+    margin-top: 20px;
+}
+
+.success .section1 .content .text p {
+    font-size: 15px;
+    width: 60%;
+    margin: 10px auto;
+}
+
+.success .section1 .content .text p span {
+    color: #68d04c;
+    font-weight: bold;
+}
+
+.success .section2 a {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+/**
+informationAccount section begin
+ */
+
+.informationAccount .title h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2e801a;
+    padding-bottom: 10px;
+}
+.informationAccount .savedMoney table thead {
+    background-color: #5daf46;
+    color: white;
+}
+.informationAccount .savedMoney table thead th {
+    padding: 0.25rem !important;
+}
+.informationAccount .savedMoney table tbody td a {
+    text-decoration: none !important;
+}
+/**
+detailInformationAccount
+ */
+.detailInformationAccount table tbody th {
+    text-decoration: none !important;
+    text-align: right;
+    letter-spacing: 1px;
 }

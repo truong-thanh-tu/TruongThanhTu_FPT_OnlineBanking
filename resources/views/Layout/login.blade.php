@@ -21,11 +21,11 @@
 {{-- Login Section Begin--}}
 
 <div class="login" style="background-image: url(img/background/BG-Login.jpg)">
-    <div class="main">
+    <div class="mainLogin">
         <div class="logo-icon">
             <i class="fas fa-university"></i>
         </div>
-        <form action="" method="get">
+        <form action="{{ Route('ChangePassword') }}" method="get">
             <div class="title">
                 <h4>Đăng Nhập</h4>
             </div>
@@ -43,6 +43,7 @@
                 </label>
             </div>
             <button class="btn btn-lg btn-block" id="btn_login" onclick="btnLogin()" type="submit">Đăng Nhập</button>
+       @csrf
         </form>
     </div>
 </div>

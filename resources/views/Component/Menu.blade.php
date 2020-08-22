@@ -9,10 +9,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Thông tin Tài Khoản/Thẻ <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ Route('InformationAccount') }}">Thông tin Tài Khoản/Thẻ <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Chuyển tiền</a>
+                        <a class="nav-link" href="{{ Route('InTransferBank') }}">Chuyển tiền</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Lịch sử</a>
