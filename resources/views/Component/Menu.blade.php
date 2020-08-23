@@ -15,13 +15,13 @@
                         <a class="nav-link" href="{{ Route('InTransferBank') }}">Chuyển tiền</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Lịch sử</a>
+                        <a class="nav-link" href="{{ Route('History') }}">Lịch sử</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Báo cáo</a>
+                        <a class="nav-link" href="{{ Route('Report') }}">Báo cáo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hỗ trợ</a>
+                        <a class="nav-link" href="{{ Route('Support') }}">Hỗ trợ</a>
                     </li>
                 </ul>
             </div>

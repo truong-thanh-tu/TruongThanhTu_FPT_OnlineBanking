@@ -384,6 +384,7 @@ success section begin
     white-space: nowrap;
     text-transform: uppercase;
 }
+
 /**
 informationAccount section begin
  */
@@ -394,16 +395,20 @@ informationAccount section begin
     color: #2e801a;
     padding-bottom: 10px;
 }
+
 .informationAccount .savedMoney table thead {
     background-color: #5daf46;
     color: white;
 }
+
 .informationAccount .savedMoney table thead th {
     padding: 0.25rem !important;
 }
+
 .informationAccount .savedMoney table tbody td a {
     text-decoration: none !important;
 }
+
 /**
 detailInformationAccount
  */
@@ -411,4 +416,135 @@ detailInformationAccount
     text-decoration: none !important;
     text-align: right;
     letter-spacing: 1px;
+}
+
+/**
+historyTransfer section begin
+ */
+.historyTransfer .searchDate span {
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.historyTransfer .searchDate button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.historyTransfer .history table thead {
+    padding: 10px !important;
+    background-color: #5daf46;
+    color: white;
+    text-align: center;
+}
+
+.historyTransfer .history table thead tr th {
+    padding: 0.25rem !important;
+}
+
+.historyTransfer .history table tbody {
+    text-align: center;
+}
+
+.informationAccount .detailInformationAccount .back a {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #5daf46;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+/**
+support section begin
+ */
+.support .section1 {
+    padding: 20px;
+}
+
+.support .section1 h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d643b;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+.support .section1 p {
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+/**
+reportTransfer section begin
+ */
+.reportTransfer .selectOption button {
+    padding: 5px !important;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 2px solid #1d643b;
+    background: none;
+}
+.reportTransfer .title h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d643b;
+    margin: 20px 0 25px 0;
+    padding-bottom: 10px;
+}
+.reportTransfer .reportNumber .container .row .card {
+    border: none;
+}
+.reportTransfer .reportNumber .container .row .card .card-body {
+    text-align: center;
+}
+.reportTransfer .reportNumber .container .row .card .card-body i {
+    font-size: 50px;
+    color: #5daf46;
+}
+.reportTransfer .reportNumber .container .row .card .card-body h5{
+    line-height: 1.2;
+    font-size: 25px;
+    color: #000000;
+    font-weight: 700;
+    display: inline-block;
+}
+.reportTransfer .reportNumber .container .row .card .card-body p{
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.reportTransfer .reporTableGenerality table thead {
+    padding: 10px !important;
+    background-color: #5daf46;
+    color: white;
+    text-align: center;
+}
+
+.reportTransfer .reporTableGenerality table thead tr th {
+    padding: 0.25rem !important;
+}
+
+.reportTransfer .reporTableGenerality table tbody {
+    text-align: center;
+    background-color: white;
+    margin-bottom: 15px;
+}
+.reportTransfer .reporTableGenerality nav {
+    text-align: right;
 }

@@ -46,12 +46,29 @@ Route::group(['prefix' => 'transfer'], function () {
     });
 });
 Route::group(['prefix' => 'information'], function () {
-    Route::get('informationAccount',[
-        'as'=>'InformationAccount',
-        'uses'=>'Information\informationAccount@getInformationAccount',
+    Route::get('informationAccount', [
+        'as' => 'InformationAccount',
+        'uses' => 'Information\informationAccount@getInformationAccount',
     ]);
-    Route::get('detailInformationAccount/{id}',[
-        'as'=>'DetailInformationAccount',
-        'uses'=>'Information\informationAccount@getDetailInformationAccount',
+    Route::get('detailInformationAccount/{id}', [
+        'as' => 'DetailInformationAccount',
+        'uses' => 'Information\informationAccount@getDetailInformationAccount',
     ]);
 });
+Route::group(['prefix' => 'history'], function () {
+    Route::get('', [
+        'as' => 'History',
+        'uses' => 'History\historyTransfer@getHistory'
+    ]);
+    Route::get('detailHistoryTransfer/{id}', [
+        'as' => 'DetailHistoryTransfer',
+        'uses' => 'History\historyTransfer@getDetailHistoryTransfer'
+    ]);
+});
+Route::get('suport',[
+    'as'=>'Support',
+    'uses'=>'Support\getSupport@getSupport',
+]);Route::get('report',[
+    'as'=>'Report',
+    'uses'=>'Report\getReport@getReport',
+]);
