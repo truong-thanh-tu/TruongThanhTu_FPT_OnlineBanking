@@ -36,7 +36,7 @@
                                 class="fas fa-chevron-right mr-2"></i></span> <span>Đôi mật khẩu</span></a>
                 </li>
                 <li class="list-group-item"><a href="{{Route('MethodHeardOTP')}}"><span><i
-                                class="fas fa-chevron-right mr-2"></i></span> <span>Caì đặt phương thức nhận OTP</span></a>
+                                class="fas fa-chevron-right mr-2"></i></span> <span>Cài đặt phương thức nhận OTP</span></a>
                 </li>
                 <li class="list-group-item"><a href="{{Route('Login')}}"><span><i
                                 class="fas fa-chevron-right mr-2"></i></span> <span>Thoát</span></a></li>

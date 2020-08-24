@@ -25,17 +25,15 @@
         <div class="logo-icon">
             <i class="fas fa-university"></i>
         </div>
-        <form action="{{ Route('ChangePassword') }}" method="get">
+        <form action="{{ Route('Login') }}" method="get">
             <div class="title">
                 <h4>Đăng Nhập</h4>
             </div>
             <div class="form-label-group  mt-5 mb-3">
-                <input type="text" id="inputUser" class="form-control" name="user" placeholder="Tên Đăng Nhập" required
-                       autofocus>
+                <input type="text" id="inputUser" class="form-control" name="user" placeholder="Tên Đăng Nhập">
             </div>
             <div class="form-label-group mt-1 mb-3">
-                <input type="password" id="inputPass" class="form-control" name="pass" placeholder="Mật Khẩu" required
-                       autofocus>
+                <input type="password" id="inputPass" class="form-control" name="pass" placeholder="Mật Khẩu" >
             </div>
             <div class="checkbox  mt-4 mb-3">
                 <label>

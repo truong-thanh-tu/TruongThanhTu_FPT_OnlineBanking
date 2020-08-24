@@ -10,7 +10,7 @@ class loginController extends Controller
     /**
      * Function getFormLogin the displays Form Login
      */
-    public function getFormLogin()
+    public function getFormLogin( Request $request)
     {
         return view('Layout.login');
     }

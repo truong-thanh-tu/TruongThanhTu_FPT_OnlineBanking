@@ -13,7 +13,7 @@
                     <div class="content bg-white">
                         <div class="text text-center">
                             <i class="far fa-check-circle"></i>
-                            <p>Quý khách đã thực hiện chuyển thành công <span>2.500.000 VND</span> cho <span>Nguyen Van A</span> số tài khoản <span>19000000000</span> ngân hàng</p>
+                            <p>Quý khách đã thực hiện chuyển thành công <span>2.500.000 VND</span> cho <span>Nguyen Van A</span> số tài khoản <span>19000000000</span> ngân hàng <span>OnlineBankinghp</span></p>
                         </div>
                     </div>
                 </div>

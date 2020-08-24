@@ -18,8 +18,7 @@
                                 <button class="btn" type="submit">Tìm kiếm</button>
                             </div>
                             <div class="input-group-append ml-2">
-                                <button class="btn" data-toggle="modal" href="#"
-                                        data-target="#centralModalSuccess" role="button">Tạo mới
+                                <button  class="btn" data-toggle="modal"  data-target="#centralModalSuccess" role="button">Tạo mới
                                 </button>
                             </div>
                         </div>
@@ -65,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class=" addBeneficiaries modal fade" id="centralModalSuccess" tabindex="-1" role="dialog"
+    <div class="addBeneficiaries modal fade" id="centralModalSuccess" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-notify modal-success" role="document">
