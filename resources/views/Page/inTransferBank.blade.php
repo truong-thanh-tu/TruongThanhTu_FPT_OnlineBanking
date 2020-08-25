@@ -71,7 +71,7 @@
                                </tr>
                                <tr>
                                    <th class="w-50">Nội dung chuyển</th>
-                                   <td class="w-50"><textarea name="content"></textarea></td>
+                                   <td class="w-50"><textarea name="content" ></textarea></td>
                                </tr>
                                <tr>
                                    <th class="w-50">Người trả phi</th>

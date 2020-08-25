@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class type_account extends Model
+class account_type extends Model
 {
-    protected $table ='type_account';
-    protected  $primaryKey='id_type_account';
+    protected $table ='account_type';
+    protected  $primaryKey='account_type_id';
     protected $guarded = [];
     protected $perPage = 5;
 

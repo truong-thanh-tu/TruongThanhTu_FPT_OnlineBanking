@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\user;
+use App\Model\users;
 
 class loginController extends Controller
 {
@@ -13,16 +13,22 @@ class loginController extends Controller
      */
     public function getFormLogin(Request $request)
     {
-        $login = user::all();
-        $user = $request->get('user');
-        if ($user == null) {
+        $username = $request->get('user');
+        $password = $request->get('pass');
+
+        if ($username == null || $password == null) {
             return view('Layout.login');
         } else {
-            if ($user == $login[0]->user){
-                return view('Page.informationCustomer');
-            }
-            else{
-                return view('Layout.login');
+            $takeDates = users::all();
+            foreach ($takeDates as $takeDate) {
+                if ($takeDate->user == $username && $takeDate->pass == $password) {
+                    session(['user' => $username, 'pass' => $password]);
+                    if ($takeDate->level == 1) {
+                        return view('Page.changePassword');
+                    } else {
+                        return view('Page.informationAccount');
+                    }
+                }
             }
         }
     }

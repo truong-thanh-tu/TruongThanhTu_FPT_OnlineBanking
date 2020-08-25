@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-5.12.1-web/css/all.css') }}">
-
 </head>
 <body onload="getCodeCheck()">
 
@@ -26,7 +25,7 @@
         <div class="row">
             {{--Nav Section Begin--}}
             @include('Component.Nav')
-{{--            Content Section Begin--}}
+            {{--            Content Section Begin--}}
             @yield('Content')
         </div>
     </div>
@@ -39,6 +38,5 @@
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/myScripts.js') }}"></script>
-
 </body>
 </html>

@@ -12,6 +12,7 @@ class changeController extends Controller
      */
     public function getChangePassword()
     {
+
         return view('Page.changePassword');
     }
 }

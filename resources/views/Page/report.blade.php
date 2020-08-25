@@ -26,7 +26,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="title">
-                                <h5>Tài khoản tiết kiệm</h5>
+                                <h5>Tài khoản thanh toán</h5>
                             </div>
                         </div>
                         <div class="row bg-white p-3">

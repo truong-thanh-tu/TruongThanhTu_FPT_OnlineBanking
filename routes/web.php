@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => ''], function () {
-    Route::get('', ['as' => 'Login', 'uses' => 'Login\loginController@getFormLogin']);
+        Route::get('', ['as' => 'Login', 'uses' => 'Login\loginController@getFormLogin']);
 });
 Route::group(['prefix' => 'page'], function () {
 
@@ -40,6 +40,12 @@ Route::group(['prefix' => 'page'], function () {
 Route::group(['prefix' => 'transfer'], function () {
     Route::group(['prefix' => 'in'], function () {
         Route::get('bank', ['as' => 'InTransferBank', 'uses' => 'Transfer\inBankController@getInTransferBank']);
+        Route::get('confirm', ['as' => 'ConfirmInTransferBank', 'uses' => 'Transfer\inBankController@getConfirmInTransferBank']);
+        Route::get('enter', ['as' => 'EnterCodeOPT', 'uses' => 'Transfer\inBankController@getEnterCodeOPT']);
+        Route::get('success', ['as' => 'SuccessTransfer', 'uses' => 'Transfer\inBankController@getSuccessTransfer']);
+    });
+    Route::group(['prefix' => 'out'], function () {
+        Route::get('bank', ['as' => 'OutTransferBank', 'uses' => 'Transfer\outBankController@getInTransferBank']);
         Route::get('confirm', ['as' => 'ConfirmInTransferBank', 'uses' => 'Transfer\inBankController@getConfirmInTransferBank']);
         Route::get('enter', ['as' => 'EnterCodeOPT', 'uses' => 'Transfer\inBankController@getEnterCodeOPT']);
         Route::get('success', ['as' => 'SuccessTransfer', 'uses' => 'Transfer\inBankController@getSuccessTransfer']);

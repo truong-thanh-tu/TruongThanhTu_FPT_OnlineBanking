@@ -3,12 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\user;
+use App\Model\users;
 
 class customer extends Model
 {
-    protected $table = 'customer';
-    protected $primaryKey = 'id_customer';
+    protected $table = 'customers';
+    protected $primaryKey = 'customer_id';
     protected $guarded = [];
     protected $perPage = 5;
 
@@ -17,9 +17,9 @@ class customer extends Model
         return parent::all($columns)->where('deleted', false);
     }
 
-    public function user()
+    public function users()
     {
-        return $this->hasOne(user::class, 'id_user', 'id_user');
+        return $this->hasOne(users::class, 'user_id', 'user_id');
     }
 
 

@@ -17,8 +17,5 @@ class beneficiary extends Model
         return parent::all($columns)->where('deleted', false);
     }
 
-    public function transfer()
-    {
-        return $this->hasMany(transfer::class, 'id_transfer', 'id_transfer');
-    }
+
 }

@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         @csrf
-                    </form>
+                    </form> 
                 </div>
                 <div class="informationBeneficiariess">
                     <table class="table">

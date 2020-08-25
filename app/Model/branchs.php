@@ -3,12 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\account;
 
-class otp extends Model
+class branchs extends Model
 {
-    protected $table = 'otp';
-    protected $primaryKey = 'id_otp';
+    protected $table = 'branchs';
+    protected $primaryKey = 'branchs_id';
     protected $guarded = [];
     protected $perPage = 5;
 
@@ -19,6 +18,6 @@ class otp extends Model
 
     public function account()
     {
-        return $this->hasMany(account::class, 'id_account', 'id_account');
+        return $this->hasOne(accounts::class, 'account_type', 'account_type');
     }
 }
