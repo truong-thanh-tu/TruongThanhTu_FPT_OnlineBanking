@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `bank`
     PRIMARY KEY (`IDBank`)
 ) ENGINE InnoDB;
 
-# Create Table trasaction
-DROP TABLE IF EXISTS `trasaction`;
-CREATE TABLE IF NOT EXISTS `trasaction`
+# Create Table transaction
+DROP TABLE IF EXISTS `transaction`;
+CREATE TABLE IF NOT EXISTS `transaction`
 (
     `IDTransaction`          INT AUTO_INCREMENT,
 
@@ -307,16 +307,16 @@ INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries
 INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
     VALUE (7, '13103164031640', 'Ly Cong Nhat');
 
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 3, 1, '8946561', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email') ;
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 1, 1, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email') ;
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email') ;
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 4, 1, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email') ;
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 5, 1, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email') ;
-INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
 VALUE (1, 6, 1, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email') ;
 
