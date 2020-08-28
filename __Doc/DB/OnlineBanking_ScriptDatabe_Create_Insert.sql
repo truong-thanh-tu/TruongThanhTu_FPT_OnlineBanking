@@ -21,106 +21,22 @@ SET time_zone = '+7:00';
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer`
 (
-    `customer_id`    INT AUTO_INCREMENT,
+    `IDCustomer`      INT AUTO_INCREMENT,
 
+    `CodeCustomer`    NVARCHAR(16)     NOT NULL,
 
-    `first_name`     VARCHAR(64)  NOT NULL,
-    `last_name`      VARCHAR(64)  NOT NULL,
-    `dob`            DATETIME,
-    `street_address` VARCHAR(64)  NOT NULL,
-    `city`           VARCHAR(64)  NOT NULL,
-    `state`          VARCHAR(64)  NOT NULL,
-    `zipcode`        INT(8)       NOT NULL,
-    `email`          VARCHAR(128) NOT NULL,
-
-    `created_by`     NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`     DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`     NVARCHAR(32) DEFAULT NULL,
-    `updated_at`     DATETIME     DEFAULT NULL,
-    `version`        INT          DEFAULT 1,
-    `deleted`        BOOLEAN      DEFAULT FALSE,
-
-    PRIMARY KEY (`customer_id`)
-) ENGINE InnoDB;
-
-# Create Table users
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users`
-(
-    `user_id`     INT AUTO_INCREMENT,
-
-    `account_id`  INT UNSIGNED NOT NULL,
-    `customer_id` INT UNSIGNED NOT NULL,
-
-    `user`        VARCHAR(64)  NOT NULL,
-    `pass`        VARCHAR(64)  NOT NULL,
-    `level`       INT UNSIGNED DEFAULT 2,
-    `active`      BOOLEAN      DEFAULT TRUE,
-
-    `created_by`  NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`  DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`  NVARCHAR(32) DEFAULT NULL,
-    `updated_at`  DATETIME     DEFAULT NULL,
-    `version`     INT          DEFAULT 1,
-    `deleted`     BOOLEAN      DEFAULT FALSE,
-
-    PRIMARY KEY (`user_id`)
-) ENGINE InnoDB;
-
-# Create Table account_type
-DROP TABLE IF EXISTS `account_type`;
-CREATE TABLE IF NOT EXISTS `account_type`
-(
-    `account_type_id`   INT AUTO_INCREMENT,
-
-    `name_type_account` VARCHAR(128) NOT NULL,
-
-    `created_by`        NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`        DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`        NVARCHAR(32) DEFAULT NULL,
-    `updated_at`        DATETIME     DEFAULT NULL,
-    `version`           INT          DEFAULT 1,
-    `deleted`           BOOLEAN      DEFAULT FALSE,
-
-    PRIMARY KEY (`account_type_id`)
-) ENGINE InnoDB;
-
-# Create Table branchs
-DROP TABLE IF EXISTS `branchs`;
-CREATE TABLE IF NOT EXISTS `branchs`
-(
-    `branch_id`      INT AUTO_INCREMENT,
-
-    `branch_name`    VARCHAR(128)    NOT NULL,
-    `street_address` VARCHAR(128)    NOT NULL,
-    `city`           VARCHAR(128)    NOT NULL,
-    `state`          VARCHAR(2)      NOT NULL,
-    `zipcode`        INT(8) UNSIGNED NOT NULL,
-    `phone_number`   VARCHAR(128)    NOT NULL,
-
-
-    `created_by`     NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`     DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`     NVARCHAR(32) DEFAULT NULL,
-    `updated_at`     DATETIME     DEFAULT NULL,
-    `version`        INT          DEFAULT 1,
-    `deleted`        BOOLEAN      DEFAULT FALSE,
-
-    PRIMARY KEY (`branch_id`)
-) ENGINE InnoDB;
-
-# Create Table accounts
-DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE IF NOT EXISTS `accounts`
-(
-    `account_id`      INT AUTO_INCREMENT,
-
-    `branch_id`       INT UNSIGNED NOT NULL,
-    `account_type_id` INT UNSIGNED NOT NULL,
-
-
-    `account_balance` INT(16)      NOT NULL,
-    `date_opened`     DATETIME     NOT NULL,
+    `User`            NVARCHAR(64)     NOT NULL,
+    `Pass`            NVARCHAR(64)     NOT NULL,
+    `FirstName`       NVARCHAR(16)     NOT NULL,
+    `LastName`        NVARCHAR(16)     NOT NULL,
+    `Address`         NVARCHAR(16)     NOT NULL,
+    `Dob`             DATETIME         NOT NULL,
+    `Workplace`       NVARCHAR(64)     NULL,
+    `Position`        NVARCHAR(64)     NULL,
+    `Interests`       NVARCHAR(64)     NULL,
+    `AverageIncome`   NVARCHAR(64)     NULL,
+    `TelephoneNumber` INT(16) UNSIGNED NOT NULL,
+    `Email`           NVARCHAR(128)    NULL,
 
 
     `created_by`      NVARCHAR(32) DEFAULT 'OnlineBanking',
@@ -130,111 +46,277 @@ CREATE TABLE IF NOT EXISTS `accounts`
     `version`         INT          DEFAULT 1,
     `deleted`         BOOLEAN      DEFAULT FALSE,
 
-    PRIMARY KEY (`account_id`)
+
+    PRIMARY KEY (`IDCustomer`)
 ) ENGINE InnoDB;
 
-
-# Create Table cc_transactions
-DROP TABLE IF EXISTS `cc_transactions`;
-CREATE TABLE IF NOT EXISTS `cc_transactions`
+# Create Table bank
+DROP TABLE IF EXISTS `bank`;
+CREATE TABLE IF NOT EXISTS `bank`
 (
-    `transaction_id`     INT AUTO_INCREMENT,
+    `IDBank`     INT AUTO_INCREMENT,
 
-    `account_id`         INT UNSIGNED NOT NULL,
+    `CodeBank`   NVARCHAR(16) NOT NULL,
 
-    `number_beneficiary` INT(16)      NOT NULL,
+    `Name`       NVARCHAR(64) NOT NULL,
+    `Addrees`    NVARCHAR(64) NOT NULL,
+    `City`       NVARCHAR(16) NOT NULL,
 
-    `amount_transaction` INT(16)      NOT NULL,
-    `transaction_date`   DATETIME     DEFAULT CURRENT_TIME,
-    `free`               INT(16)      NOT NULL,
-    `content`            VARCHAR(64)  NOT NULL,
-    `name_banking`       NVARCHAR(64) DEFAULT 'OnlineBanking',
 
-    `created_by`         NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`         DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`         NVARCHAR(32) DEFAULT NULL,
-    `updated_at`         DATETIME     DEFAULT NULL,
-    `version`            INT          DEFAULT 1,
-    `deleted`            BOOLEAN      DEFAULT FALSE,
+    `created_by` NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at` DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by` NVARCHAR(32) DEFAULT NULL,
+    `updated_at` DATETIME     DEFAULT NULL,
+    `version`    INT          DEFAULT 1,
+    `deleted`    BOOLEAN      DEFAULT FALSE,
 
-    PRIMARY KEY (`transaction_id`)
+
+    PRIMARY KEY (`IDBank`)
 ) ENGINE InnoDB;
 
-
-# Create Table beneficiary
-DROP TABLE IF EXISTS `beneficiary`;
-CREATE TABLE IF NOT EXISTS `beneficiary`
+# Create Table trasaction
+DROP TABLE IF EXISTS `trasaction`;
+CREATE TABLE IF NOT EXISTS `trasaction`
 (
-    `beneficiary_id`   INT AUTO_INCREMENT,
+    `IDTransaction`          INT AUTO_INCREMENT,
+
+    `IDAccount`              INT UNSIGNED     NOT NULL,
+    `IDBeneficiaries`        INT UNSIGNED     NOT NULL,
+    `IDBank`                 INT UNSIGNED     NOT NULL,
+
+    `CodeTransaction`        NVARCHAR(16)     NOT NULL,
+
+    `TransactionDate`        DATETIME     DEFAULT CURRENT_TIME,
+    `TransactionMoneyNumber` INT(16) UNSIGNED NOT NULL,
+    `ContentTransaction`     NVARCHAR(64)     NOT NULL,
+    `Payer`                  NVARCHAR(64)     NOT NULL,
+    `Free`                   INT(8) UNSIGNED  NOT NULL,
+    `CodeOTP`                NVARCHAR(8)      NOT NULL,
+    `SendCodeOTP`            NVARCHAR(16)     DEFAULT 'Email',
+
+    `created_by`             NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`             DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`             NVARCHAR(32) DEFAULT NULL,
+    `updated_at`             DATETIME     DEFAULT NULL,
+    `version`                INT          DEFAULT 1,
+    `deleted`                BOOLEAN      DEFAULT FALSE,
 
 
-    `name_beneficiary` VARCHAR(64) NOT NULL,
-    `account_id`       INT(16)     NOT NULL,
-
-
-    `created_by`       NVARCHAR(32) DEFAULT 'OnlineBanking',
-    `created_at`       DATETIME     DEFAULT CURRENT_TIME,
-    `updated_by`       NVARCHAR(32) DEFAULT NULL,
-    `updated_at`       DATETIME     DEFAULT NULL,
-    `version`          INT          DEFAULT 1,
-    `deleted`          BOOLEAN      DEFAULT FALSE,
-
-    PRIMARY KEY (`beneficiary_id`)
+    PRIMARY KEY (`IDTransaction`)
 ) ENGINE InnoDB;
+
+# Create Table type_account_customer
+DROP TABLE IF EXISTS `type_account`;
+CREATE TABLE IF NOT EXISTS type_account
+(
+    `IDTypeAccountCustomer`   INT AUTO_INCREMENT,
+
+    `CodeTypeAccountCustomer` NVARCHAR(16) NOT NULL,
+
+    `TypeAccount`             NVARCHAR(64) NOT NULL,
+
+
+    `created_by`              NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`              DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`              NVARCHAR(32) DEFAULT NULL,
+    `updated_at`              DATETIME     DEFAULT NULL,
+    `version`                 INT          DEFAULT 1,
+    `deleted`                 BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDTypeAccountCustomer`)
+) ENGINE InnoDB;
+
+# Create Table beneficiaries
+DROP TABLE IF EXISTS `beneficiaries`;
+CREATE TABLE IF NOT EXISTS beneficiaries
+(
+    `IDBeneficiaries`          INT AUTO_INCREMENT,
+
+    `IDBank`                   INT UNSIGNED NOT NULL,
+
+    `AccountBeneficiaries`     NVARCHAR(16) NOT NULL,
+
+    `NameAccountBeneficiaries` NVARCHAR(64) NOT NULL,
+
+
+    `created_by`               NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`               DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`               NVARCHAR(32) DEFAULT NULL,
+    `updated_at`               DATETIME     DEFAULT NULL,
+    `version`                  INT          DEFAULT 1,
+    `deleted`                  BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDBeneficiaries`)
+) ENGINE InnoDB;
+
+# Create Table beneficiaries
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE IF NOT EXISTS account
+(
+    `IDAccount`             INT AUTO_INCREMENT,
+
+    `IDTypeAccountCustomer` INT UNSIGNED NOT NULL,
+    `IDBank`                INT          DEFAULT 1,
+
+    `AccountSourceNumber`   NVARCHAR(16) NOT NULL,
+
+    `BalanceSource`         INT(16)      NOT NULL,
+    `DateOpen`              DATETIME     DEFAULT CURRENT_TIME,
+
+
+    `created_by`            NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`            DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`            NVARCHAR(32) DEFAULT NULL,
+    `updated_at`            DATETIME     DEFAULT NULL,
+    `version`               INT          DEFAULT 1,
+    `deleted`               BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDAccount`)
+) ENGINE InnoDB;
+
+# Create Table beneficiaries
+DROP TABLE IF EXISTS `beneficiaries`;
+CREATE TABLE IF NOT EXISTS beneficiaries
+(
+    `IDBeneficiaries`          INT AUTO_INCREMENT,
+
+    `IDBank`                   INT UNSIGNED NOT NULL,
+
+    `AccountBeneficiaries`     NVARCHAR(16) NOT NULL,
+
+    `NameAccountBeneficiaries` NVARCHAR(64) NOT NULL,
+
+    `created_by`               NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`               DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`               NVARCHAR(32) DEFAULT NULL,
+    `updated_at`               DATETIME     DEFAULT NULL,
+    `version`                  INT          DEFAULT 1,
+    `deleted`                  BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDBeneficiaries`)
+) ENGINE InnoDB;
+
+# Create Table type_account_customer
+DROP TABLE IF EXISTS `type_account_customer`;
+CREATE TABLE IF NOT EXISTS type_account_customer
+(
+    `IDTypeAccountCustomer` INT AUTO_INCREMENT,
+
+    `IDTypeAccount`         INT UNSIGNED NOT NULL,
+    `IDCustomer`            INT UNSIGNED NOT NULL,
+
+
+    `created_by`            NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`            DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`            NVARCHAR(32) DEFAULT NULL,
+    `updated_at`            DATETIME     DEFAULT NULL,
+    `version`               INT          DEFAULT 1,
+    `deleted`               BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDTypeAccountCustomer`)
+) ENGINE InnoDB;
+
 
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
-#                                             Insert Data                                             #
+#                                            Insert Tables                                            #
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 
-INSERT INTO customer(first_name, last_name, dob, street_address, city, state, zipcode, email)
-    VALUE ('Thanh Tu', 'Truong', '1998-09-03', 'Ngo Ha', 'Hue', 'MD', 03091998, 'truongthanhtu03091998@gmail.com');
-INSERT INTO customer(first_name, last_name, dob, street_address, city, state, zipcode, email)
-    VALUE ('Van A', 'Nguyen ', '2020-02-02', 'Le Quan Dao', 'Ha Noi', 'PhD', 02022020, 'nguyenvana@gmail.com');
-INSERT INTO customer(first_name, last_name, dob, street_address, city, state, zipcode, email)
-    VALUE ('Tuan', 'Pham', '2020-02-03', 'Ton That Thuy', 'Ha Noi', 'MSc', 03022020, 'phamtuan@gmail.com');
-INSERT INTO customer(first_name, last_name, dob, street_address, city, state, zipcode, email)
-    VALUE ('Quang Huy', 'Nguyen', '2020-02-04', 'Tran Phu', 'Ha Noi', 'MD', 04022020, 'nguyenquanghuy@gmail.com');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('OL52', 'OnlineBanking', 'Ton That Thuyet', 'Ha Noi');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('HP32', 'HPBanking', 'Nguyen Chi Thanh', 'Da Nang');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('VB21', 'VBBanking', 'Nguyen Van Cu', 'Ho Chi Minh');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('BD32', 'BDBanking', 'Tran Cao Van', 'Can Tho');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('UI21', 'UIBanking', 'Vu Tong Phan', 'Da Nang');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('TH41', 'THKBanking', 'Pham Hoan Bieu', 'Hue');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('QM21', 'QMBanking', 'Ton That Minh Ngoc', 'Hai Phong');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('UL21', 'ULBanking', 'Doan Thi Diem', 'Ha Noi');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('CV21', 'CVBanking', 'Hoan Minh Cong', 'Ho Chi Minh');
+INSERT INTO bank(CodeBank, Name, Addrees, City)
+    VALUE ('IK21', 'IKBanking', 'Dinh Lan Minh', 'Da Nang');
 
-INSERT INTO users(account_id, customer_id, user, pass, level)
-    VALUE (24082020, 1, 'truongthanhtu', '03091998', 1);
-INSERT INTO users(account_id, customer_id, user, pass, level)
-    VALUE (25082020, 2, 'nguyenvana', '03091998', 1);
-INSERT INTO users(account_id, customer_id, user, pass, level)
-    VALUE (26082020, 3, 'phamtuan', '03091998', 1);
-INSERT INTO users(account_id, customer_id, user, pass, level)
-    VALUE (27082020, 4, 'nguyenquanghuy', '03091998', 1);
+#Default password: 123456
 
-INSERT INTO account_type(name_type_account) VALUE ('Multi-function Account');
-INSERT INTO account_type(name_type_account) VALUE ('Payment deposit Account');
-INSERT INTO account_type(name_type_account) VALUE ('Savings deposit Account');
+INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                     AverageIncome, TelephoneNumber, Email)
+    VALUE ('MC4455', 'truongthanhtu', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Thanh Tu',
+           'Truong', 'Hue', '1998-09-03', 'Student', 'Student', 'Reading Book', 0, 0359077335,
+           'truongthanhtu03091998@gmail.com');
+INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                     AverageIncome, TelephoneNumber, Email)
+    VALUE ('PI2315', 'nguyendinhhieu', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Dinh Hieu',
+           'Nguye', 'Nghe An', '1996-08-08', 'Student', 'Student', 'Reading Book', 0, 0868663315,
+           'DinhHieu8896@gmail.com');
+INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                     AverageIncome, TelephoneNumber, Email)
+    VALUE ('YU0213', 'vuquanghuy', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Quan Huy', 'Vu',
+           'Ha Noi', '2000-01-01', 'Student', 'Student', 'Reading Book', 0, 0981159826, 'VuQuangHuyXL1234@gmail.com');
+INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                     AverageIncome, TelephoneNumber, Email)
+    VALUE ('YJ4568', 'phamtuan', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Tuan', 'Pham',
+           'Thai Nguyen', '2000-01-01', 'Student', 'Student', 'Reading Book', 0, 0382548442,
+           'PhamTuanCules20@gmail.com');
+INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                     AverageIncome, TelephoneNumber, Email)
+    VALUE ('LI2468', 'nguyendinhtung', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Dinh Tung',
+           'Nguyen', 'Ha Noi', '1998-09-03', 'Student', 'Student', 'Reading Book', 0, 0905423125,
+           'nguyendinhtung03091998@gmail.com');
 
-INSERT INTO branchs(branch_name, street_address, city, state, zipcode, phone_number)
-    VALUE ('OnlineBanking - Ha Noi', 'Ton That Thuyet', 'Ha Noi', 'MD', 20201231, '8402030405');
-INSERT INTO branchs(branch_name, street_address, city, state, zipcode, phone_number)
-    VALUE ('OnlineBanking - Da Nang', 'Nguyen Chi Thanh', 'Da Nang', 'MD', 20201230, '8402030406');
-INSERT INTO branchs(branch_name, street_address, city, state, zipcode, phone_number)
-    VALUE ('OnlineBanking - Ho Chi Minh', 'Nguyen Van Cu', 'Ho Chi Minh', 'MD', 20201229, '8402030407');
 
-INSERT INTO accounts(branch_id, account_type_id, account_balance, date_opened)
-    VALUE (1, 1, 10000000, '2020-08-02');
-INSERT INTO accounts(branch_id, account_type_id, account_balance, date_opened)
-    VALUE (2, 2, 10000000, '2020-08-02');
-INSERT INTO accounts(branch_id, account_type_id, account_balance, date_opened)
-    VALUE (3, 3, 10000000, '2020-08-02');
 
-INSERT INTO cc_transactions(account_id, number_beneficiary, amount_transaction, free, content)
-    VALUE (24082020, 25082020, 1000000, 15000, 'Chuyen tien nhanh test 1');
-INSERT INTO cc_transactions(account_id, number_beneficiary, amount_transaction, free, content)
-    VALUE (24082020, 25082020, 1000000, 15000, 'Chuyen tien nhanh test 1');
-INSERT INTO cc_transactions(account_id, number_beneficiary, amount_transaction, free, content)
-    VALUE (24082020, 25082020, 1000000, 15000, 'Chuyen tien nhanh test 1');
-INSERT INTO cc_transactions(account_id, number_beneficiary, amount_transaction, free, content)
-    VALUE (24082020, 25082020, 1000000, 15000, 'Chuyen tien nhanh test 1');
+INSERT INTO type_account(CodeTypeAccountCustomer, TypeAccount)
+    VALUE ('HS56', 'Multi-function Account');
+INSERT INTO type_account(CodeTypeAccountCustomer, TypeAccount)
+    VALUE ('UT56', 'Saving account');
 
-INSERT INTO beneficiary (name_beneficiary, account_id)
-    VALUE ('Pham Tuan', 26082020);
-INSERT INTO beneficiary (name_beneficiary, account_id)
-    VALUE ('Nguyen Van A', 25082020);
-INSERT INTO beneficiary (name_beneficiary, account_id)
-    VALUE ('Nguyen Quang Huy', 27082020);
+INSERT INTO type_account_customer(IDTypeAccount, IDCustomer)
+    VALUE (1, 1);
+INSERT INTO type_account_customer(IDTypeAccount, IDCustomer)
+    VALUE (2, 1);
+
+INSERT INTO account(IDTypeAccountCustomer, AccountSourceNumber, BalanceSource)
+    VALUE (1, '12510000586328', 5000000);
+INSERT INTO account(IDTypeAccountCustomer, AccountSourceNumber, BalanceSource)
+    VALUE (2, '45658791316400', 50000000);
+
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (1, '89861632131313', 'Nguyen Van A');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (2, '45698798956231', 'Huynh Van Tien Si');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (3, '64614146431313', 'Kim Hoan');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (4, '13106166466613', 'Dinh Phuong');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (5, '79716491313132', 'Trong Hung');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (6, '78523213131313', 'Minh Hue');
+INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
+    VALUE (7, '13103164031640', 'Ly Cong Nhat');
+
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 3, 1, '8946561', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email') ;
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 1, 1, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email') ;
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email') ;
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 4, 1, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email') ;
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 5, 1, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email') ;
+INSERT INTO trasaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
+VALUE (1, 6, 1, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email') ;
+
