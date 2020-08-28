@@ -19,11 +19,7 @@
                         <li class="nav-item {{ (request()->segment(2) == 'contact') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Contact') }}">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li class="nav-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li class="nav-item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li class="nav-item"><a href="#"><i class="fa fa-behance"></i></a></li>
-                        <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                        <li class="nav-item"><a href="{{ Route('Login') }}" class=" submit_btn banner_btn  {{ (request()->segment(2) == 'login') ? 'd-none' : '' }}">Login</a></li>
                     </ul>
                 </div>
             </div>

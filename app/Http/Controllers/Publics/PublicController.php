@@ -8,21 +8,25 @@ class PublicController extends Controller
 {
     public function showHome()
     {
-        return view('public.page.homePublic');
+        return view('public.home.homePublic');
     }
 
     public function showAbout()
     {
-        return view('public.page.aboutPublic');
+        return view('public.about.aboutPublic');
     }
 
     public function showContact()
     {
-        return view('public.page.contactPublic');
+        return view('public.contact.contactPublic');
     }
 
     public function showBlog()
     {
-        return view('public.page.blogPublic');
+        return view('public.blog.blogPublic');
+    }
+    public function showLogin()
+    {
+        return view('public.login.loginPublic');
     }
 }

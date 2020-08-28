@@ -16,3 +16,11 @@
 <script src="{{ asset('vendors/swiper/js/swiper.min.js') }}"></script>
 <script src="{{ asset('js/theme.js') }}"></script>
 <script src="{{ asset('js/gmaps.js') }}"></script>
+<script language="javascript">
+    function aminalLoadPage() {
+        document.getElementById('preloader').style.display = 'flex';
+        setTimeout(function () {
+            document.getElementById('preloader').style.display = 'none';
+        }, 1000);
+    };
+</script>

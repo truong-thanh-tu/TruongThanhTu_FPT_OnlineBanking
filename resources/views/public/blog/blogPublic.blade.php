@@ -1,6 +1,6 @@
-@extends('public.layout.layout')
+@extends('layout.layoutPublic')
 
-@section('title','About')
+@section('title','Blog - ThreeT ')
 
 @section('content')
     <!--================Home Banner Area =================-->
