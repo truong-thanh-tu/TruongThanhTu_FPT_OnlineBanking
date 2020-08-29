@@ -10,7 +10,7 @@
                 <div class="banner_content">
                     <h2>Transfers</h2>
                     <div class="page_link">
-                        <a> In Transfers</a>
+                        <a> Out Transfers</a>
                         <a>Information</a>
                     </div>
                 </div>
@@ -23,12 +23,12 @@
     <section class="blog_area single-post-area p_120">
         <div class="container">
             <div class="row">
-                <h2 class="text-black text-uppercase " style="letter-spacing: 1px"> In OnLineBanking</h2>
+                <h2 class="text-black text-uppercase " style="letter-spacing: 1px"> Out OnLineBanking</h2>
             </div>
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{Route('confirmInfoTransactionInSystem')}}">
+                        <form action="{{Route('confirmInfoTransactionOutSystem')}}">
                             <table class="table bg-white table-borderless font-weight-bold">
                                 <tr>
                                     <td><h4>Information Transfer </h4></td>
@@ -58,6 +58,22 @@
                                     <td><h4>Information Beneficiary </h4></td>
                                 </tr>
                                 <tr>
+                                    <td class="text-right">Account Number</td>
+                                    <td>
+                                        <div class="input-group w-50">
+                                            <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                                <option >Choose Banking</option>
+                                                <option value="1"> UHBanking  Da Nang Viet Nam</option>
+                                                <option value="1">UHBanking</option>
+                                                <option value="1">UHBanking</option>
+                                                <option value="1">UHBanking</option>
+                                                <option value="1">UHBanking</option>
+                                                <option value="1">UHBanking</option>
+                                                <option value="1">UHBanking</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr> <tr>
                                     <td class="text-right">Account Number</td>
                                     <td>
                                         <div class="form-group w-50">

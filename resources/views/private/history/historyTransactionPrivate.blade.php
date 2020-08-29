@@ -8,10 +8,10 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content">
-                    <h2>Blog Details</h2>
+                    <h2>History</h2>
                     <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="single-blog.html">Blog Details</a>
+                        <a href="index.html">History</a>
+                        <a href="single-blog.html">History Transaction</a>
                     </div>
                 </div>
             </div>

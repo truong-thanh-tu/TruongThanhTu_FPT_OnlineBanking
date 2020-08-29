@@ -48,7 +48,6 @@ Route::group(['prefix' => 'private'], function () {
             'uses' => 'Privates\PrivateController@showDetailInfoAccount'
         ]);
     });
-
     Route::group(['prefix' => 'report'], function () {
         Route::get('/', [
             'as' => 'Report',
@@ -61,7 +60,6 @@ Route::group(['prefix' => 'private'], function () {
             'uses' => 'Privates\PrivateController@showSupport'
         ]);
     });
-
     Route::group(['prefix' => 'history'], function () {
         Route::get('/', [
             'as' => 'History',
@@ -72,5 +70,54 @@ Route::group(['prefix' => 'private'], function () {
             'uses' => 'Privates\PrivateController@showDetailHistory'
         ]);
     });
+    Route::group(['prefix' => 'transaction'], function () {
 
+        Route::group(['prefix' => 'InSystem'], function () {
+
+            Route::get('/', [
+                'as' => 'GetInfoTransactionInSystem',
+                'uses' => 'Privates\PrivateController@showTransactionInSystem'
+            ]);
+
+            Route::get('/confirm', [
+                'as' => 'confirmInfoTransactionInSystem',
+                'uses' => 'Privates\PrivateController@showConfirmInfoTransactionInSystem'
+            ]);
+
+            Route::get('/receive', [
+                'as' => 'receiveOTPInSystem',
+                'uses' => 'Privates\PrivateController@showReceiveCodeOTPInSystem'
+            ]);
+
+            Route::get('/alerts', [
+                'as' => 'alertsSuccessTransactionInSystem',
+                'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionInSystem'
+            ]);
+
+        });
+        Route::group(['prefix' => 'OutSystem'], function () {
+
+            Route::get('/', [
+                'as' => 'GetInfoTransactionOutSystem',
+                'uses' => 'Privates\PrivateController@showTransactionOutSystem'
+            ]);
+
+            Route::get('/confirm', [
+                'as' => 'confirmInfoTransactionOutSystem',
+                'uses' => 'Privates\PrivateController@showConfirmInfoTransactionOutSystem'
+            ]);
+
+            Route::get('/receive', [
+                'as' => 'receiveOTPOutSystem',
+                'uses' => 'Privates\PrivateController@showReceiveCodeOTPOutSystem'
+            ]);
+
+            Route::get('/alerts', [
+                'as' => 'alertsSuccessTransactionOutSystem',
+                'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionOutSystem'
+            ]);
+
+        });
+
+    });
 });

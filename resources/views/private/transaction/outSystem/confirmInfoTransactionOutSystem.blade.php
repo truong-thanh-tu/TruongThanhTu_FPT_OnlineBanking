@@ -10,7 +10,7 @@
                 <div class="banner_content">
                     <h2>Transfers</h2>
                     <div class="page_link">
-                        <a> In Transfers</a>
+                        <a> Out Transfers</a>
                         <a>Information</a>
                     </div>
                 </div>
@@ -23,12 +23,12 @@
     <section class="blog_area single-post-area p_120">
         <div class="container">
             <div class="row">
-                <h2 class="text-black text-uppercase " style="letter-spacing: 1px"> In OnLineBanking</h2>
+                <h2 class="text-black text-uppercase " style="letter-spacing: 1px"> Out OnLineBanking</h2>
             </div>
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{Route('confirmInfoTransactionInSystem')}}">
+                        <form action="{{ Route('receiveOTPOutSystem') }}">
                             <table class="table bg-white table-borderless font-weight-bold">
                                 <tr>
                                     <td><h4>Information Transfer </h4></td>
@@ -50,7 +50,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="5.000.000" disabled>
+                                                   value="5.000.000 VND" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -58,12 +58,27 @@
                                     <td><h4>Information Beneficiary </h4></td>
                                 </tr>
                                 <tr>
+                                    <td class="text-right">Name Banking</td>
+                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Address</td>
+                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Brand</td>
+                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+
+                                </tr>
+                                <tr>
                                     <td class="text-right">Account Number</td>
                                     <td>
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberBeneficiary"
-                                                   id="inputPassword2">
+                                                   value="12345678965" id="inputPassword2" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -73,40 +88,21 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="nameBeneficiary"
-                                                   id="inputPassword2">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class=" text-right"></td>
-                                    <td>
-                                        <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label font-weight-normal" value="true"
-                                                   for="exampleCheck1">Save beneficiary information </label>
+                                                   value="Nguyen Van A" id="inputPassword2" disabled>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><h4>Information Transaction</h4></td>
                                 </tr>
+
                                 <tr>
                                     <td class="text-right">Money</td>
-                                    <td>
+                                    <td style="height: 50px !important;">
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="money"
-                                                   id="inputPassword2">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class=" text-right">Content Transaction</td>
-                                    <td>
-                                        <div class="form-group">
-                                            <textarea class="form-control w-50" name="message" name="contentTransaction"
-                                                      id="message" rows="5"
-                                                      placeholder="Enter Message"></textarea>
+                                                   value="500.000 VND" disabled id="inputPassword2">
                                         </div>
                                     </td>
                                 </tr>
@@ -114,24 +110,30 @@
                                     <td class="text-right">Date</td>
                                     <td class="font-weight-normal"><span>2020-02-03</span></td>
                                 </tr>
-                                <tr class="pb-5">
-                                    <td class=" text-right">Fee payers</td>
-                                    <td>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="transferPerson"
-                                                   id="inlineRadio1" value="option1">
-                                            <label class="form-check-label font-weight-normal" for="inlineRadio1">Transfer
-                                                person</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="beneficiaries"
-                                                   id="inlineRadio2" value="option2">
-                                            <label class="form-check-label font-weight-normal" for="inlineRadio2">Beneficiaries</label>
-                                        </div>
-                                    </td>
+                                <tr>
+                                    <td class="text-right">Amount is equal to letters</td>
+                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Content Transaction</td>
+                                    <td class="font-weight-normal"><span>Transfer money fast</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Payer Fee</td>
+                                    <td class="font-weight-normal"><span> Transfer person</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Fees</td>
+                                    <td class="font-weight-normal"><span> 15.000 VND</span></td>
+                                </tr>
+                                <tr class="mb-2">
+                                    <td class="text-right">Email receive email code</td>
+                                    <td class="font-weight-normal"><span>nguyenvana@gmail.com</span></td>
                                 </tr>
                             </table>
                             <div class="text-right">
+                                <a href="{{ Route('GetInfoTransactionOutSystem') }}"
+                                   class="submit_btn banner_btn">Back</a>
                                 <button type="submit" class="submit_btn banner_btn">Submit</button>
                             </div>
                         </form>

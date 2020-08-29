@@ -17,12 +17,12 @@
                     <ul class="nav navbar-nav menu_nav justify-content-center">
                         <li class="nav-item {{ (request()->segment(2) == 'infoAccount') ? 'active' : '' }}"><a class="nav-link" href="{{Route('AccountInfo')}}">Account</a></li>
                         <li class="nav-item {{ (request()->segment(2) == 'history') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('History') }}">History</a></li>
-                        <li class="nav-item submenu dropdown">
+                        <li class="nav-item submenu dropdown {{ (request()->segment(2) == 'transaction') ? 'active' : '' }}">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Transfers</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">transfer  in the system</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-blog.html">transfer out the system</a></li>
+                                <li class="nav-item"><a class="nav-link w-100" href="{{ Route('GetInfoTransactionInSystem') }}">transfer in the bank</a></li>
+                                <li class="nav-item"><a class="nav-link w-100" href="{{ Route('GetInfoTransactionOutSystem') }}">transfer out the system</a></li>
                             </ul>
                         </li>
                         <li class="nav-item {{ (request()->segment(2) == 'report') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Report') }}">Report</a></li>

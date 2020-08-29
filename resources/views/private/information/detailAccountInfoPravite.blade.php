@@ -7,10 +7,10 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content">
-                    <h2>Information</h2>
+                    <h2>Account</h2>
                     <div class="page_link">
                         <a href="index.html">Account</a>
-                        <a href="single-blog.html">Information Account</a>
+                        <a href="single-blog.html">Detail Information Account</a>
                     </div>
                 </div>
             </div>

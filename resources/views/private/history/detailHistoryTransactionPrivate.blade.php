@@ -7,10 +7,10 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content">
-                    <h2>Information</h2>
+                    <h2>History</h2>
                     <div class="page_link">
-                        <a href="index.html">Account</a>
-                        <a href="single-blog.html">Information Account</a>
+                        <a href="index.html">History</a>
+                        <a href="single-blog.html"> Detail History Transaction</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="col-lg-12 posts-list">
                     <div class="card">
                         <div class="card-header">
-                            Code Transaction : <span>12300456598</span>
+                            <h5 class="card-title"> Code Transaction : <span>12300456598</span></h5>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Transfer person</h5>
