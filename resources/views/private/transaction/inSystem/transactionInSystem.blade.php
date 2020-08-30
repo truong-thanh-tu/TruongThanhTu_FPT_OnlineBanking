@@ -28,7 +28,33 @@
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{Route('confirmInfoTransactionInSystem')}}">
+                        <form action="{{Route('PostInfoTransactionInSystem')}}" method="post">
+                            @if ( Session::has('error') )
+                                <div class="alert alert-danger alert-dismissible " role="alert">
+                                    <ul>
+                                        <li>
+                                            {{ Session::get('error') }}
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            @endif
                             <table class="table bg-white table-borderless font-weight-bold">
                                 <tr>
                                     <td><h4>Information Transfer </h4></td>
@@ -40,7 +66,7 @@
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberSource"
                                                    id="inputPassword2"
-                                                   value="1234659793131" disabled>
+                                                   value="{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -50,7 +76,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="5.000.000" disabled>
+                                                   value="{{number_format($getDataTypeAccountCustomer->account->BalanceSource) }}  VND" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -58,12 +84,35 @@
                                     <td><h4>Information Beneficiary </h4></td>
                                 </tr>
                                 <tr>
+                                    <td class="text-right">Select an account in the list</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn alert-success dropdown-toggle" href="#"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                                 style="letter-spacing: 1px!important;">
+                                                @foreach($getDataBeneficiaries as $key => $getDB)
+                                                    <p class="dropdown-item" onclick="myFunction{{ $value = $key }}()"
+                                                       id="btn1"><span
+                                                            class="mr-2">{{$getDB->AccountBeneficiaries}}</span>
+                                                        <span> {{$getDB->NameAccountBeneficiaries}}</span></p>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="text-right">Account Number</td>
                                     <td>
                                         <div class="form-group w-50">
-                                            <label for="inputPassword2" class="sr-only"></label>
-                                            <input type="text" class="form-control w50" name="accountNumberBeneficiary"
-                                                   id="inputPassword2">
+                                            <label for="accountBeneficiary" class="sr-only"></label>
+                                            <input type="text" class="form-control w50"
+                                                   name="accountNumber" value=""
+                                                   id="accountBeneficiary">
                                         </div>
                                     </td>
                                 </tr>
@@ -71,9 +120,9 @@
                                     <td class=" text-right">Name Beneficiary</td>
                                     <td>
                                         <div class="form-group w-50">
-                                            <label for="inputPassword2" class="sr-only"></label>
+                                            <label for="nameBeneficiary" class="sr-only"></label>
                                             <input type="text" class="form-control" name="nameBeneficiary"
-                                                   id="inputPassword2">
+                                                   id="nameBeneficiary" value="">
                                         </div>
                                     </td>
                                 </tr>
@@ -81,9 +130,9 @@
                                     <td class=" text-right"></td>
                                     <td>
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label font-weight-normal" value="true"
-                                                   for="exampleCheck1">Save beneficiary information </label>
+                                            <input type="checkbox" class="form-check-input"value="true" name="saveName" id="exampleCheck1">
+                                            <label class="form-check-label font-weight-normal"
+                                                   for="exampleCheck1">Save </label>
                                         </div>
                                     </td>
                                 </tr>
@@ -94,9 +143,9 @@
                                     <td class="text-right">Money</td>
                                     <td>
                                         <div class="form-group w-50">
-                                            <label for="inputPassword2" class="sr-only"></label>
+                                            <label for="money" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="money"
-                                                   id="inputPassword2">
+                                                   id="money">
                                         </div>
                                     </td>
                                 </tr>
@@ -104,7 +153,7 @@
                                     <td class=" text-right">Content Transaction</td>
                                     <td>
                                         <div class="form-group">
-                                            <textarea class="form-control w-50" name="message" name="contentTransaction"
+                                            <textarea class="form-control w-50" name="contentTransaction"
                                                       id="message" rows="5"
                                                       placeholder="Enter Message"></textarea>
                                         </div>
@@ -112,20 +161,20 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right">Date</td>
-                                    <td class="font-weight-normal"><span>2020-02-03</span></td>
+                                    <td class="font-weight-normal"><span>{{ $dt->toDateString() }}</span></td>
                                 </tr>
                                 <tr class="pb-5">
                                     <td class=" text-right">Fee payers</td>
                                     <td>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="transferPerson"
-                                                   id="inlineRadio1" value="option1">
+                                            <input class="form-check-input" type="radio" name="feePayers"
+                                                   id="inlineRadio1" value="1">
                                             <label class="form-check-label font-weight-normal" for="inlineRadio1">Transfer
                                                 person</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="beneficiaries"
-                                                   id="inlineRadio2" value="option2">
+                                            <input class="form-check-input" type="radio" name="feePayers"
+                                                   id="inlineRadio2" value="2">
                                             <label class="form-check-label font-weight-normal" for="inlineRadio2">Beneficiaries</label>
                                         </div>
                                     </td>
@@ -134,6 +183,7 @@
                             <div class="text-right">
                                 <button type="submit" class="submit_btn banner_btn">Submit</button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>
@@ -141,5 +191,12 @@
         </div>
     </section>
     <!--================Blog Area =================-->
-
+    <script language="javascript">
+        @foreach($getDataBeneficiaries as $key => $getDB)
+        function myFunction{{ $value = $key }}() {
+            document.getElementById('accountBeneficiary').value = "{{$getDB->AccountBeneficiaries}}";
+            document.getElementById('nameBeneficiary').value = "{{$getDB->NameAccountBeneficiaries}}";
+        }
+        @endforeach
+    </script>
 @endsection

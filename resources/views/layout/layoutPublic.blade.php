@@ -26,11 +26,11 @@
 <!--================ End footer Area  =================-->
 
 <!--================Loader Area =================-->
-<div id="preloader">
+{{--<div id="preloader">
     <div class="loader">
         <img src="{{ asset('img/loader.gif') }}" alt="#"/>
     </div>
-</div>
+</div>--}}
 <!--================Loader Area =================-->
 
 <!-- Optional JavaScript -->

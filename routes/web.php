@@ -16,33 +16,49 @@ Route::get('/', function () {
     return redirect('public');
 });
 Route::group(['prefix' => 'public'], function () {
+
     Route::get('/', [
         'as' => 'Home',
         'uses' => "Publics\PublicController@showHome"
     ]);
+
     Route::get('/about', [
         'as' => 'About',
         'uses' => "Publics\PublicController@showAbout"
     ]);
+
     Route::get('/blog', [
         'as' => 'Blog',
         'uses' => "Publics\PublicController@showBlog"
     ]);
+
     Route::get('/contact', [
         'as' => 'Contact',
         'uses' => "Publics\PublicController@showContact"
     ]);
+
+    /**
+     * Login
+     */
     Route::get('/login', [
         'as' => 'Login',
         'uses' => "Publics\PublicController@showLogin"
     ]);
+    Route::post('/login', [
+        'as' => 'Login',
+        'uses' => "Publics\PublicController@handlingLogin"
+    ]);
+
+
 });
 Route::group(['prefix' => 'private'], function () {
     Route::group(['prefix' => 'infoAccount'], function () {
+
         Route::get('/', [
             'as' => 'AccountInfo',
             'uses' => 'Privates\PrivateController@showInfoAccount'
         ]);
+
         Route::get('/detail/{theIDAccount}', [
             'as' => 'DetailAccountInfo',
             'uses' => 'Privates\PrivateController@showDetailInfoAccount'
@@ -61,10 +77,12 @@ Route::group(['prefix' => 'private'], function () {
         ]);
     });
     Route::group(['prefix' => 'history'], function () {
+
         Route::get('/', [
             'as' => 'History',
             'uses' => 'Privates\PrivateController@showHistory',
         ]);
+
         Route::get('/history/{theIDTransaction}', [
             'as' => 'DetailHistory',
             'uses' => 'Privates\PrivateController@showDetailHistory'
@@ -77,6 +95,10 @@ Route::group(['prefix' => 'private'], function () {
             Route::get('/', [
                 'as' => 'GetInfoTransactionInSystem',
                 'uses' => 'Privates\PrivateController@showTransactionInSystem'
+            ]);
+            Route::post('/handlingInfoTransactionInSystem', [
+                'as' => 'PostInfoTransactionInSystem',
+                'uses' => 'Privates\PrivateController@postTransactionInSystem'
             ]);
 
             Route::get('/confirm', [
@@ -93,7 +115,6 @@ Route::group(['prefix' => 'private'], function () {
                 'as' => 'alertsSuccessTransactionInSystem',
                 'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionInSystem'
             ]);
-
         });
         Route::group(['prefix' => 'OutSystem'], function () {
 
@@ -116,8 +137,6 @@ Route::group(['prefix' => 'private'], function () {
                 'as' => 'alertsSuccessTransactionOutSystem',
                 'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionOutSystem'
             ]);
-
         });
-
     });
 });

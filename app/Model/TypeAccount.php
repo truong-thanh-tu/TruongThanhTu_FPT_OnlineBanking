@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypeAccount extends Model
 {
-    protected $table = 'type_ccount';
+    protected $table = 'type_account';
     protected $primaryKey = 'IDTypeAccount';
     protected $guarded = [];
     protected $perPage = 5;

@@ -58,8 +58,8 @@
                         </div>
                     </aside>
                     <aside class=" row blog_right_sidebar single_sidebar_widget search_widget">
-                        <table class="table bg-white">
-                            <thead class="thead-light">
+                        <table class="table bg-white table-hover">
+                            <thead class=" text-center" style="background-color:#a7cb00!important; ">
                             <tr>
                                 <th scope="col">Code</th>
                                 <th scope="col">Date</th>
@@ -69,42 +69,25 @@
 
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="col">1</th>
-                                <td scope="col">Mark</td>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col"><a href="{{ Route('DetailHistory',1) }}">View Detail</a></th>
-                            </tr>
+                            <tbody class="text-center" style="letter-spacing: 1px !important;">
+                            @foreach($getHistoryInSystems as $getHistoryInSystem)
+                                <tr>
+                                    <td scope="col">{{ $getHistoryInSystem->CodeTransaction }}</td>
+                                    <td scope="col">{{ $getHistoryInSystem->TransactionDate }}</td>
+                                    <td scope="col">{{ $getHistoryInSystem->beneficiaries->AccountBeneficiaries }}</td>
+                                    <td scope="col">{{ number_format($getHistoryInSystem->TransactionMoneyNumber) }}
+                                        VND
+                                    </td>
+                                    <td scope="col"><a
+                                            href="{{ Route('DetailHistory',$getHistoryInSystem->IDTransaction) }}">View</a>
+                                    </td>
 
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="paginate">
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-left"></span>
-		                                    </span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a href="#" class="page-link">01</a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">03</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">04</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">09</a></li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-right"></span>
-		                                    </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-
+                            {{ $getHistoryInSystems->links() }}
                         </div>
                     </aside>
                 </div>
@@ -114,7 +97,7 @@
     <!--================Blog Area =================-->
 
     <!--================Blog Area =================-->
-    <section class="blog_area single-post-area">
+    <section class="blog_area single-post-area mb-30">
         <div class="container">
             <div class="row">
                 <h2> Out OnLineBanking</h2>
@@ -153,7 +136,7 @@
                     </aside>
                     <aside class=" row blog_right_sidebar single_sidebar_widget search_widget">
                         <table class="table bg-white">
-                            <thead class="thead-light">
+                            <thead style="background-color:#a7cb00!important; ">
                             <tr>
                                 <th scope="col">Code</th>
                                 <th scope="col">Date</th>
@@ -163,42 +146,25 @@
 
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="col">1</th>
-                                <td scope="col">Mark</td>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col"><a href="{{ Route('DetailHistory',1) }}">View Detail</a></th>
-                            </tr>
+                            <tbody class="text-center" style="letter-spacing: 1px !important;">
+                            @foreach($getHistoryOutSystems as $getHistoryOutSystem)
+                                <tr>
+                                    <td scope="col">{{ $getHistoryOutSystem->CodeTransaction }}</td>
+                                    <td scope="col">{{ $getHistoryOutSystem->TransactionDate }}</td>
+                                    <td scope="col">{{ $getHistoryOutSystem->beneficiaries->AccountBeneficiaries }}</td>
+                                    <td scope="col">{{ number_format($getHistoryOutSystem->TransactionMoneyNumber) }}
+                                        VND
+                                    </td>
+                                    <td scope="col"><a
+                                            href="{{ Route('DetailHistory',$getHistoryOutSystem->IDTransaction) }}">View</a>
+                                    </td>
 
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="paginate">
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-left"></span>
-		                                    </span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a href="#" class="page-link">01</a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">03</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">04</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">09</a></li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-right"></span>
-		                                    </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-
+                            {{ $getHistoryInSystems->links() }}
                         </div>
                     </aside>
                 </div>

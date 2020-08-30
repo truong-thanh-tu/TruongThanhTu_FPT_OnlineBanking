@@ -13,6 +13,7 @@
 <script src="{{ asset('vendors/counter-up/jquery.counterup.js') }}"></script>
 <script src="{{ asset('js/mail-script.js') }}"></script>
 <script src="{{ asset('vendors/popup/jquery.magnific-popup.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ asset('vendors/swiper/js/swiper.min.js') }}"></script>
 <script src="{{ asset('js/theme.js') }}"></script>
 <script src="{{ asset('js/gmaps.js') }}"></script>

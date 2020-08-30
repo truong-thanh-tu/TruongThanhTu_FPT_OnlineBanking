@@ -25,16 +25,16 @@
                 <div class="col-lg-8 posts-list">
                     <div class="comments-area w-100" style="margin-top: 0px !important;">
                         <div class="portfolio_right_text">
-                            <h4>Account information 0109260277</h4>
-                            <h5>Date : <span>2020 - 03 - 04 11:02 </span></h5>
+                            <h4>Account information {{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}</h4>
+                            <h5>Date: <span>{{ $dt->toDateString() }}</span></h5>
                             <ul class="list mt-3">
-                                <li><span>Full Name </span>: Nguyen Van A</li>
-                                <li><span>Type Account</span>: Multi-function Account</li>
-                                <li><span>Balance</span>:  5. 000 .000</li>
-                                <li><span>Data Open</span>:  colorlib.com</li>
-                                <li><span>Completed</span>:  17 Aug 2018</li>
-                                <li><span>Completed</span>:  17 Aug 2018</li>
-                                <li><span>Completed</span>:  17 Aug 2018</li>
+                                <li><span class="font-weight-bold">Full Name </span>: {{ $getDataTypeAccountCustomer->customer->LastName . " " . $getDataTypeAccountCustomer->customer->FirstName }}</li>
+                                <li><span class="font-weight-bold">Type Account</span>: {{ $getDataTypeAccountCustomer->typeAccount->TypeAccount }}</li>
+                                <li><span class="font-weight-bold">Balance</span>:  {{ number_format($getDataTypeAccountCustomer->account->BalanceSource)  }} VND</li>
+                                <li><span class="font-weight-bold">Data Open</span>:  {{ $getDataTypeAccountCustomer->account->DateOpen }}</li>
+                                <li><span class="font-weight-bold">Branch</span>:  {{ $getDataTypeAccountCustomer->account->bank->Name }}</li>
+                                <li><span class="font-weight-bold">Address</span>:  {{ $getDataTypeAccountCustomer->account->bank->Address }}</li>
+                                <li><span class="font-weight-bold">City</span>:  {{ $getDataTypeAccountCustomer->account->bank->City }}</li>
 
                             </ul>
                         </div>

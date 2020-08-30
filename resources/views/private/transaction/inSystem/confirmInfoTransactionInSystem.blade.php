@@ -40,7 +40,7 @@
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberSource"
                                                    id="inputPassword2"
-                                                   value="1234659793131" disabled>
+                                                   value="" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -50,7 +50,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="5.000.000" disabled>
+                                                   value="" disabled>
                                         </div>
                                     </td>
                                 </tr>

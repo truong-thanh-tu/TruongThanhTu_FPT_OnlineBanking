@@ -18,15 +18,15 @@ SET time_zone = '+7:00';
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 
 # Create Table customer
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE IF NOT EXISTS `customer`
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users`
 (
     `IDCustomer`      INT AUTO_INCREMENT,
 
     `CodeCustomer`    NVARCHAR(16)     NOT NULL,
 
     `User`            NVARCHAR(64)     NOT NULL,
-    `Pass`            NVARCHAR(64)     NOT NULL,
+    `Pass`            NVARCHAR(128)    NOT NULL,
     `FirstName`       NVARCHAR(16)     NOT NULL,
     `LastName`        NVARCHAR(16)     NOT NULL,
     `Address`         NVARCHAR(16)     NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `customer`
     `AverageIncome`   NVARCHAR(64)     NULL,
     `TelephoneNumber` INT(16) UNSIGNED NOT NULL,
     `Email`           NVARCHAR(128)    NULL,
-
+    `Turn`            INT          DEFAULT 0,
 
     `created_by`      NVARCHAR(32) DEFAULT 'OnlineBanking',
     `created_at`      DATETIME     DEFAULT CURRENT_TIME,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `bank`
     `CodeBank`   NVARCHAR(16) NOT NULL,
 
     `Name`       NVARCHAR(64) NOT NULL,
-    `Addrees`    NVARCHAR(64) NOT NULL,
+    `Address`    NVARCHAR(64) NOT NULL,
     `City`       NVARCHAR(16) NOT NULL,
 
 
@@ -92,7 +92,8 @@ CREATE TABLE IF NOT EXISTS `transaction`
     `Payer`                  NVARCHAR(64)     NOT NULL,
     `Free`                   INT(8) UNSIGNED  NOT NULL,
     `CodeOTP`                NVARCHAR(8)      NOT NULL,
-    `SendCodeOTP`            NVARCHAR(16)     DEFAULT 'Email',
+    `SendCodeOTP`            NVARCHAR(16) DEFAULT 'Email',
+
 
     `created_by`             NVARCHAR(32) DEFAULT 'OnlineBanking',
     `created_at`             DATETIME     DEFAULT CURRENT_TIME,
@@ -109,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `transaction`
 DROP TABLE IF EXISTS `type_account`;
 CREATE TABLE IF NOT EXISTS type_account
 (
-    `IDTypeAccountCustomer`   INT AUTO_INCREMENT,
+    `IDTypeAccount`   INT AUTO_INCREMENT,
 
     `CodeTypeAccountCustomer` NVARCHAR(16) NOT NULL,
 
@@ -124,7 +125,7 @@ CREATE TABLE IF NOT EXISTS type_account
     `deleted`                 BOOLEAN      DEFAULT FALSE,
 
 
-    PRIMARY KEY (`IDTypeAccountCustomer`)
+    PRIMARY KEY (`IDTypeAccount`)
 ) ENGINE InnoDB;
 
 # Create Table beneficiaries
@@ -227,51 +228,51 @@ CREATE TABLE IF NOT EXISTS type_account_customer
 #                                            Insert Tables                                            #
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('OL52', 'OnlineBanking', 'Ton That Thuyet', 'Ha Noi');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('HP32', 'HPBanking', 'Nguyen Chi Thanh', 'Da Nang');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name,Address, City)
     VALUE ('VB21', 'VBBanking', 'Nguyen Van Cu', 'Ho Chi Minh');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('BD32', 'BDBanking', 'Tran Cao Van', 'Can Tho');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('UI21', 'UIBanking', 'Vu Tong Phan', 'Da Nang');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('TH41', 'THKBanking', 'Pham Hoan Bieu', 'Hue');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('QM21', 'QMBanking', 'Ton That Minh Ngoc', 'Hai Phong');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('UL21', 'ULBanking', 'Doan Thi Diem', 'Ha Noi');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('CV21', 'CVBanking', 'Hoan Minh Cong', 'Ho Chi Minh');
-INSERT INTO bank(CodeBank, Name, Addrees, City)
+INSERT INTO bank(CodeBank, Name, Address, City)
     VALUE ('IK21', 'IKBanking', 'Dinh Lan Minh', 'Da Nang');
 
 #Default password: 123456
 
-INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
-                     AverageIncome, TelephoneNumber, Email)
-    VALUE ('MC4455', 'truongthanhtu', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Thanh Tu',
+INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                  AverageIncome, TelephoneNumber, Email)
+    VALUE ('MC4455', 'truongthanhtu', '$2y$10$3Fn.w0nKubFvRe.NfL.G1uY08jVbyg2OiyNhBaIXbT.Ao8yLS4dh.', 'Thanh Tu',
            'Truong', 'Hue', '1998-09-03', 'Student', 'Student', 'Reading Book', 0, 0359077335,
            'truongthanhtu03091998@gmail.com');
-INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
-                     AverageIncome, TelephoneNumber, Email)
-    VALUE ('PI2315', 'nguyendinhhieu', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Dinh Hieu',
+INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                  AverageIncome, TelephoneNumber, Email)
+    VALUE ('PI2315', 'nguyendinhhieu', '$2y$10$3Fn.w0nKubFvRe.NfL.G1uY08jVbyg2OiyNhBaIXbT.Ao8yLS4dh.', 'Dinh Hieu',
            'Nguye', 'Nghe An', '1996-08-08', 'Student', 'Student', 'Reading Book', 0, 0868663315,
            'DinhHieu8896@gmail.com');
-INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
-                     AverageIncome, TelephoneNumber, Email)
-    VALUE ('YU0213', 'vuquanghuy', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Quan Huy', 'Vu',
+INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                  AverageIncome, TelephoneNumber, Email)
+    VALUE ('YU0213', 'vuquanghuy', '$2y$10$3Fn.w0nKubFvRe.NfL.G1uY08jVbyg2OiyNhBaIXbT.Ao8yLS4dh.', 'Quan Huy', 'Vu',
            'Ha Noi', '2000-01-01', 'Student', 'Student', 'Reading Book', 0, 0981159826, 'VuQuangHuyXL1234@gmail.com');
-INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
-                     AverageIncome, TelephoneNumber, Email)
-    VALUE ('YJ4568', 'phamtuan', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Tuan', 'Pham',
+INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                  AverageIncome, TelephoneNumber, Email)
+    VALUE ('YJ4568', 'phamtuan', '$2y$10$3Fn.w0nKubFvRe.NfL.G1uY08jVbyg2OiyNhBaIXbT.Ao8yLS4dh.', 'Tuan', 'Pham',
            'Thai Nguyen', '2000-01-01', 'Student', 'Student', 'Reading Book', 0, 0382548442,
            'PhamTuanCules20@gmail.com');
-INSERT INTO customer(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
-                     AverageIncome, TelephoneNumber, Email)
-    VALUE ('LI2468', 'nguyendinhtung', '$2y$10$YKY51A9REcXLZVRAC87AcuXnC.Nb8WK8rD/WgfAVxPSAelLZHQf06', 'Dinh Tung',
+INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, Workplace, Position, Interests,
+                  AverageIncome, TelephoneNumber, Email)
+    VALUE ('LI2468', 'nguyendinhtung', '$2y$10$3Fn.w0nKubFvRe.NfL.G1uY08jVbyg2OiyNhBaIXbT.Ao8yLS4dh.', 'Dinh Tung',
            'Nguyen', 'Ha Noi', '1998-09-03', 'Student', 'Student', 'Reading Book', 0, 0905423125,
            'nguyendinhtung03091998@gmail.com');
 
@@ -307,16 +308,79 @@ INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries
 INSERT INTO beneficiaries(IDBank, AccountBeneficiaries, NameAccountBeneficiaries)
     VALUE (7, '13103164031640', 'Ly Cong Nhat');
 
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 3, 1, '8946561', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email') ;
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 1, 1, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email') ;
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email') ;
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 4, 1, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email') ;
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 5, 1, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email') ;
-INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction, Payer, Free, CodeOTP, SendCodeOTP)
-VALUE (1, 6, 1, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email') ;
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 3, 1, '8946561', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 1, 2, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 4, 3, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 5, 4, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 6, 5, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email');
+
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 3, 1, '4646446', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 1, 1, '3131654', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 2, 1, '1234234', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 4, 2, '4353534', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 5, 6, '5145145', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 6, 2, '34564773', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email');
+
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 3, 1, '66575677', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 1, 2, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 4, 3, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 5, 4, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 6, 5, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email');
+
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 3, 1, '8946561', 500000, 'Transfer money to the youngest', 'Transfer person', 10000, 'jsKSUI', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 1, 1, '8946561', 1500000, 'Pay the bill', 'Transfer person', 30000, 'HJSjsd', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 2, 1, '8946561', 2500000, 'Pile of electricity bills', 'Transfer person', 50000, 'laksJY', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 4, 2, '8946561', 100000, 'Pay for coffee', 'Transfer person', 2000, 'TyskJM', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 5, 6, '8946561', 400000, 'Pay for taxi', 'Transfer person', 8000, 'MSKsia', 'Email');
+INSERT INTO transaction(IDAccount, IDBeneficiaries, IDBank, CodeTransaction, TransactionMoneyNumber, ContentTransaction,
+                        Payer, Free, CodeOTP, SendCodeOTP)
+    VALUE (1, 6, 2, '8946561', 700000, 'Pay for booking', 'Transfer person', 14000, 'IMKsql', 'Email');
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypeAccountCustomer extends Model
 {
-    protected $table = 'type_ccount';
+    protected $table = 'type_account_customer';
     protected $primaryKey = 'IDTypeAccount';
     protected $guarded = [];
     protected $perPage = 5;
@@ -18,11 +18,16 @@ class TypeAccountCustomer extends Model
 
     public function typeAccount()
     {
-        return $this->hasMany(TypeAccountCustomer::class, 'IDTypeAccount', 'IDTypeAccount');
+        return $this->hasOne(TypeAccount::class, 'IDTypeAccount', 'IDTypeAccount');
     }
 
     public function customer()
     {
-        return $this->hasMany(Customer::class, 'IDCustomer', 'IDCustomer');
+        return $this->hasOne(Users::class, 'IDCustomer', 'IDCustomer');
+    }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
 }

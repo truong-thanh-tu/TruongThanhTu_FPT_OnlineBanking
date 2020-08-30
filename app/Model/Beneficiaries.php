@@ -25,4 +25,30 @@ class Beneficiaries extends Model
     {
         return $this->hasOne(Bank::class, 'IDBank', 'IDBank');
     }
+
+    public function getBeneficiaries($control)
+    {
+        return Beneficiaries::all()->where('IDBank', $control, 1);
+    }
+
+    public function checkBeneficiaries($numberAccount)
+    {
+        $getDBs = Beneficiaries::all();
+        foreach ($getDBs as $gD) {
+            if ($gD->AccountBeneficiaries == $numberAccount) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static function saveBeneficiaries($numberAccount, $nameAccount)
+    {
+        $objDB = new Beneficiaries();
+        $objDB->AccountBeneficiaries = $numberAccount;
+        $objDB->NameAccountBeneficiaries = $nameAccount;
+        $objDB->IDBank = 1;
+        $objDB->save();
+    }
+
 }

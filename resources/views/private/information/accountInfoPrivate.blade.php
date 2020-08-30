@@ -23,53 +23,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 posts-list">
-                    <div class="comments-area w-100" style="margin-top: 0px !important;">
-                        <h2 class="mb-2">Multi-function Account</h2>
-                        <table class="table bg-white">
-                            <thead style="background-color:#a7cb00!important; ">
-                            <tr>
-                                <th scope="col">Account Number</th>
-                                <th scope="col">Account Name</th>
-                                <th scope="col">Balance</th>
-                                <th scope="col">View Detail</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">123002020202</th>
-                                <td>Nguyen Van A</td>
-                                <td>5 .000 .000 VND</td>
-                                <td><a href="{{ Route('DetailAccountInfo',1) }}" class="text-warning"> View Detail</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    @foreach ($getDataTypeAccountCustomers as $getDataTypeAccountCustomer)
+                        <div class="alert-secondary p-5 w-100 mt-3" >
+                            <h2 class="mb-2">{{ $getDataTypeAccountCustomer->typeAccount->TypeAccount }}</h2>
+                            <table class="table bg-white">
+                                <thead style="background-color:#a7cb00!important; ">
+                                <tr>
+                                    <th scope="col">Account Number</th>
+                                    <th scope="col">Account Name</th>
+                                    <th scope="col">Balance</th>
+                                    <th scope="col">View Detail</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}</th>
+                                    <td>{{ $getDataTypeAccountCustomer->customer->LastName . " " . $getDataTypeAccountCustomer->customer->FirstName }}</td>
+                                    <td>{{ number_format($getDataTypeAccountCustomer->account->BalanceSource)  }} VND</td>
+                                    <td><a href="{{ Route('DetailAccountInfo',$getDataTypeAccountCustomer->IDTypeAccountCustomer) }}" class="text-warning"> View Detail</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-4 posts-list">
-                    <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget post_category_widget">
+                    <div class="blog_right_sidebar mt-3">
+                        <aside class="single_sidebar_widget post_category_widget" style="">
                             <h4 class="widget_title">Account information</h4>
                             <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Payment deposit account</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Multi-function Account</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Savings deposit account</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Credit card account</p>
-                                    </a>
-                                </li>
+                                @foreach ($getDataTypeAccountCustomers as $getDataTypeAccountCustomer)
+                                    <li>
+                                        <a href="#" class="d-flex justify-content-between">
+                                            <p>{{$getDataTypeAccountCustomer->typeAccount->TypeAccount }}</p>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                             <div class="br"></div>
                         </aside>

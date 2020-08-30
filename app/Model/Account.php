@@ -18,11 +18,16 @@ class Account extends Model
 
     public function typeAccountCustomer()
     {
-        return $this->hasOne(TypeAccountCustomer::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
+        return $this->belongsTo(TypeAccountCustomer::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
 
     public function transaction()
     {
         return $this->hasMany(Transaction::class, 'IDAccount', 'IDAccount');
+    }
+
+    public function bank()
+    {
+        return $this->hasOne(Bank::class, 'IDBank', 'IDBank');
     }
 }
