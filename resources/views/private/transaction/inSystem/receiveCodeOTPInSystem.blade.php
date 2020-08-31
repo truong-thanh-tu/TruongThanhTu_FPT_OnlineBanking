@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{Route('alertsSuccessTransactionInSystem')}}">
+                        <form action="{{Route('alertsSuccessTransactionInSystem')}}" method="post">
                             <div class="card">
                                 <h5 class="card-header">Enter Coce OTP</h5>
                                 <div class="card-body">
@@ -37,13 +37,26 @@
                                     <p class="card-text">Please checking</p>
                                     <div class="form-group w-25 mb-2">
                                         <label for="inputPassword2" class="sr-only">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword2"
-                                               placeholder="OTP ...">
+                                        <input type="text" class="form-control" name="codeOPT" id="inputPassword2"
+                                               placeholder="OTP ..." value="{{ $codeOTP }}">
                                     </div>
                                     <button type="submit" class="submit_btn banner_btn mt-3">Submit</button>
                                 </div>
+                                @if ( Session::has('error') )
+                                    <div class="alert alert-danger alert-dismissible " role="alert">
+                                        <ul>
+                                            <li>
+                                                {{ Session::get('error') }}
+                                            </li>
+                                        </ul>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
-
+                            @csrf
                         </form>
                     </div>
                 </div>

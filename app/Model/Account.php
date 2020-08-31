@@ -21,13 +21,35 @@ class Account extends Model
         return $this->belongsTo(TypeAccountCustomer::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
 
-    public function transaction()
-    {
-        return $this->hasMany(Transaction::class, 'IDAccount', 'IDAccount');
-    }
 
     public function bank()
     {
         return $this->hasOne(Bank::class, 'IDBank', 'IDBank');
+    }
+
+    public function beneficiaries()
+    {
+        return $this->hasMany(Beneficiaries::class, 'IDAccount', 'IDAccount');
+    }
+
+    public function checkUser($numAccount)
+    {
+        $getDBs = Account::all();
+
+        foreach ($getDBs as $gDB) {
+            if ($gDB->AccountSourceNumber == $numAccount) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getIDAccount($AccountSourceNumber)
+    {
+        $getData = Account::where('deleted', false)
+            ->where('AccountSourceNumber', $AccountSourceNumber)
+            ->first();
+
+        return $getData->IDAccount;
     }
 }

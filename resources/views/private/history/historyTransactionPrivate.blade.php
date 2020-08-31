@@ -74,7 +74,7 @@
                                 <tr>
                                     <td scope="col">{{ $getHistoryInSystem->CodeTransaction }}</td>
                                     <td scope="col">{{ $getHistoryInSystem->TransactionDate }}</td>
-                                    <td scope="col">{{ $getHistoryInSystem->beneficiaries->AccountBeneficiaries }}</td>
+                                    <td scope="col">{{ $getHistoryInSystem->Beneficiaries }}</td>
                                     <td scope="col">{{ number_format($getHistoryInSystem->TransactionMoneyNumber) }}
                                         VND
                                     </td>
@@ -151,7 +151,7 @@
                                 <tr>
                                     <td scope="col">{{ $getHistoryOutSystem->CodeTransaction }}</td>
                                     <td scope="col">{{ $getHistoryOutSystem->TransactionDate }}</td>
-                                    <td scope="col">{{ $getHistoryOutSystem->beneficiaries->AccountBeneficiaries }}</td>
+                                    <td scope="col">{{ $getHistoryOutSystem->Beneficiaries }}</td>
                                     <td scope="col">{{ number_format($getHistoryOutSystem->TransactionMoneyNumber) }}
                                         VND
                                     </td>

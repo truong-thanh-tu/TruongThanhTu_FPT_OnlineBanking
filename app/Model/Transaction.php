@@ -16,13 +16,55 @@ class Transaction extends Model
         return parent::all($columns)->where('deleted', false);
     }
 
-    public function account()
+    public function typeAccountCustomer()
     {
-        return $this->hasMany(Account::class, 'IDTransaction', 'IDTransaction');
+        return $this->hasMany(TypeAccountCustomer::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
 
-    public function beneficiaries()
+    public function bank()
     {
-        return $this->hasOne(Beneficiaries::class, 'IDBeneficiaries', 'IDBeneficiaries');
+        return $this->hasOne(Bank::class, 'IDBank', 'IDBank');
+    }
+
+    public function saveTransaction($transaction, $codeOTP)
+    {
+        $objTransaction = new Transaction();
+
+        $objTransaction->IDTypeAccountCustomer = $transaction['idTypeAccountCustomer'];
+        $objTransaction->IDBank = $transaction['idBank'];
+        $objTransaction->CodeTransaction = $transaction['codeTransaction'];
+        $objTransaction->Beneficiaries = $transaction['accountNumber'];
+        $objTransaction->NameBeneficiaries = $transaction['nameBeneficiary'];
+        $objTransaction->TransactionMoneyNumber = $transaction['money'];
+        $objTransaction->ContentTransaction = $transaction['contentTransaction'];
+        $objTransaction->Payer = $transaction['feePayer'];
+        $objTransaction->Fee = $transaction['fee'];
+        $objTransaction->CodeOTP = $codeOTP;
+
+        $objTransaction->save();
+
+        $objAccount = new Account();
+        $idAccountBeneficiaries = $objAccount->getIDAccount($transaction['accountNumber']);
+
+        $getAccountSource = Account::find($transaction['idAccount']);
+        $getAccountBeneficiaries = Account::find($idAccountBeneficiaries);
+
+        if ($transaction['feePayer'] == 1) {
+            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['fee'] - $transaction['money'];
+            $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
+
+        } else {
+            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['money'];
+            $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource - $transaction['fee'] + $transaction['money'];
+
+        }
+        $getAccountSource->save();
+        $getAccountBeneficiaries->save();
+    }
+
+    public function getTransaction($IDTransaction)
+    {
+
+        return Transaction::all()->where('IDTransaction', $IDTransaction);
     }
 }

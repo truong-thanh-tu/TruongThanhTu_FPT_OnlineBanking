@@ -26,10 +26,12 @@ class Beneficiaries extends Model
         return $this->hasOne(Bank::class, 'IDBank', 'IDBank');
     }
 
-    public function getBeneficiaries($control)
+    public function getBeneficiaries($control,$IDAccount)
     {
-        return Beneficiaries::all()->where('IDBank', $control, 1);
+
+        return Beneficiaries::all()->where('IDBank', $control, 1)->where('IDAccount',$IDAccount);
     }
+
 
     public function checkBeneficiaries($numberAccount)
     {
@@ -42,9 +44,10 @@ class Beneficiaries extends Model
         return true;
     }
 
-    public static function saveBeneficiaries($numberAccount, $nameAccount)
+    public static function saveBeneficiaries($numberAccount, $nameAccount,$IDAccount)
     {
         $objDB = new Beneficiaries();
+        $objDB->IDAccount = $IDAccount;
         $objDB->AccountBeneficiaries = $numberAccount;
         $objDB->NameAccountBeneficiaries = $nameAccount;
         $objDB->IDBank = 1;

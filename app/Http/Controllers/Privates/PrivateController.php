@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\privates;
 
 use App\Http\Controllers\Controller;
+use App\Model\Account;
 use App\Model\Beneficiaries;
 use App\Model\publicModel;
+use App\Model\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -55,9 +57,12 @@ class PrivateController extends Controller
      * showDetailHistory
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showDetailHistory()
+    public function showDetailHistory($IDTransaction)
     {
-        return view('private.history.detailHistoryTransactionPrivate');
+        $objTS = new Transaction();
+        $getData = $objTS->getTransaction($IDTransaction)->first();
+
+        return view('private.history.detailHistoryTransactionPrivate',compact('getData'));
 
     }
 
@@ -73,10 +78,10 @@ class PrivateController extends Controller
 
         $objMP = new publicModel();
         $objBeneficiaries = new Beneficiaries();
-        $getDataBeneficiaries = $objBeneficiaries->getBeneficiaries('=');
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
 
         $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
+        $getDataBeneficiaries = $objBeneficiaries->getBeneficiaries('=', $getDataTypeAccountCustomer->account->IDAccount);
 
         return view('private.transaction.inSystem.transactionInSystem', compact('getDataTypeAccountCustomer', 'getDataBeneficiaries', 'dt'));
 
@@ -105,47 +110,50 @@ class PrivateController extends Controller
         if ($validator->fails()) {
             return redirect('private/transaction/InSystem')->withErrors($validator)->withInput();;
         }
+        $objMP = new publicModel();
+        $objBF = new Beneficiaries();
+        $objAccount = new Account();
+
+        $valueIDCustomer = $request->session()->get('IDCustomer');
+        $valueIDTypeAccount = 1;
+        $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
+
+        $codeTransaction = mt_rand(10000, 99999);
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
         $transaction = array(
+            'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
+            'idAccount'=>$getDataTypeAccountCustomer->account->IDAccount,
+            'idBank' => 1,
+            'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
+            'codeTransaction' => $codeTransaction,
             'accountNumber' => $request->input('accountNumber'),
             'nameBeneficiary' => $request->input('nameBeneficiary'),
             'money' => $request->input('money'),
             'contentTransaction' => $request->input('contentTransaction'),
-            'feePayers' => $request->input('feePayers'),
+            'feePayer' => $request->input('feePayers'),
+            'fee' => (($request->input('money')) * 2) / 100,
+            'dateTransaction' => $dt->toDateString(),
+            'email' => $getDataTypeAccountCustomer->customer->Email,
         );
-        $objMP = new publicModel();
-        $objBF = new Beneficiaries();
+        session()->put('transaction', $transaction);
 
-        $valueIDCustomer = $request->session()->get('IDCustomer');
-        $valueIDTypeAccount = 1;
-
-        $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
-        $check = $objMP->compareMoney($transaction['money'], $getDataTypeAccountCustomer->account->IDAccount);
-
-        if ($check) {
-            if ($request->input('saveName')) {
-                if ($objBF->checkBeneficiaries($transaction['accountNumber'])){
-                    $objBF->saveBeneficiaries($transaction['accountNumber'],$transaction['nameBeneficiary']);
+        if ($objAccount->checkUser($transaction['accountNumber'])) {
+            $check = $objMP->compareMoney($transaction['money'], $getDataTypeAccountCustomer->account->IDAccount);
+            if ($check) {
+                if ($request->input('saveName')) {
+                    if ($objBF->checkBeneficiaries($transaction['accountNumber'])) {
+                        $objBF->saveBeneficiaries($transaction['accountNumber'], $transaction['nameBeneficiary'], $getDataTypeAccountCustomer->account->IDAccount);
+                    }
                 }
+                return view('private.transaction.inSystem.confirmInfoTransactionInSystem', compact('transaction', 'getDataTypeAccountCustomer'));
+            } else {
+                Session::flash('error', 'The amount in the account is not enough');
+                return redirect('/private/transaction/InSystem');
             }
-            return "DONE";
         } else {
-            Session::flash('error', 'The amount in the account is not enough');
+            Session::flash('error', 'Account not have in system');
             return redirect('/private/transaction/InSystem');
         }
-
-
-        return "DONE";
-    }
-
-    /**
-     * showConfirmInfoTransactionInSystem
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showConfirmInfoTransactionInSystem(Request $request)
-    {
-
-        return view('private.transaction.inSystem.confirmInfoTransactionInSystem');
 
     }
 
@@ -153,19 +161,43 @@ class PrivateController extends Controller
      * showReceiveCodeOTPInSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showReceiveCodeOTPInSystem()
+    public function showReceiveCodeOTPInSystem(Request $request)
     {
-        return view('private.transaction.inSystem.receiveCodeOTPInSystem');
+        $infoTransaction = $request->session()->get('transaction');
 
+        /*  Mail::send('component.Email',[
+              'name'=>'Thanh Tu',
+          ],function ($msg){
+              $msg->from('onlinebankingtreet@gmail.com','Tu1');
+              $msg->to('onlinebankingtreet@gmail.com','Tu2');
+              $msg->subject('Đay là email test ');
+          });*/
+        $codeOTP = mt_rand(1000, 9999);
+        session()->put('codeOTP', $codeOTP);
+
+        return view('private.transaction.inSystem.receiveCodeOTPInSystem', compact('codeOTP'));
     }
 
     /**
      * showAlertsSuccessTransactionInSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAlertsSuccessTransactionInSystem()
+    public function showAlertsSuccessTransactionInSystem(Request $request)
     {
-        return view('private.transaction.inSystem.alertsSuccessTransactionInSystem');
+        if ($request->input('codeOPT') == $request->session()->get('codeOTP')) {
+            $transaction = $request->session()->get('transaction');
+            $codeOTP = $request->session()->get('codeOTP');
+
+            $addTransaction = new Transaction();
+
+            $addTransaction->saveTransaction($transaction, $codeOTP);
+
+            return view('private.transaction.inSystem.alertsSuccessTransactionInSystem', compact('transaction'));
+
+        } else {
+            Session::flash('error', 'The otp code you entered was wrong');
+            return redirect('/private/transaction/InSystem/receive');
+        }
 
     }
 
@@ -173,8 +205,9 @@ class PrivateController extends Controller
      * showTransactionOutSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showTransactionOutSystem()
+    public function showTransactionOutSystem(Request $request)
     {
+
         return view('private.transaction.outSystem.transactionOutSystem');
 
     }
@@ -226,4 +259,5 @@ class PrivateController extends Controller
     {
         return view('private.support.supportPrivate');
     }
+
 }

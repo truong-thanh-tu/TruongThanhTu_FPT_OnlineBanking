@@ -30,4 +30,9 @@ class TypeAccountCustomer extends Model
     {
         return $this->hasOne(Account::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
+    }
 }

@@ -25,21 +25,27 @@
                 <div class="col-lg-12 posts-list">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title"> Code Transaction : <span>12300456598</span></h5>
+                            <h5 class="card-title"> Code Transaction : <span>{{ $getData->CodeTransaction }}</span></h5>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Transfer person</h5>
-                            <p class="card-text">Name    : <span> Nguyen Van A</span></p>
-                            <p class="card-text">Account : <span>12345678987</span></p>
+                            <p class="card-text">Name :
+                                <span> {{ $getData->typeAccountCustomer->first()->customer->LastName." ".$getData->typeAccountCustomer->first()->customer->FirstName  }}</span>
+                            </p>
+                            <p class="card-text">Account :
+                                <span>{{ $getData->typeAccountCustomer->first()->account->AccountSourceNumber }}</span>
+                            </p>
                             <h5 class="card-title">Beneficiaries</h5>
-                            <p class="card-text">Name    : <span> Nguyen Van A</span></p>
-                            <p class="card-text">Account : <span>12345678987</span></p>
-                            <p class="card-text">Banking : <span>OnlineBanking</span></p>
+                            <p class="card-text">Name : <span> {{ $getData->NameBeneficiaries }}</span></p>
+                            <p class="card-text">Account : <span>{{ $getData->Beneficiaries }}</span></p>
+                            <p class="card-text">Banking : <span>{{ $getData->bank->Name }}</span></p>
                             <h5 class="card-title">Information Transaction</h5>
-                            <p class="card-text">Date    : <span> 2020 - 02 - 03</span></p>
-                            <p class="card-text">Money transfer : <span>1.000.000</span></p>
-                            <p class="card-text">Content transaction : <span>Fast money transfer </span></p>
-                            <p class="card-text">Free : <span>15.000 </span></p>
+                            <p class="card-text">Date : <span>{{ $getData->TransactionDate }}</span></p>
+                            <p class="card-text">Money transfer : <span>{{ number_format($getData->TransactionMoneyNumber) }} VND</span>
+                            </p>
+                            <p class="card-text">Content transaction : <span>{{ $getData->ContentTransaction }}</span>
+                            </p>
+                            <p class="card-text">Free : <span>{{ number_format( $getData->Fee) }} VND</span></p>
                         </div>
                     </div>
                 </div>

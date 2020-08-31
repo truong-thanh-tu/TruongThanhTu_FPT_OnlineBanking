@@ -111,7 +111,7 @@ Route::group(['prefix' => 'private'], function () {
                 'uses' => 'Privates\PrivateController@showReceiveCodeOTPInSystem'
             ]);
 
-            Route::get('/alerts', [
+            Route::post('/alerts', [
                 'as' => 'alertsSuccessTransactionInSystem',
                 'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionInSystem'
             ]);

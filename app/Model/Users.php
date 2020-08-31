@@ -80,4 +80,5 @@ class Users extends Model
     {
         return $this->where('User', $username)->first();
     }
+
 }
