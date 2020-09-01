@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','History')
 @section('content')
 
 
@@ -10,8 +10,8 @@
                 <div class="banner_content">
                     <h2>History</h2>
                     <div class="page_link">
-                        <a href="index.html">History</a>
-                        <a href="single-blog.html">History Transaction</a>
+                        <a>History</a>
+                        <a>History Transaction</a>
                     </div>
                 </div>
             </div>
@@ -28,33 +28,22 @@
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <aside class=" row blog_right_sidebar single_sidebar_widget search_widget">
-                        <div class="col-lg-9">
-                            <form class="form-inline">
+                        <div class="col-lg-12">
+                            <form class="form-inline" action="{{ Route('History') }}">
                                 <div class="row">
+                                    <span>To</span>
                                     <div class="col">
-                                        <input type="date" class="form-control w-100" placeholder="To">
+                                      <input type="date" name="dateToInSystem" class="form-control w-"required="required" placeholder="To">
+                                    </div>
+                                    <span>From</span>
+                                    <div class="col">
+                                        <input type="date"name="dateFromInSystem" class="form-control w-100" required="required"placeholder="Form">
                                     </div>
                                     <div class="col">
-                                        <input type="date" class="form-control w-100" placeholder="Form">
-                                    </div>
-                                    <div class="col">
-                                        <button type="submit" class="submit_btn btn-light border-0">Search</button>
+                                        <button type="submit" class="submit_btn  border-0">Search</button>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="dropdown">
-                                <a class="btn submit_btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown link
-                                </a>
-
-                                <div class="dropdown-menu w-75" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Month</a>
-                                    <a class="dropdown-item" href="#">Year</a>
-                                </div>
-                            </div>
                         </div>
                     </aside>
                     <aside class=" row blog_right_sidebar single_sidebar_widget search_widget">
@@ -108,34 +97,27 @@
                         <div class="col-lg-9">
                             <form class="form-inline">
                                 <div class="row">
+                                    <span>To</span>
+
                                     <div class="col">
-                                        <input type="date" class="form-control w-100" placeholder="To">
+                                        <input type="date" name="c"class="form-control w-100" placeholder="To" required="required">
+                                    </div>
+                                    <span>From</span>
+
+                                    <div class="col">
+                                        <input type="date" name="dateFromOutSystem"class="form-control w-100" placeholder="Form" required="required">
                                     </div>
                                     <div class="col">
-                                        <input type="date" class="form-control w-100" placeholder="Form">
-                                    </div>
-                                    <div class="col">
-                                        <button type="submit" class="submit_btn btn-light border-0">Search</button>
+                                        <button type="submit" class="submit_btn  border-0">Search</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="col-lg-3">
-                            <div class="dropdown">
-                                <a class="btn submit_btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown link
-                                </a>
-
-                                <div class="dropdown-menu w-75" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Month</a>
-                                    <a class="dropdown-item" href="#">Year</a>
-                                </div>
-                            </div>
                         </div>
                     </aside>
                     <aside class=" row blog_right_sidebar single_sidebar_widget search_widget">
-                        <table class="table bg-white">
+                        <table class="table bg-white text-center">
                             <thead style="background-color:#a7cb00!important; ">
                             <tr>
                                 <th scope="col">Code</th>

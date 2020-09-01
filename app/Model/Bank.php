@@ -16,4 +16,7 @@ class Bank extends Model
         return parent::all($columns)->where('deleted', false);
     }
 
+    public function getBank(){
+        return Bank::all();
+    }
 }

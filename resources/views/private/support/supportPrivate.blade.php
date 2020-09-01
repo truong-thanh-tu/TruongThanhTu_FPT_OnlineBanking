@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Support')
 @section('content')
 
     <!--================Home Banner Area =================-->
@@ -9,8 +9,7 @@
                 <div class="banner_content">
                     <h2>Project Details</h2>
                     <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="portfolio-details.html">Project Details</a>
+                        <a>Support</a>
                     </div>
                 </div>
             </div>

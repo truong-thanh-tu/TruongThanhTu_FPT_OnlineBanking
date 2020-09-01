@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Transfers | In System')
 @section('content')
 
 
@@ -10,7 +10,7 @@
                 <div class="banner_content">
                     <h2>Transfers</h2>
                     <div class="page_link">
-                        <a> In Transfers</a>
+                        <a> In System</a>
                         <a>Information</a>
                     </div>
                 </div>
@@ -66,7 +66,8 @@
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberSource"
                                                    id="inputPassword2"
-                                                   value="{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}" disabled>
+                                                   value="{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}"
+                                                   disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -76,7 +77,8 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="{{number_format($getDataTypeAccountCustomer->account->BalanceSource) }}  VND" disabled>
+                                                   value="{{number_format($getDataTypeAccountCustomer->account->BalanceSource) }}  VND"
+                                                   disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -95,7 +97,7 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
                                                  style="letter-spacing: 1px!important;">
                                                 @foreach($getDataBeneficiaries as $key => $getDB)
-                                                    <p class="dropdown-item" onclick="myFunction{{ $value = $key }}()"
+                                                    <p class="dropdown-item" onclick="myFunction{{ $key }}()"
                                                        id="btn1"><span
                                                             class="mr-2">{{$getDB->AccountBeneficiaries}}</span>
                                                         <span> {{$getDB->NameAccountBeneficiaries}}</span></p>
@@ -130,7 +132,8 @@
                                     <td class=" text-right"></td>
                                     <td>
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input"value="true" name="saveName" id="exampleCheck1">
+                                            <input type="checkbox" class="form-check-input" value="true" name="saveName"
+                                                   id="exampleCheck1">
                                             <label class="form-check-label font-weight-normal"
                                                    for="exampleCheck1">Save </label>
                                         </div>
@@ -193,7 +196,7 @@
     <!--================Blog Area =================-->
     <script language="javascript">
         @foreach($getDataBeneficiaries as $key => $getDB)
-        function myFunction{{ $value = $key }}() {
+        function myFunction{{ $key }}() {
             document.getElementById('accountBeneficiary').value = "{{$getDB->AccountBeneficiaries}}";
             document.getElementById('nameBeneficiary').value = "{{$getDB->NameAccountBeneficiaries}}";
         }

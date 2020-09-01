@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Account')
 @section('content')
 
     <!--================Home Banner Area =================-->
@@ -7,10 +7,10 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content">
-                    <h2>Information</h2>
+                    <h2>Account</h2>
                     <div class="page_link">
-                        <a href="index.html">Account</a>
-                        <a href="single-blog.html">Information Account</a>
+                        <a>Account</a>
+                        <a>Information Account</a>
                     </div>
                 </div>
             </div>
@@ -51,11 +51,11 @@
                 <div class="col-lg-4 posts-list">
                     <div class="blog_right_sidebar mt-3">
                         <aside class="single_sidebar_widget post_category_widget" style="">
-                            <h4 class="widget_title">Account information</h4>
+                            <a href="{{Route('AccountInfo')}}"> <h4  class="widget_title">Account information</h4></a>
                             <ul class="list cat-list">
                                 @foreach ($getDataTypeAccountCustomers as $getDataTypeAccountCustomer)
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
+                                        <a href="{{ Route('DetailAccountInfo',$getDataTypeAccountCustomer->IDTypeAccountCustomer) }}" class="text-warning">
                                             <p>{{$getDataTypeAccountCustomer->typeAccount->TypeAccount }}</p>
                                         </a>
                                     </li>

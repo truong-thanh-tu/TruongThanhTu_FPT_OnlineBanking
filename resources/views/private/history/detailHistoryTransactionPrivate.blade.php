@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','History | Detail History')
 @section('content')
 
     <!--================Home Banner Area =================-->
@@ -9,8 +9,8 @@
                 <div class="banner_content">
                     <h2>History</h2>
                     <div class="page_link">
-                        <a href="index.html">History</a>
-                        <a href="single-blog.html"> Detail History Transaction</a>
+                        <a>History</a>
+                        <a> Detail History Transaction</a>
                     </div>
                 </div>
             </div>

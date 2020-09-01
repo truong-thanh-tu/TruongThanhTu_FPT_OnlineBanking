@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Transfers  | Out System')
 @section('content')
 
 
@@ -10,7 +10,7 @@
                 <div class="banner_content">
                     <h2>Transfers</h2>
                     <div class="page_link">
-                        <a> Out Transfers</a>
+                        <a> Out System</a>
                         <a>Information</a>
                     </div>
                 </div>
@@ -40,7 +40,8 @@
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberSource"
                                                    id="inputPassword2"
-                                                   value="1234659793131" disabled>
+                                                   value="{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}"
+                                                   disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -50,7 +51,8 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="5.000.000" disabled>
+                                                   value="{{ number_format($getDataTypeAccountCustomer->account->BalanceSource) }} VND"
+                                                   disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -58,22 +60,32 @@
                                     <td><h4>Information Beneficiary </h4></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-right">Account Number</td>
+                                    <td class="text-right">Select Bank</td>
                                     <td>
                                         <div class="input-group w-50">
-                                            <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                                <option >Choose Banking</option>
-                                                <option value="1"> UHBanking  Da Nang Viet Nam</option>
-                                                <option value="1">UHBanking</option>
-                                                <option value="1">UHBanking</option>
-                                                <option value="1">UHBanking</option>
-                                                <option value="1">UHBanking</option>
-                                                <option value="1">UHBanking</option>
-                                                <option value="1">UHBanking</option>
-                                            </select>
+                                            <div class="btn-group">
+                                                <button class="btn alert-success dropdown-toggle"
+                                                        d="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    Select
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    @foreach($getBanks as $key => $getBank)
+                                                        <a class="dropdown-item" href="#">
+                                                            <p
+                                                                onclick="myFunction{{ $key }}()"><span
+                                                                    class="mr-5">{{ $getBank->Name }}</span>
+                                                                <span class="mr-5">{{ $getBank->City }}</span>
+                                                                <span class="mr-2">{{ $getBank->Address }}</span>
+                                                            </p>
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
-                                </tr> <tr>
+                                </tr>
+                                <tr>
                                     <td class="text-right">Account Number</td>
                                     <td>
                                         <div class="form-group w-50">
@@ -94,12 +106,42 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class=" text-right">Name Banking</td>
+                                    <td>
+                                        <div class="form-group w-50">
+                                            <label for="inputPassword2" class="sr-only"></label>
+                                            <input type="text" class="form-control" name="nameBank" value=""
+                                                   id="nameBank">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class=" text-right">Branch</td>
+                                    <td>
+                                        <div class="form-group w-50">
+                                            <label for="inputPassword2" class="sr-only"></label>
+                                            <input type="text" class="form-control" name="branchBank" value=""
+                                                   id="branchBank">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class=" text-right">City</td>
+                                    <td>
+                                        <div class="form-group w-50">
+                                            <label for="inputPassword2" class="sr-only"></label>
+                                            <input type="text" class="form-control" name="cityBank" value=""
+                                                   id="cityBank">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class=" text-right"></td>
                                     <td>
                                         <div class="form-group form-check">
                                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                             <label class="form-check-label font-weight-normal" value="true"
-                                                   for="exampleCheck1">Save beneficiary information </label>
+                                                   for="exampleCheck1">Save </label>
                                         </div>
                                     </td>
                                 </tr>
@@ -120,7 +162,7 @@
                                     <td class=" text-right">Content Transaction</td>
                                     <td>
                                         <div class="form-group">
-                                            <textarea class="form-control w-50" name="message" name="contentTransaction"
+                                            <textarea class="form-control w-50" name="contentTransaction"
                                                       id="message" rows="5"
                                                       placeholder="Enter Message"></textarea>
                                         </div>
@@ -150,6 +192,7 @@
                             <div class="text-right">
                                 <button type="submit" class="submit_btn banner_btn">Submit</button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>
@@ -157,5 +200,13 @@
         </div>
     </section>
     <!--================Blog Area =================-->
-
+    <script language="javascript">
+        @foreach($getBanks as $key => $getBank)
+        function myFunction{{$key }}() {
+            document.getElementById('nameBank').value = "{{ $getBank->Name }}";
+            document.getElementById('branchBank').value = "{{ $getBank->Address }}";
+            document.getElementById('cityBank').value = "{{ $getBank->City }}";
+        }
+        @endforeach
+    </script>
 @endsection

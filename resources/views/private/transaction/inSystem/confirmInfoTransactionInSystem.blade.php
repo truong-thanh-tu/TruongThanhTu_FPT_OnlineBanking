@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Transfers | In System')
 @section('content')
 
 
@@ -10,7 +10,7 @@
                 <div class="banner_content">
                     <h2>Transfers</h2>
                     <div class="page_link">
-                        <a> In Transfers</a>
+                        <a> In System</a>
                         <a>Confirm Information </a>
                     </div>
                 </div>

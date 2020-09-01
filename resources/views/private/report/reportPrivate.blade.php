@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Report')
 @section('content')
 
 
@@ -8,10 +8,9 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content">
-                    <h2>About Us</h2>
+                    <h2>Report</h2>
                     <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="about-us.html">About Us</a>
+                        <a>Report</a>
                     </div>
                 </div>
             </div>

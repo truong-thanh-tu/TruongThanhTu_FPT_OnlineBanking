@@ -23,9 +23,21 @@ class publicModel extends Model
      * @param $control
      * @return mixed
      */
-    public function getHistory($IDBank, $control)
+    public function getHistory($IDBank, $control, $toDate, $fromDate)
     {
-        return $getHistoryInSystems = Transaction::where('IDBank', $control, $IDBank)->paginate(5);
+        if ($toDate != null && $fromDate != null) {
+
+            return $getHistoryInSystems = Transaction::
+            where('IDBank', $control, $IDBank)
+                ->where('TransactionDate', '>=', $toDate)
+                ->where('TransactionDate', '<=', $fromDate)
+                ->paginate(5);
+        } else {
+            return $getHistoryInSystems = Transaction::
+            where('IDBank', $control, $IDBank)
+                ->paginate(5);;
+
+        }
     }
 
     /**
@@ -50,11 +62,12 @@ class publicModel extends Model
 
     }
 
-    public function compareMoney($theMoney,$IDAccount){
-        $getDataAccount = Account::all()->where('IDAccount',$IDAccount)->first();
+    public function compareMoney($theMoney, $IDAccount)
+    {
+        $getDataAccount = Account::all()->where('IDAccount', $IDAccount)->first();
         $getBalanceSource = $getDataAccount->BalanceSource;
         $theCheckMoney = $getBalanceSource - $theMoney;
-        if ($theCheckMoney > 50000 ){
+        if ($theCheckMoney > 50000) {
             return true;
         }
         return false;

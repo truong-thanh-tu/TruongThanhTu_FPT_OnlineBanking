@@ -4,6 +4,7 @@ namespace App\Http\Controllers\privates;
 
 use App\Http\Controllers\Controller;
 use App\Model\Account;
+use App\Model\Bank;
 use App\Model\Beneficiaries;
 use App\Model\publicModel;
 use App\Model\Transaction;
@@ -45,11 +46,12 @@ class PrivateController extends Controller
      * showHistory
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showHistory()
+    public function showHistory(Request $request)
     {
         $objMP = new publicModel();
-        $getHistoryInSystems = $objMP->getHistory(1, '=');
-        $getHistoryOutSystems = $objMP->getHistory(1, '<>');
+        $getHistoryInSystems = $objMP->getHistory(1, '=',$request->input('dateToInSystem'),$request->input('dateFromInSystem'));
+        $getHistoryOutSystems = $objMP->getHistory(1, '<>',$request->input('dateToOutSystem'),$request->input('dateFromOutSystem'));
+
         return view('private.history.historyTransactionPrivate', compact('getHistoryInSystems', 'getHistoryOutSystems'));
     }
 
@@ -62,7 +64,7 @@ class PrivateController extends Controller
         $objTS = new Transaction();
         $getData = $objTS->getTransaction($IDTransaction)->first();
 
-        return view('private.history.detailHistoryTransactionPrivate',compact('getData'));
+        return view('private.history.detailHistoryTransactionPrivate', compact('getData'));
 
     }
 
@@ -122,7 +124,7 @@ class PrivateController extends Controller
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         $transaction = array(
             'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
-            'idAccount'=>$getDataTypeAccountCustomer->account->IDAccount,
+            'idAccount' => $getDataTypeAccountCustomer->account->IDAccount,
             'idBank' => 1,
             'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
             'codeTransaction' => $codeTransaction,
@@ -207,8 +209,16 @@ class PrivateController extends Controller
      */
     public function showTransactionOutSystem(Request $request)
     {
+        $valueIDCustomer = $request->session()->get('IDCustomer');
+        $valueIDTypeAccount = 1;
 
-        return view('private.transaction.outSystem.transactionOutSystem');
+        $objMP = new publicModel();
+        $objB = new Bank();
+
+        $getBanks = $objB->getBank();
+        $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
+
+        return view('private.transaction.outSystem.transactionOutSystem',compact('getDataTypeAccountCustomer','getBanks'));
 
     }
 

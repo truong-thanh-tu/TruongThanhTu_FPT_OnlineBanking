@@ -1,5 +1,5 @@
 @extends('layout.layoutPrivate')
-@section('title','AccountInfor')
+@section('title','Account | Detail Account')
 @section('content')
 
     <!--================Home Banner Area =================-->
@@ -9,8 +9,8 @@
                 <div class="banner_content">
                     <h2>Account</h2>
                     <div class="page_link">
-                        <a href="index.html">Account</a>
-                        <a href="single-blog.html">Detail Information Account</a>
+                        <a>Account</a>
+                        <a >Detail Information Account</a>
                     </div>
                 </div>
             </div>
@@ -43,28 +43,14 @@
                 <div class="col-lg-4 posts-list">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Account information</h4>
+                            <a href="{{Route('AccountInfo')}}"> <h4  class="widget_title">Account information</h4></a>
                             <ul class="list cat-list">
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>Payment deposit account</p>
+                                        <p>{{ $getDataTypeAccountCustomer->typeAccount->TypeAccount }}</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Multi-function Account</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Savings deposit account</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Credit card account</p>
-                                    </a>
-                                </li>
+
                             </ul>
                             <div class="br"></div>
                         </aside>

@@ -4,7 +4,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container box_1620">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"><img src="{{ asset('img/logo.png') }}" alt=""></a>
+                <a class="navbar-brand logo_h" style="letter-spacing: 1.5px" href="{{Route('Home')}}"><span style ="font-weight:900;font-family: 'Roboto', sans-serif; margin-right:5px;color: #a7cb00 ">ONLINE</span><span style ="font-weight:bold;font-family: 'Roboto', sans-serif; margin-right:5px;color: #0b0b0b ">BANKING</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
