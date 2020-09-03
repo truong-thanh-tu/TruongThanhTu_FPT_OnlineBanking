@@ -35,4 +35,11 @@ class TypeAccountCustomer extends Model
     {
         return $this->hasOne(Transaction::class, 'IDTypeAccountCustomer', 'IDTypeAccountCustomer');
     }
+
+    public function getTypeAccountCustomer($IDCustomer,$IDTypeAccount){
+        return TypeAccountCustomer::all()
+            ->where('IDTypeAccount',$IDTypeAccount)
+            ->where('IDCustomer',$IDCustomer)
+            ->first();
+    }
 }

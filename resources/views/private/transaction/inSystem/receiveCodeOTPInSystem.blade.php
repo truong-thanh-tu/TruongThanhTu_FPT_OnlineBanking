@@ -38,7 +38,7 @@
                                     <div class="form-group w-25 mb-2">
                                         <label for="inputPassword2" class="sr-only">Password</label>
                                         <input type="text" class="form-control" name="codeOPT" id="inputPassword2"
-                                               placeholder="OTP ..." value="{{ $codeOTP }}">
+                                               placeholder="OTP ..." value="">
                                     </div>
                                     <button type="submit" class="submit_btn banner_btn mt-3">Submit</button>
                                 </div>

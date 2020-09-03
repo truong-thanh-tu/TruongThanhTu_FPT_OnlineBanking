@@ -8,8 +8,10 @@ use App\Model\Bank;
 use App\Model\Beneficiaries;
 use App\Model\publicModel;
 use App\Model\Transaction;
+use App\Model\TypeAccountCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 
@@ -49,8 +51,8 @@ class PrivateController extends Controller
     public function showHistory(Request $request)
     {
         $objMP = new publicModel();
-        $getHistoryInSystems = $objMP->getHistory(1, '=',$request->input('dateToInSystem'),$request->input('dateFromInSystem'));
-        $getHistoryOutSystems = $objMP->getHistory(1, '<>',$request->input('dateToOutSystem'),$request->input('dateFromOutSystem'));
+        $getHistoryInSystems = $objMP->getHistory(1, '=', $request->input('dateToInSystem'), $request->input('dateFromInSystem'));
+        $getHistoryOutSystems = $objMP->getHistory(1, '<>', $request->input('dateToOutSystem'), $request->input('dateFromOutSystem'));
 
         return view('private.history.historyTransactionPrivate', compact('getHistoryInSystems', 'getHistoryOutSystems'));
     }
@@ -125,6 +127,7 @@ class PrivateController extends Controller
         $transaction = array(
             'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
             'idAccount' => $getDataTypeAccountCustomer->account->IDAccount,
+            'nameAccount'=>$getDataTypeAccountCustomer->customer->FirstName,
             'idBank' => 1,
             'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
             'codeTransaction' => $codeTransaction,
@@ -167,17 +170,17 @@ class PrivateController extends Controller
     {
         $infoTransaction = $request->session()->get('transaction');
 
-        /*  Mail::send('component.Email',[
-              'name'=>'Thanh Tu',
-          ],function ($msg){
-              $msg->from('onlinebankingtreet@gmail.com','Tu1');
-              $msg->to('onlinebankingtreet@gmail.com','Tu2');
-              $msg->subject('Đay là email test ');
-          });*/
+
         $codeOTP = mt_rand(1000, 9999);
         session()->put('codeOTP', $codeOTP);
-
-        return view('private.transaction.inSystem.receiveCodeOTPInSystem', compact('codeOTP'));
+        Mail::send('component.Email', [
+            'CodeOTP' => $codeOTP,'Name'=>$infoTransaction['nameAccount']
+        ], function ($msg) {
+            $msg->from('onlinebankingTreet@gmail.com');
+            $msg->to('onlinebankingTreet@gmail.com');
+            $msg->subject('Gữi mã otp ');
+        });
+        return view('private.transaction.inSystem.receiveCodeOTPInSystem');
     }
 
     /**
@@ -193,8 +196,25 @@ class PrivateController extends Controller
             $addTransaction = new Transaction();
 
             $addTransaction->saveTransaction($transaction, $codeOTP);
+            Mail::send('component.Transaction', [
+                'condeTransaction' => $transaction['codeTransaction'],
+                'accountSource'=>$transaction['accountSource'],
+                'money'=>$transaction['money']
+            ], function ($msg) {
+                $msg->from('onlinebankingTreet@gmail.com');
+                $msg->to('onlinebankingTreet@gmail.com');
+                $msg->subject('Thông tin giao dịch ');
+            });
 
-            return view('private.transaction.inSystem.alertsSuccessTransactionInSystem', compact('transaction'));
+            $inforNotification = array(
+                'accountSource' => $transaction['accountSource'],
+                'money' => $transaction['money'],
+                'accountNumber' => $transaction['accountNumber'],
+            );
+            $request->session()->forget('transaction');
+            $request->session()->forget('codeOTP');
+
+            return view('private.transaction.inSystem.alertsSuccessTransactionInSystem', compact('inforNotification'));
 
         } else {
             Session::flash('error', 'The otp code you entered was wrong');
@@ -214,11 +234,25 @@ class PrivateController extends Controller
 
         $objMP = new publicModel();
         $objB = new Bank();
+        $objTAC = new TypeAccountCustomer();
+        $objBeneficiaries = new Beneficiaries();
 
+
+        $getTypeAccountCustomer = $objTAC->getTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
         $getBanks = $objB->getBank();
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+
+        $getBFs = $objBeneficiaries->getBeneficiaries('<>', $getTypeAccountCustomer->account->IDAccount);
+        $checkElement = $getBFs->count();
+        if ($checkElement == 0) {
+            $checkElementActive = true;
+        } else {
+            $checkElementActive = false;
+        }
         $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
 
-        return view('private.transaction.outSystem.transactionOutSystem',compact('getDataTypeAccountCustomer','getBanks'));
+
+        return view('private.transaction.outSystem.transactionOutSystem', compact('getDataTypeAccountCustomer', 'getBanks', 'getBFs', 'checkElementActive', 'dt'));
 
     }
 
@@ -226,9 +260,82 @@ class PrivateController extends Controller
      * showConfirmInfoTransactionOutSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showConfirmInfoTransactionOutSystem()
+    public function postConfirmInfoTransactionOutSystem(Request $request)
     {
-        return view('private.transaction.outSystem.confirmInfoTransactionOutSystem');
+        $validator = Validator::make($request->all(), [
+            'accountNumber' => 'required',
+            'nameBeneficiary' => 'required',
+            'nameBank' => 'required',
+            'branchBank' => 'required',
+            'cityBank' => 'required',
+            'money' => 'required',
+            'contentTransaction' => 'required',
+            'feePayers' => 'required',
+        ], [
+            'accountNumber.required' => 'accountNumber required',
+            'nameBeneficiary.required' => 'nameBeneficiary required',
+            'nameBank.required' => 'nameBank required',
+            'branchBank.required' => 'branchBank required',
+            'addressBank.required' => 'cityBank required',
+            'money.required' => 'money required',
+            'contentTransaction.required' => 'contentTransaction required',
+            'feePayers.required' => 'transferPerson required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('private/transaction/OutSystem')->withErrors($validator)->withInput();;
+        }
+        $objMP = new publicModel();
+        $objBank = new Bank();
+        $objBF = new Beneficiaries();
+        $objAccount = new Account();
+
+        $valueIDCustomer = $request->session()->get('IDCustomer');
+        $valueIDTypeAccount = 1;
+        $getDataTypeAccountCustomer = $objMP->setTypeAccountCustomer($valueIDCustomer, $valueIDTypeAccount);
+        $getDataBank = $objBank->setBank($request->nameBank, $request->branchBank);
+        $getCheckBank = $objBank->checkBank($request->nameBank, $request->branchBank);
+
+        if (!$getCheckBank) {
+            Session::flash('error', 'Not the bank in system');
+            return redirect('/private/transaction/OutSystem');
+        }
+        $codeTransaction = mt_rand(10000, 99999);
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $transaction = array(
+            'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
+            'idAccount' => $getDataTypeAccountCustomer->account->IDAccount,
+            'nameAccount'=>$getDataTypeAccountCustomer->customer->FirstName,
+            'idBank' => $getDataBank->IDBank,
+            'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
+            'codeTransaction' => $codeTransaction,
+            'accountNumber' => $request->input('accountNumber'),
+            'nameBeneficiary' => $request->input('nameBeneficiary'),
+            'money' => $request->input('money'),
+            'contentTransaction' => $request->input('contentTransaction'),
+            'feePayer' => $request->input('feePayers'),
+            'fee' => (($request->input('money')) * 2) / 100,
+            'dateTransaction' => $dt->toDateString(),
+            'email' => $getDataTypeAccountCustomer->customer->Email,
+        );
+        session()->put('transaction', $transaction);
+        $checkMoney = $objMP->compareMoney($transaction['money'], $getDataTypeAccountCustomer->account->IDAccount);
+
+        if ($checkMoney) {
+            if ($request->input('saveName')) {
+                if ($objBF->checkBeneficiaries($transaction['accountNumber'])) {
+                    $objBF->saveOutBeneficiaries($transaction['accountNumber'],
+                        $transaction['nameBeneficiary'],
+                        $getDataTypeAccountCustomer->account->IDAccount,
+                        $getDataBank->IDBank);
+                }
+            }
+            return view('private.transaction.outSystem.confirmInfoTransactionOutSystem', compact('transaction', 'getDataTypeAccountCustomer', 'getDataBank'));
+        } else {
+            Session::flash('error', 'The amount in the account is not enough');
+            return redirect('/private/transaction/OutSystem');
+        }
+
+        /*        return view('private.transaction.outSystem.confirmInfoTransactionOutSystem');*/
 
     }
 
@@ -236,8 +343,19 @@ class PrivateController extends Controller
      * showReceiveCodeOTPOutSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showReceiveCodeOTPOutSystem()
+    public function postReceiveCodeOTPOutSystem(Request $request)
     {
+        $infoTransaction = $request->session()->get('transaction');
+
+        $codeOTP = mt_rand(1000, 9999);
+        session()->put('codeOTP', $codeOTP);
+        Mail::send('component.Email', [
+            'CodeOTP' => $codeOTP,'Name'=>$infoTransaction['nameAccount']
+        ], function ($msg) {
+            $msg->from('onlinebankingTreet@gmail.com');
+            $msg->to('onlinebankingTreet@gmail.com');
+            $msg->subject('Gữi mã otp ');
+        });
         return view('private.transaction.outSystem.receiveCodeOTPOutSystem');
 
     }
@@ -246,10 +364,36 @@ class PrivateController extends Controller
      * showAlertsSuccessTransactionOutSystem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAlertsSuccessTransactionOutSystem()
+    public function showAlertsSuccessTransactionOutSystem(Request $request)
     {
-        return view('private\transaction\outSystem\alertSuccessTransactionOutSystem');
+        if ($request->input('codeOPT') == $request->session()->get('codeOTP')) {
+            $transaction = $request->session()->get('transaction');
+            $codeOTP = $request->session()->get('codeOTP');
 
+            $addTransaction = new Transaction();
+
+            $addTransaction->saveOutTransaction($transaction, $codeOTP);
+            Mail::send('component.Transaction', [
+                'condeTransaction' => $transaction['codeTransaction'],
+                'accountSource'=>$transaction['accountSource'],
+                'money'=>$transaction['money']
+            ], function ($msg) {
+                $msg->from('onlinebankingTreet@gmail.com');
+                $msg->to('onlinebankingTreet@gmail.com');
+                $msg->subject('Thông tin giao dịch ');
+            });
+            $inforNotification = array(
+                'accountSource' => $transaction['accountSource'],
+                'money' => $transaction['money'],
+                'accountNumber' => $transaction['accountNumber'],
+            );
+            $request->session()->forget('transaction');
+            return view('private.transaction.inSystem.alertsSuccessTransactionInSystem', compact('inforNotification'));
+
+        } else {
+            Session::flash('error', 'The otp code you entered was wrong');
+            return redirect('/private/transaction/InSystem/receive');
+        }
     }
 
     /**

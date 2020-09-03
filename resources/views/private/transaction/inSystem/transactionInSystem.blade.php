@@ -135,7 +135,7 @@
                                             <input type="checkbox" class="form-check-input" value="true" name="saveName"
                                                    id="exampleCheck1">
                                             <label class="form-check-label font-weight-normal"
-                                                   for="exampleCheck1">Save </label>
+                                                   for="exampleCheck1">Save</label>
                                         </div>
                                     </td>
                                 </tr>

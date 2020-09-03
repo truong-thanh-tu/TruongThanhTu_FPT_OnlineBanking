@@ -28,6 +28,7 @@ class Transaction extends Model
 
     public function saveTransaction($transaction, $codeOTP)
     {
+
         $objTransaction = new Transaction();
 
         $objTransaction->IDTypeAccountCustomer = $transaction['idTypeAccountCustomer'];
@@ -62,9 +63,38 @@ class Transaction extends Model
         $getAccountBeneficiaries->save();
     }
 
+    public function saveOutTransaction($transaction, $codeOTP)
+    {
+        $objTransaction = new Transaction();
+
+        $objTransaction->IDTypeAccountCustomer = $transaction['idTypeAccountCustomer'];
+        $objTransaction->IDBank = $transaction['idBank'];
+        $objTransaction->CodeTransaction = $transaction['codeTransaction'];
+        $objTransaction->Beneficiaries = $transaction['accountNumber'];
+        $objTransaction->NameBeneficiaries = $transaction['nameBeneficiary'];
+        $objTransaction->TransactionMoneyNumber = $transaction['money'];
+        $objTransaction->ContentTransaction = $transaction['contentTransaction'];
+        $objTransaction->Payer = $transaction['feePayer'];
+        $objTransaction->Fee = $transaction['fee'];
+        $objTransaction->CodeOTP = $codeOTP;
+
+        $objTransaction->save();
+
+        $getDataAccount = Account::find($transaction['idAccount']);
+        if ($transaction['feePayer'] == 1) {
+            $getDataAccount->BalanceSource = $getDataAccount->BalanceSource - $transaction['feePayer'] - $transaction['money'];
+        } else {
+            $getDataAccount->BalanceSource = $getDataAccount->BalanceSource - $transaction['money'];
+
+        }
+        $getDataAccount->save();
+    }
+
     public function getTransaction($IDTransaction)
     {
 
         return Transaction::all()->where('IDTransaction', $IDTransaction);
     }
+
+
 }

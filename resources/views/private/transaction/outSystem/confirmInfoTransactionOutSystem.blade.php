@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{ Route('receiveOTPOutSystem') }}">
+                        <form action="{{ Route('receiveOTPOutSystem') }}" method="post">
                             <table class="table bg-white table-borderless font-weight-bold">
                                 <tr>
                                     <td><h4>Information Transfer </h4></td>
@@ -40,7 +40,7 @@
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberSource"
                                                    id="inputPassword2"
-                                                   value="1234659793131" disabled>
+                                                   value="{{ $getDataTypeAccountCustomer->account->AccountSourceNumber }}" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -50,7 +50,8 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="balance" id="inputPassword2"
-                                                   value="5.000.000 VND" disabled>
+                                                   value="{{number_format($getDataTypeAccountCustomer->account->BalanceSource) }} VND"
+                                                   disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -59,17 +60,17 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right">Name Banking</td>
-                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
-
-                                </tr>
-                                <tr>
-                                    <td class="text-right">Address</td>
-                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+                                    <td class="font-weight-normal"><span>{{ $getDataBank->Name }}</span></td>
 
                                 </tr>
                                 <tr>
                                     <td class="text-right">Brand</td>
-                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+                                    <td class="font-weight-normal"><span>{{ $getDataBank->City }}</span></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Address</td>
+                                    <td class="font-weight-normal"><span>{{ $getDataBank->City ." ". $getDataBank->Address}}</span></td>
 
                                 </tr>
                                 <tr>
@@ -78,7 +79,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="accountNumberBeneficiary"
-                                                   value="12345678965" id="inputPassword2" disabled>
+                                                   value="{{ $transaction['accountNumber'] }}" id="inputPassword2" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -88,7 +89,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="nameBeneficiary"
-                                                   value="Nguyen Van A" id="inputPassword2" disabled>
+                                                   value="{{ $transaction['nameBeneficiary'] }}" id="inputPassword2" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -102,33 +103,35 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control w50" name="money"
-                                                   value="500.000 VND" disabled id="inputPassword2">
+                                                   value="{{ number_format($transaction['money']) }} VND" disabled id="inputPassword2">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-right">Date</td>
-                                    <td class="font-weight-normal"><span>2020-02-03</span></td>
+                                    <td class="font-weight-normal"><span>{{ $transaction['dateTransaction'] }}</span></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right">Amount is equal to letters</td>
-                                    <td class="font-weight-normal"><span>Five hundred thousand dong</span></td>
+                                    <td class="font-weight-normal"><span>{{ number_format($transaction['money']) }}Five hundred thousand dong</span></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right">Content Transaction</td>
-                                    <td class="font-weight-normal"><span>Transfer money fast</span></td>
+                                    <td class="font-weight-normal"><span>{{ $transaction['contentTransaction'] }}</span></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right">Payer Fee</td>
-                                    <td class="font-weight-normal"><span> Transfer person</span></td>
+                                    <td class="font-weight-normal">
+                                        <span> {{($transaction['feePayer'] == 1)?'Transfer person':'Beneficiaries'}}</span><span> {{($transaction['feePayer'] == 1)?'Transfer person':'Beneficiaries'}}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-right">Fees</td>
-                                    <td class="font-weight-normal"><span> 15.000 VND</span></td>
+                                    <td class="font-weight-normal text-danger"><span> {{ number_format($transaction['fee']) }} VND</span></td>
                                 </tr>
                                 <tr class="mb-2">
                                     <td class="text-right">Email receive email code</td>
-                                    <td class="font-weight-normal"><span>nguyenvana@gmail.com</span></td>
+                                    <td class="font-weight-normal"><span>{{$getDataTypeAccountCustomer->customer->Email}}</span></td>
                                 </tr>
                             </table>
                             <div class="text-right">
@@ -136,6 +139,7 @@
                                    class="submit_btn banner_btn">Back</a>
                                 <button type="submit" class="submit_btn banner_btn">Submit</button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>

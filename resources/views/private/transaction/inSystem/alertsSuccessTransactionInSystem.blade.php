@@ -30,8 +30,8 @@
                                                       style="font-size: 60px !important; color: #a7cb00!important;"></i>
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">Well done!</h6>
-                            <p class="card-text">Quý khách thực hiện chuyển tiền thành công <span class="text-success">{{ number_format($transaction['money']) }} VND</span> cho <span class="text-success">{{ $transaction['accountNumber'] }}</span></p>
-                            <p class="card-text">từ <span class="text-success"> {{ $transaction['accountSource'] }}.</span></p>
+                            <p class="card-text">Quý khách thực hiện chuyển tiền thành công <span class="text-success">{{ number_format($inforNotification['money']) }} VND</span> cho <span class="text-success">{{ $inforNotification['accountNumber'] }}</span></p>
+                            <p class="card-text">từ <span class="text-success"> {{ $inforNotification['accountSource'] }}.</span></p>
                                 <p class="card-text"><i class="fa fa-phone mr-2" style="font-size: 50px !important; color: red !important; margin-top: 10px"></i>Tứ vấn hổ trợ <span class="text-danger" >1122 0000</span></p>
                             <a href="{{ Route('AccountInfo') }}" class="submit_btn banner_btn">Back</a>
                         </div>

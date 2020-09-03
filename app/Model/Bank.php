@@ -16,7 +16,26 @@ class Bank extends Model
         return parent::all($columns)->where('deleted', false);
     }
 
-    public function getBank(){
+    public function getBank()
+    {
         return Bank::all();
+    }
+
+    public function setBank($name, $city)
+    {
+        return $this->getBank()
+            ->where('Name', $name)
+            ->where('City', $city)
+            ->first();
+    }
+    public function checkBank($name,$city){
+        $checkBank = $this->getBank()
+            ->where('Name', $name)
+            ->where('City', $city)
+            ->first();
+        if (isset($checkBank)){
+            return true;
+        }
+        return false;
     }
 }

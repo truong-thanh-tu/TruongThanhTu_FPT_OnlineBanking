@@ -123,20 +123,24 @@ Route::group(['prefix' => 'private'], function () {
                 'uses' => 'Privates\PrivateController@showTransactionOutSystem'
             ]);
 
-            Route::get('/confirm', [
+            Route::post('/confirm', [
                 'as' => 'confirmInfoTransactionOutSystem',
-                'uses' => 'Privates\PrivateController@showConfirmInfoTransactionOutSystem'
+                'uses' => 'Privates\PrivateController@postConfirmInfoTransactionOutSystem'
             ]);
 
-            Route::get('/receive', [
+            Route::post('/receive', [
                 'as' => 'receiveOTPOutSystem',
-                'uses' => 'Privates\PrivateController@showReceiveCodeOTPOutSystem'
+                'uses' => 'Privates\PrivateController@postReceiveCodeOTPOutSystem'
             ]);
 
-            Route::get('/alerts', [
+            Route::post('/alerts', [
                 'as' => 'alertsSuccessTransactionOutSystem',
                 'uses' => 'Privates\PrivateController@showAlertsSuccessTransactionOutSystem'
             ]);
         });
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -28,7 +28,33 @@
             <div class="row">
                 <div class="col-lg-12 posts-list">
                     <div class="jumbotron">
-                        <form action="{{Route('confirmInfoTransactionOutSystem')}}">
+                        <form action="{{Route('confirmInfoTransactionOutSystem')}}" method="post">
+                            @if ( Session::has('error') )
+                                <div class="alert alert-danger alert-dismissible " role="alert">
+                                    <ul>
+                                        <li>
+                                            {{ Session::get('error') }}
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            @endif
                             <table class="table bg-white table-borderless font-weight-bold">
                                 <tr>
                                     <td><h4>Information Transfer </h4></td>
@@ -60,20 +86,55 @@
                                     <td><h4>Information Beneficiary </h4></td>
                                 </tr>
                                 <tr>
+                                    <td class="text-right">Select list beneficiaries</td>
+                                    <td>
+                                        <div class="input-group w-50">
+                                            <div class="btn-group">
+                                                <a class="btn alert-success dropdown-toggle" href="#"
+                                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                   aria-expanded="false">
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                                    @if($checkElementActive)
+                                                        <a class="dropdown-item">
+                                                            <p>
+                                                                <span>No results were found</span>
+                                                            </p>
+                                                        </a>
+
+                                                    @else
+                                                        @foreach($getBFs as $key => $getBF)
+                                                            <a class="dropdown-item">
+                                                                <p onclick="myFunctionBeneficiaries{{ $key }}()">
+                                                                    <span class="mr-2">{{ $getBF->bank->Name }}</span>
+                                                                    <span
+                                                                        class="mr-2">{{ $getBF->NameAccountBeneficiaries }}</span>
+
+                                                                    <span
+                                                                        class="mr-2">{{ $getBF->AccountBeneficiaries }}</span>
+                                                                </p>
+                                                            </a>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="text-right">Select Bank</td>
                                     <td>
                                         <div class="input-group w-50">
                                             <div class="btn-group">
-                                                <button class="btn alert-success dropdown-toggle"
-                                                        d="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                    Select
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="btn alert-success dropdown-toggle" href="#"
+                                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                   aria-expanded="false">
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                                     @foreach($getBanks as $key => $getBank)
-                                                        <a class="dropdown-item" href="#">
+                                                        <a class="dropdown-item">
                                                             <p
-                                                                onclick="myFunction{{ $key }}()"><span
+                                                                onclick="myFunctionBank{{ $key }}()"><span
                                                                     class="mr-5">{{ $getBank->Name }}</span>
                                                                 <span class="mr-5">{{ $getBank->City }}</span>
                                                                 <span class="mr-2">{{ $getBank->Address }}</span>
@@ -90,8 +151,8 @@
                                     <td>
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
-                                            <input type="text" class="form-control w50" name="accountNumberBeneficiary"
-                                                   id="inputPassword2">
+                                            <input type="text" class="form-control w50" name="accountNumber"
+                                                   id="accountNumber">
                                         </div>
                                     </td>
                                 </tr>
@@ -101,7 +162,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="nameBeneficiary"
-                                                   id="inputPassword2">
+                                                   id="nameBeneficiary">
                                         </div>
                                     </td>
                                 </tr>
@@ -131,7 +192,7 @@
                                         <div class="form-group w-50">
                                             <label for="inputPassword2" class="sr-only"></label>
                                             <input type="text" class="form-control" name="cityBank" value=""
-                                                   id="cityBank">
+                                                   id="addressBank">
                                         </div>
                                     </td>
                                 </tr>
@@ -139,9 +200,10 @@
                                     <td class=" text-right"></td>
                                     <td>
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label font-weight-normal" value="true"
-                                                   for="exampleCheck1">Save </label>
+                                            <input type="checkbox" class="form-check-input" value="true" name="saveName"
+                                                   id="exampleCheck1">
+                                            <label class="form-check-label font-weight-normal"
+                                                   for="exampleCheck1">Save</label>
                                         </div>
                                     </td>
                                 </tr>
@@ -170,20 +232,20 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right">Date</td>
-                                    <td class="font-weight-normal"><span>2020-02-03</span></td>
+                                    <td class="font-weight-normal"><span>{{ $dt->toDateString() }}</span></td>
                                 </tr>
                                 <tr class="pb-5">
                                     <td class=" text-right">Fee payers</td>
                                     <td>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="transferPerson"
-                                                   id="inlineRadio1" value="option1">
+                                            <input class="form-check-input" type="radio" name="feePayers"
+                                                   id="inlineRadio1" value="1">
                                             <label class="form-check-label font-weight-normal" for="inlineRadio1">Transfer
                                                 person</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="beneficiaries"
-                                                   id="inlineRadio2" value="option2">
+                                            <input class="form-check-input" type="radio" name="feePayers"
+                                                   id="inlineRadio2" value="2">
                                             <label class="form-check-label font-weight-normal" for="inlineRadio2">Beneficiaries</label>
                                         </div>
                                     </td>
@@ -202,11 +264,21 @@
     <!--================Blog Area =================-->
     <script language="javascript">
         @foreach($getBanks as $key => $getBank)
-        function myFunction{{$key }}() {
+        function myFunctionBank{{$key }}() {
             document.getElementById('nameBank').value = "{{ $getBank->Name }}";
-            document.getElementById('branchBank').value = "{{ $getBank->Address }}";
-            document.getElementById('cityBank').value = "{{ $getBank->City }}";
+            document.getElementById('branchBank').value = "{{ $getBank->City }}";
+            document.getElementById('addressBank').value = "{{ $getBank->City ." ".$getBank->Address}}";
         }
         @endforeach
+        @foreach($getBFs as $key => $getBF)
+          function myFunctionBeneficiaries{{$key }}() {
+            document.getElementById('accountNumber').value = "{{ $getBF->AccountBeneficiaries }}";
+            document.getElementById('nameBeneficiary').value = "{{ $getBF->NameAccountBeneficiaries }}";
+            document.getElementById('nameBank').value = "{{ $getBF->bank->Name }}";
+            document.getElementById('branchBank').value = "{{$getBF->bank->City  }}";
+            document.getElementById('addressBank').value = "{{ $getBF->bank->City ." ".$getBF->bank->Address}}";
+        }
+        @endforeach
+
     </script>
 @endsection
