@@ -21,6 +21,10 @@ Route::group(['prefix' => 'public'], function () {
         'as' => 'Home',
         'uses' => "Publics\PublicController@showHome"
     ]);
+    Route::get('/Home/{id}', [
+        'as' => 'Introduce',
+        'uses' => "Publics\PublicController@showIntroduce"
+    ]);
 
     Route::get('/about', [
         'as' => 'About',
@@ -31,10 +35,17 @@ Route::group(['prefix' => 'public'], function () {
         'as' => 'Blog',
         'uses' => "Publics\PublicController@showBlog"
     ]);
-
+    Route::get('/blog/{id}', [
+        'as' => 'Blog-Detail',
+        'uses' => "Publics\PublicController@showBlogDetail"
+    ]);
     Route::get('/contact', [
         'as' => 'Contact',
         'uses' => "Publics\PublicController@showContact"
+    ]);
+    Route::post('/contactMessage', [
+        'as' => 'ContactMessage',
+        'uses' => "Publics\PublicController@postContact"
     ]);
 
     /**
@@ -139,8 +150,10 @@ Route::group(['prefix' => 'private'], function () {
             ]);
         });
     });
+    Route::get('logout',[
+        'as'=>'Logout',
+        'uses'=>'Privates\PrivateController@logout'
+    ]);
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

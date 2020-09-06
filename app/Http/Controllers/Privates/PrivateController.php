@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use PublicController;
 use Session;
 
 class PrivateController extends Controller
@@ -24,8 +25,11 @@ class PrivateController extends Controller
      */
     public function showInfoAccount(Request $request)
     {
-
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $objMP = new publicModel();
+
         $getDataTypeAccountCustomers = $objMP->getID($request);
 
         return view('private.information.accountInfoPrivate', compact('getDataTypeAccountCustomers'));
@@ -38,6 +42,9 @@ class PrivateController extends Controller
      */
     public function showDetailInfoAccount($theIDTypeAccountCustomer)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $objMP = new publicModel();
         $getDataTypeAccountCustomer = $objMP->getTypeAccountCustomer($theIDTypeAccountCustomer);
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
@@ -50,6 +57,9 @@ class PrivateController extends Controller
      */
     public function showHistory(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $objMP = new publicModel();
         $getHistoryInSystems = $objMP->getHistory(1, '=', $request->input('dateToInSystem'), $request->input('dateFromInSystem'));
         $getHistoryOutSystems = $objMP->getHistory(1, '<>', $request->input('dateToOutSystem'), $request->input('dateFromOutSystem'));
@@ -63,6 +73,9 @@ class PrivateController extends Controller
      */
     public function showDetailHistory($IDTransaction)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $objTS = new Transaction();
         $getData = $objTS->getTransaction($IDTransaction)->first();
 
@@ -77,6 +90,9 @@ class PrivateController extends Controller
      */
     public function showTransactionInSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $valueIDCustomer = $request->session()->get('IDCustomer');
         $valueIDTypeAccount = 1;
 
@@ -98,6 +114,9 @@ class PrivateController extends Controller
      */
     public function postTransactionInSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $validator = Validator::make($request->all(), [
             'accountNumber' => 'required',
             'nameBeneficiary' => 'required',
@@ -127,7 +146,7 @@ class PrivateController extends Controller
         $transaction = array(
             'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
             'idAccount' => $getDataTypeAccountCustomer->account->IDAccount,
-            'nameAccount'=>$getDataTypeAccountCustomer->customer->FirstName,
+            'nameAccount' => $getDataTypeAccountCustomer->customer->FirstName,
             'idBank' => 1,
             'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
             'codeTransaction' => $codeTransaction,
@@ -168,13 +187,16 @@ class PrivateController extends Controller
      */
     public function showReceiveCodeOTPInSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $infoTransaction = $request->session()->get('transaction');
 
 
         $codeOTP = mt_rand(1000, 9999);
         session()->put('codeOTP', $codeOTP);
         Mail::send('component.Email', [
-            'CodeOTP' => $codeOTP,'Name'=>$infoTransaction['nameAccount']
+            'CodeOTP' => $codeOTP, 'Name' => $infoTransaction['nameAccount']
         ], function ($msg) {
             $msg->from('onlinebankingTreet@gmail.com');
             $msg->to('onlinebankingTreet@gmail.com');
@@ -189,6 +211,9 @@ class PrivateController extends Controller
      */
     public function showAlertsSuccessTransactionInSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         if ($request->input('codeOPT') == $request->session()->get('codeOTP')) {
             $transaction = $request->session()->get('transaction');
             $codeOTP = $request->session()->get('codeOTP');
@@ -198,8 +223,8 @@ class PrivateController extends Controller
             $addTransaction->saveTransaction($transaction, $codeOTP);
             Mail::send('component.Transaction', [
                 'condeTransaction' => $transaction['codeTransaction'],
-                'accountSource'=>$transaction['accountSource'],
-                'money'=>$transaction['money']
+                'accountSource' => $transaction['accountSource'],
+                'money' => $transaction['money']
             ], function ($msg) {
                 $msg->from('onlinebankingTreet@gmail.com');
                 $msg->to('onlinebankingTreet@gmail.com');
@@ -229,6 +254,9 @@ class PrivateController extends Controller
      */
     public function showTransactionOutSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $valueIDCustomer = $request->session()->get('IDCustomer');
         $valueIDTypeAccount = 1;
 
@@ -262,6 +290,9 @@ class PrivateController extends Controller
      */
     public function postConfirmInfoTransactionOutSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $validator = Validator::make($request->all(), [
             'accountNumber' => 'required',
             'nameBeneficiary' => 'required',
@@ -304,7 +335,7 @@ class PrivateController extends Controller
         $transaction = array(
             'idTypeAccountCustomer' => $getDataTypeAccountCustomer->IDTypeAccountCustomer,
             'idAccount' => $getDataTypeAccountCustomer->account->IDAccount,
-            'nameAccount'=>$getDataTypeAccountCustomer->customer->FirstName,
+            'nameAccount' => $getDataTypeAccountCustomer->customer->FirstName,
             'idBank' => $getDataBank->IDBank,
             'accountSource' => $getDataTypeAccountCustomer->account->AccountSourceNumber,
             'codeTransaction' => $codeTransaction,
@@ -345,12 +376,15 @@ class PrivateController extends Controller
      */
     public function postReceiveCodeOTPOutSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         $infoTransaction = $request->session()->get('transaction');
 
         $codeOTP = mt_rand(1000, 9999);
         session()->put('codeOTP', $codeOTP);
         Mail::send('component.Email', [
-            'CodeOTP' => $codeOTP,'Name'=>$infoTransaction['nameAccount']
+            'CodeOTP' => $codeOTP, 'Name' => $infoTransaction['nameAccount']
         ], function ($msg) {
             $msg->from('onlinebankingTreet@gmail.com');
             $msg->to('onlinebankingTreet@gmail.com');
@@ -366,6 +400,9 @@ class PrivateController extends Controller
      */
     public function showAlertsSuccessTransactionOutSystem(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         if ($request->input('codeOPT') == $request->session()->get('codeOTP')) {
             $transaction = $request->session()->get('transaction');
             $codeOTP = $request->session()->get('codeOTP');
@@ -375,8 +412,8 @@ class PrivateController extends Controller
             $addTransaction->saveOutTransaction($transaction, $codeOTP);
             Mail::send('component.Transaction', [
                 'condeTransaction' => $transaction['codeTransaction'],
-                'accountSource'=>$transaction['accountSource'],
-                'money'=>$transaction['money']
+                'accountSource' => $transaction['accountSource'],
+                'money' => $transaction['money']
             ], function ($msg) {
                 $msg->from('onlinebankingTreet@gmail.com');
                 $msg->to('onlinebankingTreet@gmail.com');
@@ -400,8 +437,18 @@ class PrivateController extends Controller
      * showReport
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showReport()
+    public function showReport(Request $request)
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
+
+
+        $objMP = new publicModel();
+
+        $getDataTypeAccountCustomers = $objMP->getID($request);
+
+
         return view('private.report.reportPrivate');
     }
 
@@ -411,7 +458,21 @@ class PrivateController extends Controller
      */
     public function showSupport()
     {
+        if (empty(session()->get('IDCustomer'))) {
+            return redirect('public');
+        }
         return view('private.support.supportPrivate');
+    }
+
+    /**
+     * logout
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout(Request $request)
+    {
+        $request->session()->forget('IDCustomer');
+        return redirect('public');
     }
 
 }

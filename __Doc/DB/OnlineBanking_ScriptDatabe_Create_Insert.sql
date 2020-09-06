@@ -202,7 +202,73 @@ CREATE TABLE IF NOT EXISTS type_account_customer
     PRIMARY KEY (`IDTypeAccountCustomer`)
 ) ENGINE InnoDB;
 
+# Create Table Introduce
+DROP TABLE IF EXISTS `Introduce`;
+CREATE TABLE IF NOT EXISTS Introduce
+(
+    `IDIntroduce`    INT AUTO_INCREMENT,
 
+    `TitleIntroduce` NVARCHAR(128) NOT NULL,
+    `Content1`       TEXT          NOT NULL,
+    `Content2`       TEXT          NOT NULL,
+    `Img`            NVARCHAR(256) NOT NULL,
+
+
+    `created_by`     NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`     DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`     NVARCHAR(32) DEFAULT NULL,
+    `updated_at`     DATETIME     DEFAULT NULL,
+    `version`        INT          DEFAULT 1,
+    `deleted`        BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDIntroduce`)
+) ENGINE InnoDB;
+
+# Create Table Introduce
+DROP TABLE IF EXISTS `Blog`;
+CREATE TABLE IF NOT EXISTS Blog
+(
+    `IDBlog`     INT AUTO_INCREMENT,
+
+    `TitleBlog`  TEXT          NOT NULL,
+    `Img`        NVARCHAR(256) NOT NULL,
+    `Content1`   TEXT          NOT NULL,
+    `Content2`   TEXT          NOT NULL,
+
+
+    `created_by` NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at` DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by` NVARCHAR(32) DEFAULT NULL,
+    `updated_at` DATETIME     DEFAULT NULL,
+    `version`    INT          DEFAULT 1,
+    `deleted`    BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDBlog`)
+) ENGINE InnoDB;
+# Create Table Introduce
+DROP TABLE IF EXISTS `Contact`;
+CREATE TABLE IF NOT EXISTS Contact
+(
+    `IDContact`  INT AUTO_INCREMENT,
+
+    `name`       NVARCHAR(256) NOT NULL,
+    `email`      NVARCHAR(256) NOT NULL,
+    `subject`    NVARCHAR(256) NOT NULL,
+    `message`    TEXT          NOT NULL,
+
+
+    `created_by` NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at` DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by` NVARCHAR(32) DEFAULT NULL,
+    `updated_at` DATETIME     DEFAULT NULL,
+    `version`    INT          DEFAULT 1,
+    `deleted`    BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDContact`)
+) ENGINE InnoDB;
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 #                                            Insert Tables                                            #
@@ -363,6 +429,188 @@ INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Benefici
     VALUE (1, 2, '9875', '96581646526265', 'Nguyen Vu', 600000, 'lorem ipsum', 0, 12000, '9546');
 
 
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Busines Consulting',
+           'It is certain that there will come a point when many foreign entrepreneurs in Vietnam wonder if they should hire a business consultant due to the daunting rules and regulations and new business environment that take away their precious time and energy.',
+           'Many businesses in Vietnam these days have hired business consultants to develop the most excellent market entry strategies for them, instead of just relying on their internal teams.',
+           'img/project/project7.jpg');
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Credit Card', 'Receive 50,000 bonus points - a $500 value - after you make at least $3,000 in purchases the first 90 days of account opening.
+Earn unlimited 2 points for every $1 spent on travel and dining purchases.
+Earn unlimited 1.5 points for every $1 spent on all other purchases.', 'Redeem for cash back as a deposit into Bank of America® checking or savings accounts, for credit to eligible Merrill accounts including 529 accounts, as a statement credit to your credit card, or for gift cards and purchases at the Bank of America Travel Center.
+Get up to a $100 Airline Incidental Statement Credit annually for qualifying purchases such as seat upgrades, baggage fees, in-flight services, and airline lounge fees - automatically applied to your card statement.',
+           'img/project/project8.jpg');
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Income Monitoring',
+           'Taking control of your financial future is a process.  And as with any process, it is important to monitor your progress and measure the results.  Doing so will help you understand how well you are doing and to determine if the financial strategies you are using are working.Content', 'When preparing your personal balance sheet, separate your investment assets into stocks, bonds and cash categories.  Understanding your personal “asset allocation” will help you organize your finances and your monitoring of them.  You can also find examples in almost any financial planning book or online.
+
+It also makes sense to track changes from year to year to monitor your progress and determine if you are on track to reach your financial objectives.  Here is a chart that provides a basic format you may want to consider using.',
+           'img/project/project9.jpg');
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Financial Investment',
+           'Have you ever heard someone talking about stocks, bonds, or mutual funds and were a little confused? Does the mention of investments or financial topics seem overwhelming? ',
+           'How you invest these dollars can be very different. How much time you have on your side is often a key thing to consider when making a financial investment. The more time you have, the more risk you can usually take. The more risk you take, the more potential for making more money! It is important to note that there is also an economic definition of financial investments that deals with how businesses invest in products, equipment, factories, employees, and inventories. This lesson will focus on the finance definition of financial investment. Let''s look at a few key terms worth knowing when it comes to financial investments.',
+           'img/project/project10.jpg');
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Insurance Consulting',
+           'Amid a digital revolution, insurance companies need to focus on agility and customer-centricity. Bain helps insurers develop and execute strategies that increase profitability and efficiency, leverage digital capabilities, improve customer loyalty and gain competitive advantage from advanced analytics.', 'Our insurance consulting experts work with leading insurance companies, including property and casualty insurers, life insurers, health insurers and reinsurers to develop practical solutions to their most pressing strategic challenges.
+We offer a wide range of expertise to help our clients adapt to a changing insurance market and boost their businesses in the short-term while positioning themselves for long-term success',
+           'img/project/project11.jpg');
+INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
+    VALUE ('Financial Management',
+           'Financial management may be defined as the area or function in an organization which is concerned with profitability, expenses, cash and credit, so that the "organization may have the means to carry out its objective as satisfactorily as possible',
+           'Financial management is generally concerned with short term working capital management, focusing on current assets and current liabilities, and managing fluctuations in foreign currency and product cycles, often through hedging. (see Corporate finance #Financial risk management). The function also entails the efficient and effective day-to-day management of funds, and thus overlaps treasury management. It is also involved with long term strategic financial management, focused on i.a. capital structure management, including capital raising, capital budgeting (capital allocation between business units or products), and dividend policy; these latter, in large corporates, being more the domain of "corporate finance."',
+           'img/project/project12.jpg');
+
+
+INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
+    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/feature-img1.jpg', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.', '    <div class="col-lg-12 col-md-12 blog_details">
+                            <h2>Astronomy Binoculars A Great Alternative</h2>
+                            <p class="excert">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials
+                                yourself at a fraction of the camp price. However, who has the willpower to actually sit
+                                through a self-imposed MCSE training. who has the willpower to actually sit through a
+                                self-imposed
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials
+                                yourself at a fraction of the camp price. However, who has the willpower to actually sit
+                                through a self-imposed MCSE training. who has the willpower to actually sit through a
+                                self-imposed
+                            </p>
+                        </div>');
+INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
+    VALUE ('Customer trust that improves sales.', 'img/blog/Blog1.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.', '  <div class="col-lg-12">
+                            <div class="quotes">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction of the camp price. However, who has the willpower to
+                                actually sit through a self-imposed MCSE training.
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <img class="img-fluid" src="{{ asset(''img/blog/post-img1.jpg'') }}" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <img class="img-fluid" src="{{ asset(''img/blog/post-img2.jpg'') }}" alt="">
+                                </div>
+                                <div class="col-lg-12 mt-25">
+                                    <h3 style="color: black!important;">Astronomy Binoculars A Great Alternative</h3>
+
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand why you should have to spend money on boot camp when you can get the
+                                        MCSE study materials yourself at a fraction of the camp price. However, who has
+                                        the willpower.
+                                    </p>
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand why you should have to spend money on boot camp when you can get the
+                                        MCSE study materials yourself at a fraction of the camp price. However, who has
+                                        the willpower.
+                                    </p>
+                                    <p>It has survived not only five centuries, but also the leap into electronic
+                                        typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                                        with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                        recently with desktop publishing software like Aldus PageMaker including
+                                        versions of Lorem Ipsum.</p>
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                                        in a piece of classical Latin literature from 45 BC, making it over 2000 years
+                                        old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                        Virginia, looked up one of the more obscure Latin words, consectetur, from a
+                                        Lorem Ipsum passage, and going through the cites of the word in classical
+                                        literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+                                        Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
+                                        ethics, very popular during the Renaissance.</p>
+                                </div>
+                            </div>
+                        </div>')
+INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
+    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/feature-img1.jpg', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.', '    <div class="col-lg-12 col-md-12 blog_details">
+                            <h2>Astronomy Binoculars A Great Alternative</h2>
+                            <p class="excert">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials
+                                yourself at a fraction of the camp price. However, who has the willpower to actually sit
+                                through a self-imposed MCSE training. who has the willpower to actually sit through a
+                                self-imposed
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials
+                                yourself at a fraction of the camp price. However, who has the willpower to actually sit
+                                through a self-imposed MCSE training. who has the willpower to actually sit through a
+                                self-imposed
+                            </p>
+                        </div>');
+INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
+    VALUE ('Customer trust that improves sales.', 'img/blog/Blog1.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction.', '  <div class="col-lg-12">
+                            <div class="quotes">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand
+                                why you should have to spend money on boot camp when you can get the MCSE study
+                                materials yourself at a fraction of the camp price. However, who has the willpower to
+                                actually sit through a self-imposed MCSE training.
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <img class="img-fluid" src="{{ asset(''img/blog/post-img1.jpg'') }}" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <img class="img-fluid" src="{{ asset(''img/blog/post-img2.jpg'') }}" alt="">
+                                </div>
+                                <div class="col-lg-12 mt-25">
+                                    <h3 style="color: black!important;">Astronomy Binoculars A Great Alternative</h3>
+
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand why you should have to spend money on boot camp when you can get the
+                                        MCSE study materials yourself at a fraction of the camp price. However, who has
+                                        the willpower.
+                                    </p>
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand why you should have to spend money on boot camp when you can get the
+                                        MCSE study materials yourself at a fraction of the camp price. However, who has
+                                        the willpower.
+                                    </p>
+                                    <p>It has survived not only five centuries, but also the leap into electronic
+                                        typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                                        with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                        recently with desktop publishing software like Aldus PageMaker including
+                                        versions of Lorem Ipsum.</p>
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                                        in a piece of classical Latin literature from 45 BC, making it over 2000 years
+                                        old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                        Virginia, looked up one of the more obscure Latin words, consectetur, from a
+                                        Lorem Ipsum passage, and going through the cites of the word in classical
+                                        literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+                                        Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
+                                        ethics, very popular during the Renaissance.</p>
+                                </div>
+                            </div>
+                        </div>')
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 #                                            Test                                          #

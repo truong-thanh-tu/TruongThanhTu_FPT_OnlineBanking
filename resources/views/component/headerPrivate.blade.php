@@ -37,7 +37,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="{{ Route('Home') }}" class=" submit_btn banner_btn">LogOut</a></li>
+                        <li class="nav-item"><a href="{{ Route('Logout') }}" class=" submit_btn banner_btn">LogOut</a></li>
                     </ul>
                 </div>
             </div>

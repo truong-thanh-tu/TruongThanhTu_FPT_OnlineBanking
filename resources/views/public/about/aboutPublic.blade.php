@@ -19,75 +19,57 @@
     </section>
     <!--================End Home Banner Area =================-->
 
-    <!--================Mission Area =================-->
-    <section class="mission_area">
-        <div class="row m0">
-            <div class="col-lg-6 p0">
-                <div class="left_img"><img src="{{ asset('img/mission-1.jpg') }}" alt=""></div>
-            </div>
-            <div class="col-lg-6 p0">
-                <div class="mission_slider owl-carousel">
-                    <div class="item">
-                        <div class="mission_text">
-                            <h4>Road to Success</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                        <div class="mission_text">
-                            <h4>About Our Mission</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="mission_text">
-                            <h4>Road to Success</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                        <div class="mission_text">
-                            <h4>About Our Mission</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="mission_text">
-                            <h4>About Our Mission</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                        <div class="mission_text">
-                            <h4>Road to Success</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Mission Area =================-->
-
     <!--================Success Area =================-->
     <section class="success_area">
         <div class="row m0">
             <div class="col-lg-6 p0">
                 <div class="mission_text">
-                    <h4>Road to Success</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
+                    <h4>Establish</h4>
+                    <p>We were established in the year 2020/08/15 in Hue city by Team TreeT</p>
                 </div>
             </div>
             <div class="col-lg-6 p0">
                 <div class="success_img">
-                    <img src="{{ asset('img/success-1.jpg') }}" alt="">
+                    <img src="{{ asset('img/success3.jpg') }}" alt="">
                 </div>
             </div>
         </div>
         <div class="row m0 right_dir">
             <div class="col-lg-6 p0">
                 <div class="success_img">
-                    <img src="{{ asset('img/success-2.jpg') }}" alt="">
+                    <img src="{{ asset('img/success4.jpg') }}" alt="">
                 </div>
             </div>
             <div class="col-lg-6 p0">
                 <div class="mission_text">
-                    <h4>Road to Success</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore dolore magna aliqua enim minim veniam quis nostrud.</p>
+                    <h4>Target </h4>
+                    <p> Safe & Convenient</p>
+                </div>
+            </div>
+        </div>
+        <div class="row m0">
+            <div class="col-lg-6 p0">
+                <div class="mission_text">
+                    <h4>Funtion</h4>
+                    <p>A company operating in the field of e-commerce, specializing in providing payment and money transfer services via the Internet. This is an electronic payment and transfer service that replaces traditional paper-based methods such as checks and money orders.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 p0">
+                <div class="success_img">
+                    <img src="{{ asset('img/success1.jpg') }}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row m0 right_dir">
+            <div class="col-lg-6 p0">
+                <div class="success_img">
+                    <img src="{{ asset('img/success5.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 p0">
+                <div class="mission_text">
+                    <h4>Profit</h4>
+                    <p>  Collects fees by performing payment processing for online operators, auction sites, and other corporate customers.</p>
                 </div>
             </div>
         </div>

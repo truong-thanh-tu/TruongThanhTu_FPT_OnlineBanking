@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Publics;
 
 use App\Http\Controllers\Controller;
+use App\Model\Blog;
+use App\Model\Contact;
+use App\Model\Introduce;
 use App\Model\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +19,17 @@ class PublicController extends Controller
      */
     public function showHome()
     {
-        return view('public.home.homePublic');
+        $objIntroduce = new Introduce();
+        $valueIntroduces = $objIntroduce->getIntroduct();
+        return view('public.home.homePublic', compact('valueIntroduces'));
+    }
+
+    public function showIntroduce($id)
+    {
+        $objIntroduce = new Introduce();
+        $valueIntroduce = $objIntroduce->getIntroItem($id);
+
+        return view('public.home.introduce', compact('valueIntroduce'));
     }
 
     /**
@@ -37,13 +50,56 @@ class PublicController extends Controller
         return view('public.contact.contactPublic');
     }
 
+    public function postContact(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+
+        ];
+        $messages = [
+            'name.required' => 'name is a required field',
+            'email.required' => 'email is a required field',
+            'subject.required' => 'subject is a required field',
+            'message.required' => 'message is a required field',
+
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect('/public/contact')->withErrors($validator)->withInput();
+        }
+
+        $objContact = new Contact();
+        $objContact->name = $request->input('name');
+        $objContact->email = $request->input('email');
+        $objContact->subject = $request->input('subject');
+        $objContact->message = $request->input('message');
+
+        $objContact->save();
+        return redirect('/public');
+
+    }
+
     /**
      * showBlog
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showBlog()
     {
-        return view('public.blog.blogPublic');
+        $objBlog = new Blog();
+        $getDataBlogs = $objBlog->getBlog();
+        return view('public.blog.blogPublic', compact('getDataBlogs'));
+    }
+
+    public function showBlogDetail($id)
+    {
+        $objBlog = new Blog();
+        $getDataBlog = $objBlog->getBlogItem($id);
+        $getDataBlogs = $objBlog->getBlog();
+        return view('public.blog.blog-detail', compact('getDataBlog', 'getDataBlogs'));
     }
 
     /**
@@ -95,7 +151,7 @@ class PublicController extends Controller
                 }
 
                 $valueIDCustomer = $getData->getDataUser($username)->IDCustomer;
-                session()->put('IDCustomer',$valueIDCustomer);
+                session()->put('IDCustomer', $valueIDCustomer);
                 return redirect('private/infoAccount');
 
             } else {
