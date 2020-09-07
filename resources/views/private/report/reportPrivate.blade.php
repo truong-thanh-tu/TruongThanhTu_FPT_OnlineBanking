@@ -17,132 +17,131 @@
         </div>
     </section>
     <!--================End Home Banner Area =================-->
-    <!--================Blog Categorie Area =================-->
-    <section class="blog_categorie_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="{{ asset('img/blog/cat-post/cat-post-3.jpg') }}" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html"><h5>Social Life</h5></a>
-                                <div class="border_line"></div>
-                                <p>Enjoy your social life together</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="{{ asset('img/blog/cat-post/cat-post-1.jpg') }}" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html"><h5>Politics</h5></a>
-                                <div class="border_line"></div>
-                                <p>Be a part of politics</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="{{ asset('img/blog/cat-post/cat-post-2.jpg') }}" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html"><h5>Food</h5></a>
-                                <div class="border_line"></div>
-                                <p>Let the food be finished</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================Blog Categorie Area =================-->
+{{--    <!--================Blog Categorie Area =================-->--}}
+{{--    <section class="blog_categorie_area">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row text-center p-120">--}}
+{{--                <div class="col-lg-4">--}}
+{{--                    <div class="card-deck">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h5 class="card-title">50.000.000 VND</h5>--}}
+{{--                                <p class="card-text">Amount of money to be transacted</p>--}}
+{{--                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4">--}}
+{{--                    <div class="card-deck">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h5 class="card-title">3 People</h5>--}}
+{{--                                <p class="card-text">The number of people making the transaction</p>--}}
+{{--                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4">--}}
+{{--                    <div class="card-deck">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h5 class="card-title">52 Turn</h5>--}}
+{{--                                <p class="card-text">Number of transaction execution--}}
+{{--                                    <times></times>--}}
+{{--                                </p>--}}
+{{--                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+{{--    <!--================Blog Categorie Area =================-->--}}
 
     <!--================Blog Area =================-->
-    <section class="blog_area mb-5">
+    <section class="blog_area mb-5 mt-5">
         <div class="container">
+            <div class="row mb-5">
+                <div class="col">
+                    <form action="">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                   value="option1">
+                            <label class="form-check-label text-uppercase" style="font-weight: bold" for="inlineRadio1">1
+                                month</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                   value="option2">
+                            <label class="form-check-label text-uppercase" style="font-weight: bold" for="inlineRadio1"> 1
+                                year</label>
+                        </div>
+                        <button type="submit"
+                                style="padding: 0px 20px !important;cursor: pointer;line-height: 38px !important;background: #a7cb00!important; color: white!important;    display: inline-block!important;border-radius: 5px;font-size: 14px !important;font-family: 'Raleway', sans-serif !important;font-weight: 600;border: none">
+                            Sign in
+                        </button>
+                    </form>
+
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="blog_left_sidebar">
-                        <article class="row blog_item">
-                            <div class="col-md-3">
-                                <div class="blog_info text-right">
-                                    <div class="post_tag">
-                                        <a href="#">Food,</a>
-                                        <a class="active" href="#">Technology,</a>
-                                        <a href="#">Politics,</a>
-                                        <a href="#">Lifestyle</a>
-                                    </div>
-                                    <ul class="blog_meta list">
-                                        <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
-                                        <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                        <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="blog_post">
-                                    <img src="{{ asset('https://www.equitymaster.com/5minWrapUp/images/2014/12182014-Wealth-gap-divide-in-India-and-rest-of-the-world-equitymaster.gif') }}" alt="">
-                                    <div class="blog_details">
-                                        <a href="single-blog.html"><h2>Astronomy Binoculars A Great Alternative</h2></a>
-                                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="blog_btn">View More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    <table class="table">
+                        <thead style="background-color:#a7cb00!important; ">
+                        <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">Interpretation / Number of entries</th>
+                            <th scope="col">Come/Depart
+                            </th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">View</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td><a href="#"><i class="fa fa-copy"></i></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"> < </a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#"> ></a></li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Post Catgories</h4>
+                            <h4 class="widget_title">People performing the transaction</h4>
                             <ul class="list cat-list">
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>Technology</p>
+                                        <p>Nguyen Van A</p>
                                         <p>37</p>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>Lifestyle</p>
+                                        <p>Nguyen Dinh Hieu</p>
                                         <p>24</p>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>Fashion</p>
+                                        <p>Vũ Quan Huy</p>
                                         <p>59</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Art</p>
-                                        <p>29</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Food</p>
-                                        <p>15</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Architecture</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Adventure</p>
-                                        <p>44</p>
                                     </a>
                                 </li>
                             </ul>

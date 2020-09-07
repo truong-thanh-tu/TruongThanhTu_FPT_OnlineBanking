@@ -41,8 +41,8 @@ class Transaction extends Model
         $objTransaction->Payer = $transaction['feePayer'];
         $objTransaction->Fee = $transaction['fee'];
         $objTransaction->CodeOTP = $codeOTP;
+        $objTransaction->Species = 1;
 
-        $objTransaction->save();
 
         $objAccount = new Account();
         $idAccountBeneficiaries = $objAccount->getIDAccount($transaction['accountNumber']);
@@ -52,13 +52,34 @@ class Transaction extends Model
 
         if ($transaction['feePayer'] == 1) {
             $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['fee'] - $transaction['money'];
-            $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
-
+            $objTransaction->Balance = $getAccountSource->BalanceSource;
         } else {
             $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['money'];
-            $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource - $transaction['fee'] + $transaction['money'];
-
+            $objTransaction->Balance = $getAccountSource->BalanceSource;
         }
+
+        $objTransaction->save();
+
+
+        $objTransaction = new Transaction();
+        $objTransaction->IDTypeAccountCustomer = $getAccountBeneficiaries->IDTypeAccountCustomer;
+        $objTransaction->IDBank = $transaction['idBank'];
+        $objTransaction->CodeTransaction = $transaction['codeTransaction'];
+        $objTransaction->Beneficiaries = $transaction['accountNumber'];
+        $objTransaction->NameBeneficiaries = $transaction['nameBeneficiary'];
+        $objTransaction->TransactionMoneyNumber = $transaction['money'];
+        $objTransaction->ContentTransaction = $transaction['contentTransaction'];
+        $objTransaction->Payer = $transaction['feePayer'];
+        $objTransaction->Fee = $transaction['fee'];
+        $objTransaction->CodeOTP = $codeOTP;
+        $objTransaction->Species = 0;
+
+        if ($transaction['feePayer'] == 1) {
+            $objTransaction->Balance = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
+        } else {
+            $objTransaction->Balance = $getAccountBeneficiaries->BalanceSource;
+        }
+        $objTransaction->save();
         $getAccountSource->save();
         $getAccountBeneficiaries->save();
     }

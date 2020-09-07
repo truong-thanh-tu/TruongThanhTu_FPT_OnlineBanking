@@ -87,7 +87,11 @@ CREATE TABLE IF NOT EXISTS `transaction`
     `Beneficiaries`          NVARCHAR(16)     NOT NULL,
     `NameBeneficiaries`      NVARCHAR(64)     NOT NULL,
 
+
     `TransactionDate`        DATETIME     DEFAULT CURRENT_TIME,
+    `Species`                INT              NOT NULL,
+    `Balance`                INT(16) UNSIGNED NOT NULL,
+
     `TransactionMoneyNumber` INT(16) UNSIGNED NOT NULL,
     `ContentTransaction`     NVARCHAR(64)     NOT NULL,
     `Payer`                  INT              NOT NULL,
@@ -370,63 +374,49 @@ tài khoản của huy : 89861632131313
   */
 
 
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '4567', '13151235135123', 'Nguyen Dinh Hieu', 1000000, 'lorem ipsum', 1, 20000, '2135');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '5462', '89861632131313', 'Vu Quan Huy', 150000, 'lorem ipsum', 1, 3000, '4652');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '5643', '89861632131313', 'Vu Quan Huy', 200000, 'lorem ipsum', 0, 4000, '5635');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9865', '13151235135123', 'Nguyen Dinh Hieu', 600000, 'lorem ipsum', 0, 12000, '5165');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '1235', '89861632131313', 'Vu Quan Huy', 1500000, 'lorem ipsum', 1, 30000, '9526');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9866', '13151235135123', 'Nguyen Dinh Hieu', 200000, 'lorem ipsum', 1, 4000, '9530');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9868', '13151235135123', 'Nguyen Dinh Hieu', 250000, 'lorem ipsum', 1, 5000, '9532');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '4567', '13151235135123', 'Nguyen Dinh Hieu', 0, 500000, 1000000, 'lorem ipsum', 1, 20000, '2135');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '5462', '89861632131313', 'Vu Quan Huy',0,4850000, 150000, 'lorem ipsum', 1, 3000, '4652');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '5643', '89861632131313', 'Vu Quan Huy',0,4650000, 200000, 'lorem ipsum', 0, 4000, '5635');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '9865', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 600000, 'lorem ipsum', 0, 12000, '5165');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '1235', '89861632131313', 'Vu Quan Huy',0,4050000, 1500000, 'lorem ipsum', 1, 30000, '9526');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '9866', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 200000, 'lorem ipsum', 1, 4000, '9530');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '9868', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 250000, 'lorem ipsum', 1, 5000, '9532');
 
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9869', '12154610364646', 'Nguyen Van Nguyen', 300000, 'lorem ipsum', 1, 6000, '9534');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9870', '96581646526265', 'Nguyen Vu', 350000, 'lorem ipsum', 1, 70000, '9536');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9871', '12154610364646', 'Nguyen Van Nguyen', 400000, 'lorem ipsum', 0, 8000, '9538');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9872', '96581646526265', 'Nguyen Vu', 450000, 'lorem ipsum', 0, 9000, '9540');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9873', '12154610364646', 'Nguyen Van Nguyen', 500000, 'lorem ipsum', 0, 10000, '9542');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9874', '96581646526265', 'Nguyen Vu', 550000, 'lorem ipsum', 0, 10000, '9544');
-INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries,
-                        TransactionMoneyNumber, ContentTransaction,
-                        Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9875', '96581646526265', 'Nguyen Vu', 600000, 'lorem ipsum', 0, 12000, '9546');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9869', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 300000, 'lorem ipsum', 1, 6000, '9534');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9870', '96581646526265', 'Nguyen Vu',0,4050000, 350000, 'lorem ipsum', 1, 70000, '9536');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9871', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 400000, 'lorem ipsum', 0, 8000, '9538');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9872', '96581646526265', 'Nguyen Vu',0,4050000, 450000, 'lorem ipsum', 0, 9000, '9540');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9873', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 500000, 'lorem ipsum', 0, 10000, '9542');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 1, '9874', '96581646526265', 'Nguyen Vu',0,4050000, 550000, 'lorem ipsum', 0, 10000, '9544');
+INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
+                        Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
+    VALUE (1, 2, '9875', '96581646526265', 'Nguyen Vu',0,4050000, 600000, 'lorem ipsum', 0, 12000, '9546');
 
 
 INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
