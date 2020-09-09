@@ -251,6 +251,7 @@ CREATE TABLE IF NOT EXISTS Blog
 
     PRIMARY KEY (`IDBlog`)
 ) ENGINE InnoDB;
+
 # Create Table Introduce
 DROP TABLE IF EXISTS `Contact`;
 CREATE TABLE IF NOT EXISTS Contact
@@ -272,6 +273,29 @@ CREATE TABLE IF NOT EXISTS Contact
 
 
     PRIMARY KEY (`IDContact`)
+) ENGINE InnoDB;
+
+# Create Table Introduce
+DROP TABLE IF EXISTS `Support`;
+CREATE TABLE IF NOT EXISTS Support
+(
+    `IDSupport`    INT AUTO_INCREMENT,
+
+    `TitleSupport` TEXT          NOT NULL,
+    `Img`          NVARCHAR(256) NOT NULL,
+    `Content1`     TEXT,
+    `Content2`     TEXT          NOT NULL,
+
+
+    `created_by`   NVARCHAR(32) DEFAULT 'OnlineBanking',
+    `created_at`   DATETIME     DEFAULT CURRENT_TIME,
+    `updated_by`   NVARCHAR(32) DEFAULT NULL,
+    `updated_at`   DATETIME     DEFAULT NULL,
+    `version`      INT          DEFAULT 1,
+    `deleted`      BOOLEAN      DEFAULT FALSE,
+
+
+    PRIMARY KEY (`IDSupport`)
 ) ENGINE InnoDB;
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
@@ -371,44 +395,44 @@ INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Benefici
     VALUE (1, 1, '4567', '13151235135123', 'Nguyen Dinh Hieu', 0, 500000, 1000000, 'lorem ipsum', 1, 20000, '2135');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '5462', '89861632131313', 'Vu Quan Huy',0,4850000, 150000, 'lorem ipsum', 1, 3000, '4652');
+    VALUE (1, 1, '5462', '89861632131313', 'Vu Quan Huy', 0, 4850000, 150000, 'lorem ipsum', 1, 3000, '4652');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '5643', '89861632131313', 'Vu Quan Huy',0,4650000, 200000, 'lorem ipsum', 0, 4000, '5635');
+    VALUE (1, 1, '5643', '89861632131313', 'Vu Quan Huy', 0, 4650000, 200000, 'lorem ipsum', 0, 4000, '5635');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9865', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 600000, 'lorem ipsum', 0, 12000, '5165');
+    VALUE (1, 1, '9865', '13151235135123', 'Nguyen Dinh Hieu', 0, 4050000, 600000, 'lorem ipsum', 0, 12000, '5165');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '1235', '89861632131313', 'Vu Quan Huy',0,4050000, 1500000, 'lorem ipsum', 1, 30000, '9526');
+    VALUE (1, 1, '1235', '89861632131313', 'Vu Quan Huy', 0, 4050000, 1500000, 'lorem ipsum', 1, 30000, '9526');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9866', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 200000, 'lorem ipsum', 1, 4000, '9530');
+    VALUE (1, 1, '9866', '13151235135123', 'Nguyen Dinh Hieu', 0, 4050000, 200000, 'lorem ipsum', 1, 4000, '9530');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9868', '13151235135123', 'Nguyen Dinh Hieu',0,4050000, 250000, 'lorem ipsum', 1, 5000, '9532');
+    VALUE (1, 1, '9868', '13151235135123', 'Nguyen Dinh Hieu', 0, 4050000, 250000, 'lorem ipsum', 1, 5000, '9532');
 
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9869', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 300000, 'lorem ipsum', 1, 6000, '9534');
+    VALUE (1, 2, '9869', '12154610364646', 'Nguyen Van Nguyen', 0, 4050000, 300000, 'lorem ipsum', 1, 6000, '9534');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9870', '96581646526265', 'Nguyen Vu',0,4050000, 350000, 'lorem ipsum', 1, 70000, '9536');
+    VALUE (1, 2, '9870', '96581646526265', 'Nguyen Vu', 0, 4050000, 350000, 'lorem ipsum', 1, 70000, '9536');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9871', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 400000, 'lorem ipsum', 0, 8000, '9538');
+    VALUE (1, 2, '9871', '12154610364646', 'Nguyen Van Nguyen', 0, 4050000, 400000, 'lorem ipsum', 0, 8000, '9538');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9872', '96581646526265', 'Nguyen Vu',0,4050000, 450000, 'lorem ipsum', 0, 9000, '9540');
+    VALUE (1, 2, '9872', '96581646526265', 'Nguyen Vu', 0, 4050000, 450000, 'lorem ipsum', 0, 9000, '9540');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9873', '12154610364646', 'Nguyen Van Nguyen',0,4050000, 500000, 'lorem ipsum', 0, 10000, '9542');
+    VALUE (1, 2, '9873', '12154610364646', 'Nguyen Van Nguyen', 0, 4050000, 500000, 'lorem ipsum', 0, 10000, '9542');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 1, '9874', '96581646526265', 'Nguyen Vu',0,4050000, 550000, 'lorem ipsum', 0, 10000, '9544');
+    VALUE (1, 1, '9874', '96581646526265', 'Nguyen Vu', 0, 4050000, 550000, 'lorem ipsum', 0, 10000, '9544');
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
                         Balance, TransactionMoneyNumber, ContentTransaction, Payer, Fee, CodeOTP)
-    VALUE (1, 2, '9875', '96581646526265', 'Nguyen Vu',0,4050000, 600000, 'lorem ipsum', 0, 12000, '9546');
+    VALUE (1, 2, '9875', '96581646526265', 'Nguyen Vu', 0, 4050000, 600000, 'lorem ipsum', 0, 12000, '9546');
 
 
 INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
@@ -592,7 +616,68 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
                                         ethics, very popular during the Renaissance.</p>
                                 </div>
                             </div>
-                        </div>')
+                        </div>');
+
+INSERT INTO Support(TitleSupport, Img, Content1, Content2)
+    VALUE ('USER MANUAL', 'support1.jpg', Content1, '<div class="portfolio_details_inner">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="left_img">
+                            <img class="img-fluid" src="{{ asset(''img/support1.jpg'') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portfolio_right_text">
+                            <h4>USER MANUAL</h4>
+                            <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn''t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+            </div>');
+
+INSERT INTO Support(TitleSupport, Img, Content1, Content2)
+    VALUE ('Interest rate', 'support1.jpg', Content1, '<div class="portfolio_details_inner">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="left_img">
+                            <img class="img-fluid" src="{{ asset(''img/support2.jpg'') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portfolio_right_text">
+                            <h4>Interest rate</h4>
+                            <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn''t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+            </div>');
+INSERT INTO Support(TitleSupport, Img, Content1, Content2)
+    VALUE ('Explore OnlineBanking', 'support3.jpg', Content1, '<div class="portfolio_details_inner">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="left_img">
+                            <img class="img-fluid" src="{{ asset(''img/support3.jpg'') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portfolio_right_text">
+                            <h4>Explore OnlineBanking</h4>
+                            <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn''t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+            </div>');
+
+
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = #
 #                                            Test                                          #

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -55,7 +56,7 @@ class Transaction extends Model
             $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
             $objTransaction->Balance = $getAccountSource->BalanceSource;
         } else {
-            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource  - $transaction['money'];
+            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['money'];
             $getAccountSource->BalanceSource = $getAccountSource->BalanceSource + $transaction['money'] - $transaction['fee'];
             $objTransaction->Balance = $getAccountSource->BalanceSource;
         }
@@ -108,7 +109,7 @@ class Transaction extends Model
             $objTransaction->Balance = $getDataAccount->BalanceSource - $transaction['feePayer'] - $transaction['money'];
         } else {
             $getDataAccount->BalanceSource = $getDataAccount->BalanceSource - $transaction['money'];
-            $objTransaction->Balance = $getDataAccount->BalanceSource  - $transaction['money'];
+            $objTransaction->Balance = $getDataAccount->BalanceSource - $transaction['money'];
 
         }
         $objTransaction->save();
@@ -119,6 +120,28 @@ class Transaction extends Model
     {
 
         return Transaction::all()->where('IDTransaction', $IDTransaction);
+    }
+
+    public function getYearHistoryTransaction($getDataTypeAccountCustomers)
+    {
+        $dt = Carbon::now();
+        $year = $dt->subYear();
+        return Transaction::where('deleted', false)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->whereDate('TransactionDate', '>=', $year)
+            ->orderBy('TransactionDate', 'desc')
+            ->paginate(5);
+    }
+
+    public function getMonthHistoryTransaction($getDataTypeAccountCustomers)
+    {
+        $dt = Carbon::now();
+        $month = $dt->subMonth();
+        return Transaction::where('deleted', false)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->whereDate('TransactionDate', '>=', $month)
+            ->orderBy('TransactionDate', 'desc')
+            ->paginate(5);
     }
 
     public function getHistoryTransaction($getDataTypeAccountCustomers)
@@ -141,6 +164,38 @@ class Transaction extends Model
             $sum = $sum + $objCome->TransactionMoneyNumber;
         }
         return $sum;
+    }  public function totalMonthCome($getDataTypeAccountCustomers, $value)
+    {
+        $dt = Carbon::now();
+        $month = $dt->subMonth();
+        $objComes = Transaction::where('deleted', false)
+            ->select('TransactionMoneyNumber')
+            ->whereDate('TransactionDate', '>=', $month)
+            ->where('Species', $value)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->get();
+        $sum = 0;
+        foreach ($objComes as $objCome) {
+            $sum = $sum + $objCome->TransactionMoneyNumber;
+        }
+        return $sum;
+    }
+
+    public function totalYearCome($getDataTypeAccountCustomers, $value)
+    {
+        $dt = Carbon::now();
+        $year = $dt->subYear();
+        $objComes = Transaction::where('deleted', false)
+            ->select('TransactionMoneyNumber')
+            ->whereDate('TransactionDate', '>=', $year)
+            ->where('Species', $value)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->get();
+        $sum = 0;
+        foreach ($objComes as $objCome) {
+            $sum = $sum + $objCome->TransactionMoneyNumber;
+        }
+        return $sum;
     }
 
     public function CountNameBeneficiaries($getDataTypeAccountCustomers)
@@ -150,12 +205,14 @@ class Transaction extends Model
             ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
             ->get();
         $arr = [];
-       foreach ($objNames as $objName ){
-           $arr[] = $objName->NameBeneficiaries;
-       }
+        foreach ($objNames as $objName) {
+            $arr[] = $objName->NameBeneficiaries;
+        }
         return array_count_values($arr);
     }
-    public function FindTransaction($ID){
-        return Transaction::where('IDTransaction',$ID)->first();
+
+    public function FindTransaction($ID)
+    {
+        return Transaction::where('IDTransaction', $ID)->first();
     }
 }

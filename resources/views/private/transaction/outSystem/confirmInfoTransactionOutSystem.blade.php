@@ -95,10 +95,6 @@
                                     <td class="font-weight-normal"><span>{{ $transaction['dateTransaction'] }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-right">Amount is equal to letters</td>
-                                    <td class="font-weight-normal"><span>{{ number_format($transaction['money']) }}Five hundred thousand dong</span></td>
-                                </tr>
-                                <tr>
                                     <td class="text-right">Content Transaction</td>
                                     <td class="font-weight-normal"><span>{{ $transaction['contentTransaction'] }}</span></td>
                                 </tr>

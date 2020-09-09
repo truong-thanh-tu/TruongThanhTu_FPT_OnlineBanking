@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Carbon\Carbon;
 
 class publicModel extends Model
 {

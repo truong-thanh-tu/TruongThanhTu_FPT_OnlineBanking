@@ -28,11 +28,11 @@
                         <li class="nav-item {{ (request()->segment(2) == 'report') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Report') }}">Report</a></li>
                         <li class="nav-item submenu dropdown {{ (request()->segment(2) == 'support') ? 'active' : '' }}">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" href="{{ Route('Support') }}">Support</a>
+                               aria-haspopup="true" aria-expanded="false" href="">Support</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support') }}">User manual</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support') }}">User manual</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support') }}">Explore OnlineBanking</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support',1) }}">User manual</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support',2) }}">Interest rate</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ Route('Support',3) }}">Explore OnlineBanking</a></li>
                             </ul>
                         </li>
                     </ul>

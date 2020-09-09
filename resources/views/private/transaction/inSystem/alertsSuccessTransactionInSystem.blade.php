@@ -11,19 +11,25 @@
                 <div class="col-lg-12 posts-list">
                     <div class="card alert alert-dark mx-auto p-5 text-center" style="width: 50rem;">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa fa-check-circle "
-                                                      style="font-size: 60px !important; color: #a7cb00!important;"></i>
-                            </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Well done!</h6>
-                            <p class="card-text">Quý khách thực hiện chuyển tiền thành công <span class="text-success">{{ number_format($inforNotification['money']) }} VND</span> cho <span class="text-success">{{ $inforNotification['accountNumber'] }}</span></p>
-                            <p class="card-text">từ <span class="text-success"> {{ $inforNotification['accountSource'] }}.</span></p>
-                                <p class="card-text"><i class="fa fa-phone mr-2" style="font-size: 50px !important; color: red !important; margin-top: 10px"></i>Tứ vấn hổ trợ <span class="text-danger" >1122 0000</span></p>
-                            <a href="{{ Route('AccountInfo') }}" class="submit_btn banner_btn">Back</a>
+                            <h2>Successful transaction</h2>
+                            <p>You have successfully submitted</p>
+                            <h3>{{ $inforNotification['money'] }} VND</h3>
+                            <p>From Account</p>
+                            <h3>{{ $inforNotification['nameAccount'] }} </h3>
+                            <h4>{{ $inforNotification['accountSource'] }} </h4>
+                            <p>To Account</p>
+                            <h3>{{ $inforNotification['nameBeneficiary'] }} </h3>
+                            <h4>{{ $inforNotification['accountNumber'] }} </h4>
+                            <p>Day trading</p>
+                            <h5>{{ $inforNotification['dateTransaction'] }}</h5>
+                            <p>Content Transaction</p>
+                            <h5>{{ $inforNotification['contentTransaction'] }}</h5>
+                            <p>Trading code</p>
+                            <h5>{{ $inforNotification['codeTransaction'] }}</h5>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!--================Blog Area =================-->
 

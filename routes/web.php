@@ -86,7 +86,7 @@ Route::group(['prefix' => 'private'], function () {
         ]);
     });
     Route::group(['prefix' => 'support'], function () {
-        Route::get('/', [
+        Route::get('/{id}', [
             'as' => 'Support',
             'uses' => 'Privates\PrivateController@showSupport'
         ]);

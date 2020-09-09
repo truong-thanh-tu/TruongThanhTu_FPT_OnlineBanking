@@ -7,6 +7,7 @@ use App\Model\Account;
 use App\Model\Bank;
 use App\Model\Beneficiaries;
 use App\Model\publicModel;
+use App\Model\Support;
 use App\Model\Transaction;
 use App\Model\TypeAccountCustomer;
 use Illuminate\Http\Request;
@@ -226,9 +227,14 @@ class PrivateController extends Controller
 
             $addTransaction->saveTransaction($transaction, $codeOTP);
             Mail::send('component.Transaction', [
-                'condeTransaction' => $transaction['codeTransaction'],
                 'accountSource' => $transaction['accountSource'],
-                'money' => $transaction['money']
+                'nameAccount' => $transaction['nameAccount'],
+                'money' => $transaction['money'],
+                'accountNumber' => $transaction['accountNumber'],
+                'nameBeneficiary' => $transaction['nameBeneficiary'],
+                'dateTransaction' => $transaction['dateTransaction'],
+                'codeTransaction' => $transaction['codeTransaction'],
+                'contentTransaction' => $transaction['contentTransaction'],
             ], function ($msg) {
                 $msg->from('onlinebankingTreet@gmail.com');
                 $msg->to('onlinebankingTreet@gmail.com');
@@ -237,8 +243,14 @@ class PrivateController extends Controller
 
             $inforNotification = array(
                 'accountSource' => $transaction['accountSource'],
+                'nameAccount' => $transaction['nameAccount'],
                 'money' => $transaction['money'],
                 'accountNumber' => $transaction['accountNumber'],
+                'nameBeneficiary' => $transaction['nameBeneficiary'],
+                'dateTransaction' => $transaction['dateTransaction'],
+                'codeTransaction' => $transaction['codeTransaction'],
+                'contentTransaction' => $transaction['contentTransaction'],
+
             );
             $request->session()->forget('transaction');
             $request->session()->forget('codeOTP');
@@ -415,9 +427,14 @@ class PrivateController extends Controller
 
             $addTransaction->saveOutTransaction($transaction, $codeOTP);
             Mail::send('component.Transaction', [
-                'condeTransaction' => $transaction['codeTransaction'],
                 'accountSource' => $transaction['accountSource'],
-                'money' => $transaction['money']
+                'nameAccount' => $transaction['nameAccount'],
+                'money' => $transaction['money'],
+                'accountNumber' => $transaction['accountNumber'],
+                'nameBeneficiary' => $transaction['nameBeneficiary'],
+                'dateTransaction' => $transaction['dateTransaction'],
+                'codeTransaction' => $transaction['codeTransaction'],
+                'contentTransaction' => $transaction['contentTransaction'],
             ], function ($msg) {
                 $msg->from('onlinebankingTreet@gmail.com');
                 $msg->to('onlinebankingTreet@gmail.com');
@@ -425,8 +442,13 @@ class PrivateController extends Controller
             });
             $inforNotification = array(
                 'accountSource' => $transaction['accountSource'],
+                'nameAccount' => $transaction['nameAccount'],
                 'money' => $transaction['money'],
                 'accountNumber' => $transaction['accountNumber'],
+                'nameBeneficiary' => $transaction['nameBeneficiary'],
+                'dateTransaction' => $transaction['dateTransaction'],
+                'codeTransaction' => $transaction['codeTransaction'],
+                'contentTransaction' => $transaction['contentTransaction'],
             );
             $request->session()->forget('transaction');
             return view('private.transaction.inSystem.alertsSuccessTransactionInSystem', compact('inforNotification'));
@@ -448,14 +470,38 @@ class PrivateController extends Controller
         }
         $objMP = new publicModel();
         $objTraction = new Transaction();
+        $date = $request->input('date');
+        if (isset($date)) {
+            if ($date == 1) {
+                $getDataTypeAccountCustomers = $objMP->getIDReport($request);
+                $getDataHistoryTransactions = $objTraction->getYearHistoryTransaction($getDataTypeAccountCustomers);
+                $totalCome = $objTraction->totalCome($getDataTypeAccountCustomers, 0);
+                $totalDepart = $objTraction->totalCome($getDataTypeAccountCustomers, 1);
+                $objNames = $objTraction->CountNameBeneficiaries($getDataTypeAccountCustomers);
 
-        $getDataTypeAccountCustomers = $objMP->getIDReport($request);
-        $getDataHistoryTransactions = $objTraction->getHistoryTransaction($getDataTypeAccountCustomers);
-        $totalCome = $objTraction->totalCome($getDataTypeAccountCustomers, 0);
-        $totalDepart = $objTraction->totalCome($getDataTypeAccountCustomers, 1);
-        $objNames = $objTraction->CountNameBeneficiaries($getDataTypeAccountCustomers);
+                return view('private.report.reportPrivate', compact('getDataHistoryTransactions', 'totalCome', 'totalDepart', 'objNames'));
 
-        return view('private.report.reportPrivate', compact('getDataHistoryTransactions', 'totalCome', 'totalDepart', 'objNames'));
+            } else {
+                $getDataTypeAccountCustomers = $objMP->getIDReport($request);
+                $getDataHistoryTransactions = $objTraction->getMonthHistoryTransaction($getDataTypeAccountCustomers);
+                $totalCome = $objTraction->totalCome($getDataTypeAccountCustomers, 0);
+                $totalDepart = $objTraction->totalCome($getDataTypeAccountCustomers, 1);
+                $objNames = $objTraction->CountNameBeneficiaries($getDataTypeAccountCustomers);
+
+                return view('private.report.reportPrivate', compact('getDataHistoryTransactions', 'totalCome', 'totalDepart', 'objNames'));
+
+            }
+        } else {
+            $getDataTypeAccountCustomers = $objMP->getIDReport($request);
+
+            $getDataHistoryTransactions = $objTraction->getHistoryTransaction($getDataTypeAccountCustomers);
+            $totalCome = $objTraction->totalCome($getDataTypeAccountCustomers, 0);
+            $totalDepart = $objTraction->totalCome($getDataTypeAccountCustomers, 1);
+            $objNames = $objTraction->CountNameBeneficiaries($getDataTypeAccountCustomers);
+
+            return view('private.report.reportPrivate', compact('getDataHistoryTransactions', 'totalCome', 'totalDepart', 'objNames'));
+
+        }
     }
 
     public function printReport($checkOutCode)
@@ -474,19 +520,21 @@ class PrivateController extends Controller
     {
         $objTransaction = new Transaction();
         $getData = $objTransaction->FindTransaction($checkOutCode);
-        return view('component.report',compact('getData'));
+        return view('component.report', compact('getData'));
     }
 
     /**
      * showSupport
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showSupport()
+    public function showSupport($id)
     {
         if (empty(session()->get('IDCustomer'))) {
             return redirect('public');
         }
-        return view('private.support.supportPrivate');
+        $objSupport = new Support();
+    $getData = $objSupport->getSupport($id);
+        return view('private.support.supportPrivate',compact('getData'));
     }
 
     /**

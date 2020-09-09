@@ -38,16 +38,16 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col">
-                    <form action="">
+                    <form action="{{ Route('Report') }}">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                   value="option1">
+                            <input class="form-check-input" type="radio" name="date" id="inlineRadio1"
+                                   value="0">
                             <label class="form-check-label text-uppercase" style="font-weight: bold" for="inlineRadio1">1
                                 month</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                   value="option2">
+                            <input class="form-check-input" type="radio" name="date" id="inlineRadio2"
+                                   value="1">
                             <label class="form-check-label text-uppercase" style="font-weight: bold" for="inlineRadio1">
                                 1
                                 year</label>

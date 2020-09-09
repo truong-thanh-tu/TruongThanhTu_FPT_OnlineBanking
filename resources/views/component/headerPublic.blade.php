@@ -15,7 +15,7 @@
                     <ul class="nav navbar-nav menu_nav justify-content-center">
                         <li class="nav-item {{ (request()->segment(2) == '') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Home') }}">Home</a></li>
                         <li class="nav-item {{ (request()->segment(2) == 'about') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('About') }}">About</a></li>
-                        <li class="nav-item {{ (request()->segment(2) == 'blog') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Blog') }}">News</a></li>
+                        <li class="nav-item {{ (request()->segment(2) == 'news') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Blog') }}">News</a></li>
                         <li class="nav-item {{ (request()->segment(2) == 'contact') ? 'active' : '' }}"><a class="nav-link" href="{{ Route('Contact') }}">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

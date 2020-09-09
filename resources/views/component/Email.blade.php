@@ -1,14 +1,7 @@
-
-<div class="card">
-    <h5 class="card-header"><img src="{{ asset('img/icon-web.png')  }}" alt="">OnlineBanking</h5>
-    <div class="card-body">
-        <h1>Xin chào bạn:{{ $Name }}</h1>
-        <p>Chúng tôi đã nhận được yêu cầu xác nhận giao dịch của bạn</p>
-        <p>Đây là mã OTP của bạn</p>
-        <h2 style="padding: 20px 30px !important;" class="bg-light">
-            {{ $CodeOTP }}
-        </h2>
-
-
-    </div>
+<div class="main">
+    <img src="http://onlinebanking.treet/img/icon-web.png" alt="">
+    <h1 style="font-weight: 900; font-family: 'Roboto', sans-serif;"><span style="margin-right: 5px;color: #a7cb00;">Online</span>Banking</h1>
+    <h3 style=" font-family: 'Roboto', sans-serif;">Xin chao bạn: {{ $Name }}</h3>
+    <p style="font-weight: 900; font-family: 'Roboto', sans-serif;" >Chúng tôi đã nhận được yêu cầu xác nhận giao dịch của bạn</p>
+    <p style=" font-family: 'Roboto', sans-serif;">Đây là mã OTP của bạn: <span style="font-size: 20px;font-weight:bold !important; color: #2b2d2a;"> {{ $CodeOTP }}</span> </p>
 </div>
