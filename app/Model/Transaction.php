@@ -41,7 +41,7 @@ class Transaction extends Model
         $objTransaction->Payer = $transaction['feePayer'];
         $objTransaction->Fee = $transaction['fee'];
         $objTransaction->CodeOTP = $codeOTP;
-        $objTransaction->Species = 1;
+        $objTransaction->Species = 0;
 
 
         $objAccount = new Account();
@@ -52,9 +52,11 @@ class Transaction extends Model
 
         if ($transaction['feePayer'] == 1) {
             $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['fee'] - $transaction['money'];
+            $getAccountBeneficiaries->BalanceSource = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
             $objTransaction->Balance = $getAccountSource->BalanceSource;
         } else {
-            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource - $transaction['money'];
+            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource  - $transaction['money'];
+            $getAccountSource->BalanceSource = $getAccountSource->BalanceSource + $transaction['money'] - $transaction['fee'];
             $objTransaction->Balance = $getAccountSource->BalanceSource;
         }
 
@@ -72,7 +74,7 @@ class Transaction extends Model
         $objTransaction->Payer = $transaction['feePayer'];
         $objTransaction->Fee = $transaction['fee'];
         $objTransaction->CodeOTP = $codeOTP;
-        $objTransaction->Species = 0;
+        $objTransaction->Species = 1;
 
         if ($transaction['feePayer'] == 1) {
             $objTransaction->Balance = $getAccountBeneficiaries->BalanceSource + $transaction['money'];
@@ -98,16 +100,18 @@ class Transaction extends Model
         $objTransaction->Payer = $transaction['feePayer'];
         $objTransaction->Fee = $transaction['fee'];
         $objTransaction->CodeOTP = $codeOTP;
-
-        $objTransaction->save();
+        $objTransaction->Species = 0;
 
         $getDataAccount = Account::find($transaction['idAccount']);
         if ($transaction['feePayer'] == 1) {
             $getDataAccount->BalanceSource = $getDataAccount->BalanceSource - $transaction['feePayer'] - $transaction['money'];
+            $objTransaction->Balance = $getDataAccount->BalanceSource - $transaction['feePayer'] - $transaction['money'];
         } else {
             $getDataAccount->BalanceSource = $getDataAccount->BalanceSource - $transaction['money'];
+            $objTransaction->Balance = $getDataAccount->BalanceSource  - $transaction['money'];
 
         }
+        $objTransaction->save();
         $getDataAccount->save();
     }
 
@@ -117,5 +121,41 @@ class Transaction extends Model
         return Transaction::all()->where('IDTransaction', $IDTransaction);
     }
 
+    public function getHistoryTransaction($getDataTypeAccountCustomers)
+    {
+        return Transaction::where('deleted', false)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->orderBy('TransactionDate', 'desc')
+            ->paginate(5);
+    }
 
+    public function totalCome($getDataTypeAccountCustomers, $value)
+    {
+        $objComes = Transaction::where('deleted', false)
+            ->select('TransactionMoneyNumber')
+            ->where('Species', $value)
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->get();
+        $sum = 0;
+        foreach ($objComes as $objCome) {
+            $sum = $sum + $objCome->TransactionMoneyNumber;
+        }
+        return $sum;
+    }
+
+    public function CountNameBeneficiaries($getDataTypeAccountCustomers)
+    {
+        $objNames = Transaction::where('deleted', false)
+            ->select('NameBeneficiaries')
+            ->where('IDTypeAccountCustomer', $getDataTypeAccountCustomers->IDTypeAccountCustomer)
+            ->get();
+        $arr = [];
+       foreach ($objNames as $objName ){
+           $arr[] = $objName->NameBeneficiaries;
+       }
+        return array_count_values($arr);
+    }
+    public function FindTransaction($ID){
+        return Transaction::where('IDTransaction',$ID)->first();
+    }
 }

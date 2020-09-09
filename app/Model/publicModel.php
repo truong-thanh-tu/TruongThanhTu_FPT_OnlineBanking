@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
 
 class publicModel extends Model
 {
@@ -10,6 +11,7 @@ class publicModel extends Model
     /**
      * @param $request
      * @return mixed
+     *
      */
     public function getID($request)
     {
@@ -18,25 +20,36 @@ class publicModel extends Model
         return $getDataTypeAccountCustomers = TypeAccountCustomer::where('IDCustomer', $valueIDCustomer)->get();
     }
 
+    public function getIDReport($request)
+    {
+        $valueIDCustomer = $request->session()->get('IDCustomer');
+
+        return $getDataTypeAccountCustomers = TypeAccountCustomer::where('IDCustomer', $valueIDCustomer)->first();
+    }
+
     /**
      * @param $IDBank
      * @param $control
      * @return mixed
      */
-    public function getHistory($IDBank, $control, $toDate, $fromDate)
+    public function getHistory($IDBank, $control, $dateTo, $dateFrom)
     {
-        if ($toDate != null && $fromDate != null) {
-
+        if ($dateTo == null && $dateFrom == null) {
             return $getHistoryInSystems = Transaction::
             where('IDBank', $control, $IDBank)
-                ->where('TransactionDate', '>=', $toDate)
-                ->where('TransactionDate', '<=', $fromDate)
+                ->where('IDTypeAccountCustomer', session()->get('IDCustomer'))
+                ->orderBy('TransactionDate', 'desc')
                 ->paginate(5);
         } else {
-            return $getHistoryInSystems = Transaction::
-            where('IDBank', $control, $IDBank)
-                ->paginate(5);;
 
+            $getHistoryInSystems = Transaction::
+            where('IDBank', $control, $IDBank)
+                ->where('IDTypeAccountCustomer', session()->get('IDCustomer'))
+                ->whereDate('TransactionDate', '>=', $dateTo)
+                ->whereDate('TransactionDate', '<=', $dateFrom)
+                ->orderBy('TransactionDate', 'desc')
+                ->paginate(5);
+            return $getHistoryInSystems;
         }
     }
 

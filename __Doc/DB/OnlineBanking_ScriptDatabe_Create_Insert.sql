@@ -363,15 +363,7 @@ INSERT INTO beneficiaries(IDBank, IDAccount, AccountBeneficiaries, NameAccountBe
     VALUE (1, 3, '12510000586328', 'Truong Thanh Tu');
 INSERT INTO beneficiaries(IDBank, IDAccount, AccountBeneficiaries, NameAccountBeneficiaries)
     VALUE (2, 1, '14468113131128', 'Nguyen Dinh Hung');
-/*
-tài khoản của tú  :  12510000586328
-  id 1:
 
-tài khoản của hieu:   13151235135123
-  id 3:
-tài khoản của huy : 89861632131313
-  id 5:
-  */
 
 
 INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Beneficiaries, NameBeneficiaries, Species,
@@ -526,7 +518,7 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
                                         ethics, very popular during the Renaissance.</p>
                                 </div>
                             </div>
-                        </div>')
+                        </div>');
 INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
     VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/feature-img1.jpg', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
                                 why you should have to spend money on boot camp when you can get the MCSE study
@@ -611,3 +603,12 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
    name          :  Nguyen Dinh Hieu
 
  */
+/*
+tài khoản của tú  :  12510000586328
+  id 1:
+
+tài khoản của hieu:   13151235135123
+  id 3:
+tài khoản của huy : 89861632131313
+  id 5:
+  */

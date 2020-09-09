@@ -88,11 +88,11 @@
                                 <tr>
                                     <td class="text-right">Select list beneficiaries</td>
                                     <td>
-                                        <div class="input-group w-50">
+                                        <div class="input-group w-100">
                                             <div class="btn-group">
-                                                <a class="btn alert-success dropdown-toggle" href="#"
+                                                <a class="btn alert-success dropdown-toggle "style=" width: 337.6px !important;" href="#"
                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                                   aria-expanded="false">
+                                                   aria-expanded="false">Choose account transaction
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                                     @if($checkElementActive)
@@ -124,11 +124,11 @@
                                 <tr>
                                     <td class="text-right">Select Bank</td>
                                     <td>
-                                        <div class="input-group w-50">
+                                        <div class="input-group w-100">
                                             <div class="btn-group">
-                                                <a class="btn alert-success dropdown-toggle" href="#"
+                                                <a class="btn alert-success dropdown-toggle w-100"  style=" width: 337.6px !important;" href="#"
                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                                   aria-expanded="false">
+                                                   aria-expanded="false">Choose bank
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                                     @foreach($getBanks as $key => $getBank)

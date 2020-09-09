@@ -29,7 +29,6 @@ class PrivateController extends Controller
             return redirect('public');
         }
         $objMP = new publicModel();
-
         $getDataTypeAccountCustomers = $objMP->getID($request);
 
         return view('private.information.accountInfoPrivate', compact('getDataTypeAccountCustomers'));
@@ -60,10 +59,16 @@ class PrivateController extends Controller
         if (empty(session()->get('IDCustomer'))) {
             return redirect('public');
         }
-        $objMP = new publicModel();
-        $getHistoryInSystems = $objMP->getHistory(1, '=', $request->input('dateToInSystem'), $request->input('dateFromInSystem'));
-        $getHistoryOutSystems = $objMP->getHistory(1, '<>', $request->input('dateToOutSystem'), $request->input('dateFromOutSystem'));
 
+        $dateToInSystem = $request->input('dateToInSystem');
+        $dateFromInSystem = $request->input('dateFromInSystem');
+        $dateToOutSystem = $request->input('dateToOutSystem');
+        $dateFromOutSystem = $request->input('dateFromOutSystem');
+
+        $objMP = new publicModel();
+
+        $getHistoryInSystems = $objMP->getHistory(1, '=', $dateToInSystem, $dateFromInSystem);
+        $getHistoryOutSystems = $objMP->getHistory(1, '<>', $dateToOutSystem, $dateFromOutSystem);
         return view('private.history.historyTransactionPrivate', compact('getHistoryInSystems', 'getHistoryOutSystems'));
     }
 
@@ -78,7 +83,6 @@ class PrivateController extends Controller
         }
         $objTS = new Transaction();
         $getData = $objTS->getTransaction($IDTransaction)->first();
-
         return view('private.history.detailHistoryTransactionPrivate', compact('getData'));
 
     }
@@ -442,14 +446,35 @@ class PrivateController extends Controller
         if (empty(session()->get('IDCustomer'))) {
             return redirect('public');
         }
-
-
         $objMP = new publicModel();
+        $objTraction = new Transaction();
 
-        $getDataTypeAccountCustomers = $objMP->getID($request);
+        $getDataTypeAccountCustomers = $objMP->getIDReport($request);
+        $getDataHistoryTransactions = $objTraction->getHistoryTransaction($getDataTypeAccountCustomers);
+        $totalCome = $objTraction->totalCome($getDataTypeAccountCustomers, 0);
+        $totalDepart = $objTraction->totalCome($getDataTypeAccountCustomers, 1);
+        $objNames = $objTraction->CountNameBeneficiaries($getDataTypeAccountCustomers);
 
+        return view('private.report.reportPrivate', compact('getDataHistoryTransactions', 'totalCome', 'totalDepart', 'objNames'));
+    }
 
-        return view('private.report.reportPrivate');
+    public function printReport($checkOutCode)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->printReportConvert($checkOutCode));
+        return $pdf->stream();
+    }
+
+    /**
+     * printReportConvert
+     * @param $checkoutCode
+     * @return mixed
+     */
+    public function printReportConvert($checkOutCode)
+    {
+        $objTransaction = new Transaction();
+        $getData = $objTransaction->FindTransaction($checkOutCode);
+        return view('component.report',compact('getData'));
     }
 
     /**

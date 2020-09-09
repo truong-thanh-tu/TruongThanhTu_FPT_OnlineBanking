@@ -141,27 +141,22 @@ class PublicController extends Controller
 
             $checkLogin = $objUser->checkLogin($username, $password);
 
-            $getData = new Users();
-
             if ($checkLogin) {
                 /*Dùng code php để code tính năng nhớ mật khẩu */
                 if ($remember == true) {
                     setcookie('user', $username, time() + 3600, '/', '', 0, 0);
                     setcookie('pass', $password, time() + 3600, '/', '', 0, 0);
                 }
-
-                $valueIDCustomer = $getData->getDataUser($username)->IDCustomer;
+                $valueIDCustomer =  $objUser->getDataUser($username)->IDCustomer;
                 session()->put('IDCustomer', $valueIDCustomer);
                 return redirect('private/infoAccount');
 
             } else {
-
-                $active = $getData->deleted;
-                if ($active != 1) {
-                    Session::flash('error', 'If you enter incorrectly 3 times, your account will be blocked');
-
-                } else {
+                $active =  $objUser->getDataUser($username)->deleted;
+                if ($active == 1) {
                     Session::flash('error', 'Your account has been locked');
+                } else {
+                    Session::flash('error', 'If you enter incorrectly 3 times, your account will be blocked');
                 }
                 return redirect('public/login');
             }

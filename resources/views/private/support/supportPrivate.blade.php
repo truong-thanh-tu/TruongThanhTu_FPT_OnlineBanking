@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="left_img">
-                            <img class="img-fluid" src="{{ asset('img/project-details-1.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('img/success3.jpg') }}" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">

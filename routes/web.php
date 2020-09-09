@@ -80,6 +80,10 @@ Route::group(['prefix' => 'private'], function () {
             'as' => 'Report',
             'uses' => 'Privates\PrivateController@showReport'
         ]);
+        Route::get('/{checkOutCode}', [
+            'as' => 'PDFReport',
+            'uses' => 'Privates\PrivateController@printReport'
+        ]);
     });
     Route::group(['prefix' => 'support'], function () {
         Route::get('/', [

@@ -89,9 +89,9 @@
                                     <td class="text-right">Select an account in the list</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn alert-success dropdown-toggle" href="#"
+                                            <a class="btn alert-success dropdown-toggle w-50" href="#"
                                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                               aria-expanded="false">
+                                               aria-expanded="false">Choose account transaction
                                             </a>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
