@@ -3,26 +3,9 @@
 @section('title','Blog - ThreeT ')
 
 @section('content')
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Blog</h2>
-                    <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="about-us.html">Blog</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
-
-
 
     <!--================Blog Area =================-->
-    <section class="blog_area mt-5">
+    <section class="blog_area mt-5" style="margin-top: 117px!important;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">

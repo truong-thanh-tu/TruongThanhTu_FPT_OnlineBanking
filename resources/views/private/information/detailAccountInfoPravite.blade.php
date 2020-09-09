@@ -2,21 +2,7 @@
 @section('title','Account | Detail Account')
 @section('content')
 
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Account</h2>
-                    <div class="page_link">
-                        <a>Account</a>
-                        <a >Detail Information Account</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+
 
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area p_120">

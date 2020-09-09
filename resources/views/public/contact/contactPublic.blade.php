@@ -3,25 +3,11 @@
 @section('title','Contact - ThreeT')
 
 @section('content')
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Contact Us</h2>
-                    <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="contact.html">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+
 
     <!--================Contact Area =================-->
-    <section class="contact_area p_120">
-        <div class="container">
+    <section class="contact_area p_120  ">
+        <div class="container alert-primary p-5">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="contact_info">
@@ -96,71 +82,5 @@
         </div>
     </section>
     <!--================Contact Area =================-->
-    <!--================Team Area =================-->
-    <section class="team_area">
-        <div class="team_slider owl-carousel">
-            <div class="item">
-                <div class="team_item">
-                    <img src="{{ asset('img/team/team-1.jpg') }}" alt="">
-                    <div class="hover_text">
-                        <a href="#"><h4>Glenn Watson</h4></a>
-                        <p>Managing Director (Sales)</p>
-                        <ul class="list">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="team_item">
-                    <img src="{{ asset('img/team/team-2.jpg') }}" alt="">
-                    <div class="hover_text">
-                        <a href="#"><h4>Eva Yates</h4></a>
-                        <p>Managing Director (Sales)</p>
-                        <ul class="list">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="team_item">
-                    <img src="{{ asset('img/team/team-3.jpg') }}" alt="">
-                    <div class="hover_text">
-                        <a href="#"><h4>Ethan Hopkins</h4></a>
-                        <p>Managing Director (Sales)</p>
-                        <ul class="list">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="team_item">
-                    <img src="{{ asset('img/team/team-4.jpg') }}" alt="">
-                    <div class="hover_text">
-                        <a href="#"><h4>Maud Graham</h4></a>
-                        <p>Managing Director (Sales)</p>
-                        <ul class="list">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Team Area =================-->
 
 @endsection

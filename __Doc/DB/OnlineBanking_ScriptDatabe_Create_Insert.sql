@@ -329,7 +329,7 @@ INSERT INTO users(CodeCustomer, User, Pass, FirstName, LastName, Address, Dob, W
 
 
 INSERT INTO type_account(CodeTypeAccountCustomer, TypeAccount)
-    VALUE ('HS56', 'Multi-function Account');
+    VALUE ('HS56', 'Payment account');
 INSERT INTO type_account(CodeTypeAccountCustomer, TypeAccount)
     VALUE ('UT56', 'Saving account');
 
@@ -412,7 +412,7 @@ INSERT INTO transaction(IDTypeAccountCustomer, IDBank, CodeTransaction, Benefici
 
 
 INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
-    VALUE ('Busines Consulting',
+    VALUE ('Business Consulting',
            'It is certain that there will come a point when many foreign entrepreneurs in Vietnam wonder if they should hire a business consultant due to the daunting rules and regulations and new business environment that take away their precious time and energy.',
            'Many businesses in Vietnam these days have hired business consultants to develop the most excellent market entry strategies for them, instead of just relying on their internal teams.',
            'img/project/project7.jpg');
@@ -446,7 +446,7 @@ INSERT INTO introduce(TitleIntroduce, Content1, Content2, Img)
 
 
 INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
-    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/feature-img1.jpg', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/Blog1.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
                                 why you should have to spend money on boot camp when you can get the MCSE study
                                 materials yourself at a fraction.', '    <div class="col-lg-12 col-md-12 blog_details">
                             <h2>Astronomy Binoculars A Great Alternative</h2>
@@ -471,7 +471,7 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
                             </p>
                         </div>');
 INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
-    VALUE ('Customer trust that improves sales.', 'img/blog/Blog1.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+    VALUE ('Customer trust that improves sales.', 'img/blog/Blog2.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
                                 why you should have to spend money on boot camp when you can get the MCSE study
                                 materials yourself at a fraction.', '  <div class="col-lg-12">
                             <div class="quotes">
@@ -520,7 +520,7 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
                             </div>
                         </div>');
 INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
-    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/feature-img1.jpg', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+    VALUE ('Astronomy Binoculars A Great Alternative', 'img/blog/Blog3.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
                                 why you should have to spend money on boot camp when you can get the MCSE study
                                 materials yourself at a fraction.', '    <div class="col-lg-12 col-md-12 blog_details">
                             <h2>Astronomy Binoculars A Great Alternative</h2>
@@ -545,7 +545,7 @@ INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
                             </p>
                         </div>');
 INSERT INTO Blog(TitleBlog, Img, Content1, Content2)
-    VALUE ('Customer trust that improves sales.', 'img/blog/Blog1.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
+    VALUE ('Customer trust that improves sales.', 'img/blog/Blog4.png', ' MCSE boot camps have its supporters and its detractors. Some people do not understand
                                 why you should have to spend money on boot camp when you can get the MCSE study
                                 materials yourself at a fraction.', '  <div class="col-lg-12">
                             <div class="quotes">

@@ -3,21 +3,6 @@
 @section('title','About - ThreeT')
 
 @section('content')
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>About Us</h2>
-                    <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="about-us.html">About Us</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
 
     <!--================Success Area =================-->
     <section class="success_area">

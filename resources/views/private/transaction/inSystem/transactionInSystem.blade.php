@@ -3,27 +3,15 @@
 @section('content')
 
 
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Transfers</h2>
-                    <div class="page_link">
-                        <a> In System</a>
-                        <a>Information</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+
 
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area p_120">
         <div class="container">
             <div class="row">
-                <h2 class="text-black text-uppercase " style="letter-spacing: 1px"> In OnLineBanking</h2>
+                <div class="col"><h2 class="text-black text-uppercase " style="letter-spacing: 1px"> In
+                        OnLineBanking</h2>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 posts-list">

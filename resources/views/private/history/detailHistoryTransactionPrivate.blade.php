@@ -2,21 +2,7 @@
 @section('title','History | Detail History')
 @section('content')
 
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>History</h2>
-                    <div class="page_link">
-                        <a>History</a>
-                        <a> Detail History Transaction</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+
 
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area p_120">

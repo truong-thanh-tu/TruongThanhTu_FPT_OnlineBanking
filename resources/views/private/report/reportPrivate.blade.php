@@ -2,21 +2,6 @@
 @section('title','Report')
 @section('content')
 
-
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Report</h2>
-                    <div class="page_link">
-                        <a>Report</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
     <!--================Blog Categorie Area =================-->
     <section class="blog_categorie_area">
         <div class="container">

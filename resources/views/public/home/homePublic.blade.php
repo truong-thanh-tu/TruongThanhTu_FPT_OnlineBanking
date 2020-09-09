@@ -74,7 +74,7 @@
     <section class="project_area">
         <div class="row m0">
             @foreach($valueIntroduces as $valueIntroduce)
-                <div class="col-lg-4 col-md-6 p0">
+                <div class="col-lg-4 col-md-6 p_5 mt-5 mb-5">
                     <div class="project_item">
                         <img src="{{ $valueIntroduce->Img }}" alt="">
                         <div class="hover_text">

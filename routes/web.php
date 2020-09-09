@@ -31,11 +31,11 @@ Route::group(['prefix' => 'public'], function () {
         'uses' => "Publics\PublicController@showAbout"
     ]);
 
-    Route::get('/blog', [
+    Route::get('/news', [
         'as' => 'Blog',
         'uses' => "Publics\PublicController@showBlog"
     ]);
-    Route::get('/blog/{id}', [
+    Route::get('/news/{id}', [
         'as' => 'Blog-Detail',
         'uses' => "Publics\PublicController@showBlogDetail"
     ]);

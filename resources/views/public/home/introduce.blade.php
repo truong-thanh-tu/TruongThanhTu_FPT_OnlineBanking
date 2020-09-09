@@ -3,20 +3,8 @@
 @section('title','Post')
 @section('content')
 
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content">
-                    <h2>Project Details</h2>
-                    <div class="page_link">
-                        <a>Support</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+
+
 
     <!--================Portfolio Details Area =================-->
     <section class="portfolio_details_area p_120">
